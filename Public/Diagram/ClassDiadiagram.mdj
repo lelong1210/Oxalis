@@ -680,8 +680,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -48,
-											"top": 480,
+											"left": 176,
+											"top": 496,
 											"height": 13
 										},
 										{
@@ -691,8 +691,8 @@
 												"$ref": "AAAAAAGAF2/wO98mAb8="
 											},
 											"font": "Arial;13;1",
-											"left": 229,
-											"top": 367,
+											"left": 341,
+											"top": 375,
 											"width": 62.68310546875,
 											"height": 13,
 											"text": "Đơn Hàng"
@@ -705,8 +705,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -48,
-											"top": 480,
+											"left": 176,
+											"top": 496,
 											"width": 73.67724609375,
 											"height": 13,
 											"text": "(from Model)"
@@ -719,15 +719,15 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -48,
-											"top": 480,
+											"left": 176,
+											"top": 496,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 224,
-									"top": 360,
+									"left": 336,
+									"top": 368,
 									"width": 72.68310546875,
 									"height": 25,
 									"stereotypeLabel": {
@@ -753,8 +753,8 @@
 										"$ref": "AAAAAAGAF2/wO98j/E8="
 									},
 									"font": "Arial;13;0",
-									"left": 224,
-									"top": 385,
+									"left": 336,
+									"top": 393,
 									"width": 72.68310546875,
 									"height": 10
 								},
@@ -768,8 +768,8 @@
 										"$ref": "AAAAAAGAF2/wO98j/E8="
 									},
 									"font": "Arial;13;0",
-									"left": 224,
-									"top": 395,
+									"left": 336,
+									"top": 403,
 									"width": 72.68310546875,
 									"height": 10
 								},
@@ -784,8 +784,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": -24,
-									"top": 240,
+									"left": 88,
+									"top": 248,
 									"width": 10,
 									"height": 10
 								},
@@ -800,16 +800,16 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": -24,
-									"top": 240,
+									"left": 88,
+									"top": 248,
 									"width": 10,
 									"height": 10
 								}
 							],
 							"font": "Arial;13;0",
 							"containerChangeable": true,
-							"left": 224,
-							"top": 360,
+							"left": 336,
+							"top": 368,
 							"width": 72.68310546875,
 							"height": 45,
 							"nameCompartment": {
@@ -1020,7 +1020,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGAF25Np96eKzg="
 							},
-							"name": "Mã Người Dùng"
+							"name": "Mã Người Dùng",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -1028,7 +1029,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGAF25Np96eKzg="
 							},
-							"name": "Tên"
+							"name": "Tên",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -1036,7 +1038,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGAF25Np96eKzg="
 							},
-							"name": "Email"
+							"name": "Email",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -1044,7 +1047,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGAF25Np96eKzg="
 							},
-							"name": "Địa Chỉ"
+							"name": "Địa Chỉ",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -1052,7 +1056,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGAF25Np96eKzg="
 							},
-							"name": "Số Điện Thoại"
+							"name": "Số Điện Thoại",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -1060,7 +1065,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGAF25Np96eKzg="
 							},
-							"name": "Quyền"
+							"name": "Quyền",
+							"type": ""
 						}
 					]
 				},
