@@ -6,5 +6,7 @@ git branch -M main
 git remote add origin https://github.com/lelong1210/Oxalis.git
 git push -u origin main
 
-123 123 123
-
+git pull
+git add .
+git commit -m "lamanh"
+git push -u origin main
