@@ -3,7 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/btn_custom.xml" value="0.1605" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/et_custom.xml" value="0.1605" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_arrow_left.xml" value="0.137" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_arrow_right.xml" value="0.1605" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1605" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_email.xml" value="0.1605" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1605" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_person.xml" value="0.1" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/activity_login.xml" value="0.25462962962962965" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/activity_register.xml" value="0.2604166666666667" />
       </map>
     </option>
   </component>

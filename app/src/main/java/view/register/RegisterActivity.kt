@@ -1,9 +1,10 @@
-package com.example.oxalis
+package view.register
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.oxalis.R
 
-class MainActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
