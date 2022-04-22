@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "154611055821",
+    "firebase_url": "https://projectoxalis-default-rtdb.firebaseio.com",
+    "project_id": "projectoxalis",
+    "storage_bucket": "projectoxalis.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154611055821:android:4c9cff692f7b4c39b93d84",
+        "android_client_info": {
+          "package_name": "com.example.oxalis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "154611055821-ab8p9c8e0jru297l0l4nj793pa0k5r4r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4KeEi0Kq2C32Z_aFce6UmSbDZoTNKWr8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "154611055821-ab8p9c8e0jru297l0l4nj793pa0k5r4r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

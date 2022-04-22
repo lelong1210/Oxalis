@@ -3,9 +3,10 @@
 
     <string name="top_icon">TOP ICON</string>
     <string name="email">Email</string>
-    <string name="user">User Name</string>
+    <string name="user">Full Name</string>
     <string name="password">Password</string>
     <string name="login">LOGIN</string>
+    <string name="register">REGISTER</string>
     <string name="forgot_password">FORGOT PASSWORD?</string>
     <string name="or">OR</string>
     <string name="google_icon">google icon</string>
