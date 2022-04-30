@@ -13,4 +13,15 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="BottomNavigationStyle" parent="Widget.Design.BottomNavigationView">
+        <!--        <item name="android:foreground">@drawable/ripple_custom</item>-->
+        <item name="android:background">@color/bottomNavigationBackground</item>
+        <!--<item name="itemBackground">@drawable/ripple_custom</item>-->
+        <item name="itemIconTint">@color/bottom_navigation_color</item>
+        <item name="itemTextColor">@color/bottom_navigation_color</item>
+        <item name="fontFamily">@font/poppins</item>
+        <!--        <item name="android:fontFamily">@font/varela_round</item>-->
+
+    </style>
 </resources>

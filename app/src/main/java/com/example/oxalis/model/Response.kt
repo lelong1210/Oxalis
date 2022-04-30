@@ -11,3 +11,30 @@ data class UserInfo(
     var date: String? = null,
     var address: String? = null
 )
+
+val arrayNameOfUserInfo =
+    arrayOf("id", "fullname", "mail", "phone", "gender", "permission", "avatar", "date", "address")
+
+
+data class TourInfo(
+//    var id: String? = null,
+//    var status: String? = null,
+    var name: String? = null,
+//    var minPrice: String? = null,
+//    var maxPrice: String? = null,
+//    var timeStart: String? = null,
+//    var timeEnd: String? = null,
+//    var age: Int? = null,
+    var price: String? = null,
+    var avatar: Int? = null,
+    var rate: Int? = null,
+//    var Describe: String? = null,
+    var Address: String? = null,
+//    var listImage: ArrayList<String>? = null
+
+)
+
+data class AllCategory(
+    val categoryTitle: String? = null,
+    val categoryItemList: List<TourInfo>
+)

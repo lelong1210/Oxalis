@@ -25,7 +25,14 @@ class RegisterActivity : AppCompatActivity() {
 
             var userInfo = UserInfo(
                 "",
-                fullname.uppercase(Locale.getDefault()), mail, "", "", "user", "", "", ""
+                fullname.uppercase(Locale.getDefault()),
+                mail,
+                "",
+                "",
+                "user",
+                "https://firebasestorage.googleapis.com/v0/b/projectoxalis.appspot.com/o/avatar.png?alt=media&token=a8e069b4-34b4-43d7-834b-7d0a128f5f7a",
+                "",
+                ""
             )
             val firebaseService = FirebaseService()
 
