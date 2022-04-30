@@ -1,8 +1,7 @@
-package com.example.oxalis.view.fragments
+package com.example.oxalis.view.fragmentsUser
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.oxalis.R
 import com.example.oxalis.adapter.HomeRecyclerAdapter
-import com.example.oxalis.databinding.FragmentAccountBinding
 import com.example.oxalis.databinding.FragmentHomeBinding
 import com.example.oxalis.model.AllCategory
 import com.example.oxalis.model.TourInfo
@@ -25,6 +23,7 @@ class HomeFragment : Fragment() {
     private lateinit var homeCategoryRecycler:RecyclerView
     private lateinit var homeRecyclerAdapter:HomeRecyclerAdapter
     var onItemClick:((String)->Unit)? = null
+    private lateinit var tourInfo: TourInfo
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

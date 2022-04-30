@@ -27,6 +27,7 @@ class LoginActivity : AppCompatActivity() {
                 userInfo ->
                 if(userInfo.id != null){
                     Toast.makeText(this, "Login Succeed", Toast.LENGTH_SHORT).show()
+                    Log.i("test","$userInfo")
                 }else{
                     Toast.makeText(this, "Login Err", Toast.LENGTH_SHORT).show()
                 }

@@ -1,4 +1,4 @@
-package com.example.oxalis.view.fragments
+package com.example.oxalis.view.fragmentsUser
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,9 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.oxalis.R
 import com.example.oxalis.databinding.FragmentAccountBinding
-import com.example.oxalis.databinding.FragmentHomeBinding
 import com.example.oxalis.view.login.LoginActivity
 
 class AccountFragment : Fragment() {

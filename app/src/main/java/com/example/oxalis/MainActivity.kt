@@ -2,12 +2,10 @@ package com.example.oxalis
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import com.example.oxalis.databinding.ActivityMainBinding
-import com.example.oxalis.model.UserInfo
-import com.example.oxalis.view.fragments.*
-import kotlin.reflect.full.memberProperties
+import com.example.oxalis.view.fragmentsAdmin.InsertTourFragment
+import com.example.oxalis.view.fragmentsUser.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,6 +14,7 @@ class MainActivity : AppCompatActivity() {
     private val purchaseOderFragment = PurchaseOderFragment()
     private val searchFragment = SearchFragment()
     private val accountFragment = AccountFragment()
+    private val insertTourFragment = InsertTourFragment()
 
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +49,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
         homeFragment.onItemClick = {
-            it->replaceFragment(accountFragment)
+
+        }
+        searchFragment.onItemClick={
+            replaceFragment(insertTourFragment)
         }
     }
 

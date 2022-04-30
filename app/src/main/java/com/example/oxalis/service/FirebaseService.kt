@@ -1,12 +1,17 @@
 package com.example.oxalis.service
 
+import android.graphics.drawable.BitmapDrawable
 import android.util.Log
+import android.widget.ImageView
+import com.example.oxalis.R
+import com.example.oxalis.model.TourInfo
 import com.example.oxalis.model.UserInfo
 import com.example.oxalis.model.arrayNameOfUserInfo
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.io.ByteArrayOutputStream
 import kotlin.collections.ArrayList
 import kotlin.reflect.full.memberProperties
 
@@ -14,6 +19,7 @@ class FirebaseService {
     private val auth: FirebaseAuth = Firebase.auth
     private val db = Firebase.firestore
     private val tableUsers = db.collection("users")
+    private val tableTour = db.collection("tours")
 
     // check login
     fun isLogin(): Boolean {
@@ -30,7 +36,7 @@ class FirebaseService {
         callback: (status: Boolean) -> Unit
     ) {
 
-        auth.createUserWithEmailAndPassword(userInfo.mail, password)
+        auth.createUserWithEmailAndPassword(userInfo.mail!!, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     // get UID
@@ -53,25 +59,11 @@ class FirebaseService {
     }
 
     fun login(mail: String, password: String, callback: (userInfo: UserInfo) -> Unit) {
+        var userInfo: UserInfo
         auth.signInWithEmailAndPassword(mail, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                var userInfo: UserInfo
-                val arrayList = ArrayList<String>()
                 tableUsers.document(auth.uid.toString()).get().addOnCompleteListener { task ->
-                    for (i in arrayNameOfUserInfo.indices) {
-                        arrayList.add(task.result.getString(arrayNameOfUserInfo[i]).toString())
-                    }
-                    userInfo = UserInfo(
-                        arrayList[0],
-                        arrayList[1],
-                        arrayList[2],
-                        arrayList[3],
-                        arrayList[4],
-                        arrayList[5],
-                        arrayList[6],
-                        arrayList[7],
-                        arrayList[8]
-                    )
+                    userInfo = task.result.toObject(UserInfo::class.java)!!
                     callback.invoke(userInfo)
                 }
             } else {
@@ -90,13 +82,14 @@ class FirebaseService {
             }
         }
     }
+    fun insertTourInfo(tourInfo: TourInfo,callback: (status: Boolean) -> Unit){
+
+    }
+    fun selectImage(){
+
+    }
 }
 
-
-/*                    UserInfo::class.memberProperties.forEach { member ->
-                        arrayList.add(task.result.getString(member.name).toString())
-                        Log.i("test",member.name)
-                    }*/
 
 
 

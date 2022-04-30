@@ -3,7 +3,7 @@ package com.example.oxalis.model
 data class UserInfo(
     var id: String? = null,
     var fullname: String? = null,
-    var mail: String,
+    var mail: String? = null,
     var phone: String? = null,
     var gender: String? = null,
     var permission: String? = "user",

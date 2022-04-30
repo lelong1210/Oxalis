@@ -1,4 +1,4 @@
-package com.example.oxalis.view.fragments
+package com.example.oxalis.view.fragmentsUser
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
