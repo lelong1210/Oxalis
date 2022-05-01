@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#DF5A5A">
+    android:background="@color/colorPrimaryDark">
 
     <TextView
         android:id="@+id/cat_all_tour_info"

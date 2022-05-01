@@ -22,7 +22,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var homeCategoryRecycler:RecyclerView
     private lateinit var homeRecyclerAdapter:HomeRecyclerAdapter
-    var onItemClick:((String)->Unit)? = null
+    var onItemClick:((TourInfo)->Unit)? = null
     private lateinit var tourInfo: TourInfo
 
     override fun onCreateView(
@@ -33,39 +33,39 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater,container,false)
 
         val tourItemList1:MutableList<TourInfo> = ArrayList()
-        tourItemList1.add(TourInfo("A","1111",R.drawable.frutorials,5,"QUẢNG BÌNH"))
-        tourItemList1.add(TourInfo("A","1111",R.drawable.frutorials,5,"QUẢNG BÌNH"))
-        tourItemList1.add(TourInfo("A","1111",R.drawable.frutorials,5,"QUẢNG BÌNH"))
-        tourItemList1.add(TourInfo("A","1111",R.drawable.frutorials,5,"QUẢNG BÌNH"))
-        tourItemList1.add(TourInfo("A","1111",R.drawable.frutorials,5,"QUẢNG BÌNH"))
+        tourItemList1.add(TourInfo("A","1111",R.drawable.demoimage,5,"QUẢNG BÌNH"))
+        tourItemList1.add(TourInfo("A","1111",R.drawable.demoimage,5,"QUẢNG BÌNH"))
+        tourItemList1.add(TourInfo("A","1111",R.drawable.demoimage,5,"QUẢNG BÌNH"))
+        tourItemList1.add(TourInfo("A","1111",R.drawable.demoimage,5,"QUẢNG BÌNH"))
+        tourItemList1.add(TourInfo("A","1111",R.drawable.demoimage,5,"QUẢNG BÌNH"))
 
         val tourItemList2:MutableList<TourInfo> = ArrayList()
-        tourItemList2.add(TourInfo("B","2222",R.drawable.frutorials,5,"QUẢNG TRỊ"))
-        tourItemList2.add(TourInfo("B","2222",R.drawable.frutorials,5,"QUẢNG TRỊ"))
-        tourItemList2.add(TourInfo("B","2222",R.drawable.frutorials,5,"QUẢNG TRỊ"))
-        tourItemList2.add(TourInfo("B","2222",R.drawable.frutorials,5,"QUẢNG TRỊ"))
-        tourItemList2.add(TourInfo("B","2222",R.drawable.frutorials,5,"QUẢNG TRỊ"))
+        tourItemList2.add(TourInfo("B","2222",R.drawable.demoimage,5,"QUẢNG TRỊ"))
+        tourItemList2.add(TourInfo("B","2222",R.drawable.demoimage,5,"QUẢNG TRỊ"))
+        tourItemList2.add(TourInfo("B","2222",R.drawable.demoimage,5,"QUẢNG TRỊ"))
+        tourItemList2.add(TourInfo("B","2222",R.drawable.demoimage,5,"QUẢNG TRỊ"))
+        tourItemList2.add(TourInfo("B","2222",R.drawable.demoimage,5,"QUẢNG TRỊ"))
 
         val tourItemList3:MutableList<TourInfo> = ArrayList()
-        tourItemList3.add(TourInfo("C","3333",R.drawable.frutorials,5,"QUẢNG NAM"))
-        tourItemList3.add(TourInfo("C","3333",R.drawable.frutorials,5,"QUẢNG NAM"))
-        tourItemList3.add(TourInfo("C","3333",R.drawable.frutorials,5,"QUẢNG NAM"))
-        tourItemList3.add(TourInfo("C","3333",R.drawable.frutorials,5,"QUẢNG NAM"))
-        tourItemList3.add(TourInfo("C","3333",R.drawable.frutorials,5,"QUẢNG NAM"))
+        tourItemList3.add(TourInfo("C","3333",R.drawable.demoimage,5,"QUẢNG NAM"))
+        tourItemList3.add(TourInfo("C","3333",R.drawable.demoimage,5,"QUẢNG NAM"))
+        tourItemList3.add(TourInfo("C","3333",R.drawable.demoimage,5,"QUẢNG NAM"))
+        tourItemList3.add(TourInfo("C","3333",R.drawable.demoimage,5,"QUẢNG NAM"))
+        tourItemList3.add(TourInfo("C","3333",R.drawable.demoimage,5,"QUẢNG NAM"))
 
         val tourItemList4:MutableList<TourInfo> = ArrayList()
-        tourItemList4.add(TourInfo("D","4444",R.drawable.frutorials,5,"QUẢNG NGÃI"))
-        tourItemList4.add(TourInfo("D","4444",R.drawable.frutorials,5,"QUẢNG NGÃI"))
-        tourItemList4.add(TourInfo("D","4444",R.drawable.frutorials,5,"QUẢNG NGÃI"))
-        tourItemList4.add(TourInfo("D","4444",R.drawable.frutorials,5,"QUẢNG NGÃI"))
-        tourItemList4.add(TourInfo("D","4444",R.drawable.frutorials,5,"QUẢNG NGÃI"))
+        tourItemList4.add(TourInfo("D","4444",R.drawable.demoimage,5,"QUẢNG NGÃI"))
+        tourItemList4.add(TourInfo("D","4444",R.drawable.demoimage,5,"QUẢNG NGÃI"))
+        tourItemList4.add(TourInfo("D","4444",R.drawable.demoimage,5,"QUẢNG NGÃI"))
+        tourItemList4.add(TourInfo("D","4444",R.drawable.demoimage,5,"QUẢNG NGÃI"))
+        tourItemList4.add(TourInfo("D","4444",R.drawable.demoimage,5,"QUẢNG NGÃI"))
 
         val tourItemList5:MutableList<TourInfo> = ArrayList()
-        tourItemList5.add(TourInfo("E","5555",R.drawable.frutorials,5,"HÀ NỘI"))
-        tourItemList5.add(TourInfo("E","5555",R.drawable.frutorials,5,"HÀ NỘI"))
-        tourItemList5.add(TourInfo("E","5555",R.drawable.frutorials,5,"HÀ NỘI"))
-        tourItemList5.add(TourInfo("E","5555",R.drawable.frutorials,5,"HÀ NỘI"))
-        tourItemList5.add(TourInfo("E","5555",R.drawable.frutorials,5,"HÀ NỘI"))
+        tourItemList5.add(TourInfo("E","5555",R.drawable.demoimage,5,"HÀ NỘI"))
+        tourItemList5.add(TourInfo("E","5555",R.drawable.demoimage,5,"HÀ NỘI"))
+        tourItemList5.add(TourInfo("E","5555",R.drawable.demoimage,5,"HÀ NỘI"))
+        tourItemList5.add(TourInfo("E","5555",R.drawable.demoimage,5,"HÀ NỘI"))
+        tourItemList5.add(TourInfo("E","5555",R.drawable.demoimage,5,"HÀ NỘI"))
 
 
         val allCategory: MutableList<AllCategory> = ArrayList()
@@ -88,12 +88,13 @@ class HomeFragment : Fragment() {
         homeCategoryRecycler.adapter = homeRecyclerAdapter
 
         homeRecyclerAdapter.onItemClick = {TourInfo->
-            if(TourInfo.name.equals("A")){
-                val intent = Intent(activity, LoginActivity::class.java)
-                activity?.startActivity(intent)
-            }else{
-                onItemClick?.invoke("B")
-            }
+//            if(TourInfo.name.equals("A")){
+//                val intent = Intent(activity, LoginActivity::class.java)
+//                activity?.startActivity(intent)
+//            }else{
+//                onItemClick?.invoke("B")
+//            }
+            onItemClick?.invoke(TourInfo)
         }
 
     }

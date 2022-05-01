@@ -34,4 +34,15 @@
         <!--        <item name="android:fontFamily">@font/varela_round</item>-->
 
     </style>
+
+    <style name="parent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="loginParent" parent="parent">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:focusableInTouchMode">true</item>
+    </style>
 </resources>

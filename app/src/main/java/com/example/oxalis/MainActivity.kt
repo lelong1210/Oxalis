@@ -2,6 +2,7 @@ package com.example.oxalis
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import com.example.oxalis.databinding.ActivityMainBinding
 import com.example.oxalis.view.fragmentsAdmin.InsertTourFragment
@@ -23,43 +24,43 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         replaceFragment(homeFragment)
 
-        binding.bottomNavigationView.setOnItemSelectedListener {item->
-            when(item.itemId){
-                R.id.HomeFragment->{
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.HomeFragment -> {
                     replaceFragment(homeFragment)
                     true
                 }
-                R.id.PreferentialFragment->{
+                R.id.PreferentialFragment -> {
                     replaceFragment(preferentialFragment)
                     true
                 }
-                R.id.PurchaseOderFragment->{
+                R.id.PurchaseOderFragment -> {
                     replaceFragment(purchaseOderFragment)
                     true
                 }
-                R.id.SearchFragment->{
+                R.id.SearchFragment -> {
                     replaceFragment(searchFragment)
                     true
                 }
-                R.id.AccountFragment->{
+                R.id.AccountFragment -> {
                     replaceFragment(accountFragment)
                     true
                 }
                 else -> false
             }
         }
-        homeFragment.onItemClick = {
-
+        homeFragment.onItemClick = { it ->
+            Log.i("test", "$it")
         }
-        searchFragment.onItemClick={
+        searchFragment.onItemClick = {
             replaceFragment(insertTourFragment)
         }
     }
 
-    private fun replaceFragment(fragment: Fragment){
-        if(fragment != null){
+    private fun replaceFragment(fragment: Fragment) {
+        if (fragment != null) {
             val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragment_container,fragment)
+            transaction.replace(R.id.fragment_container, fragment)
             transaction.commit()
         }
     }

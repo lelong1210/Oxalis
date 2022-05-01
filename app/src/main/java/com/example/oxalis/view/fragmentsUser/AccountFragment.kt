@@ -21,10 +21,10 @@ class AccountFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentAccountBinding.inflate(inflater,container,false)
 
-        binding.testBTN.setOnClickListener {
-            val intent = Intent(activity, LoginActivity::class.java)
-            activity?.startActivity(intent)
-        }
+//        binding.testBTN.setOnClickListener {
+//            val intent = Intent(activity, LoginActivity::class.java)
+//            activity?.startActivity(intent)
+//        }
         return binding.root
     }
 
