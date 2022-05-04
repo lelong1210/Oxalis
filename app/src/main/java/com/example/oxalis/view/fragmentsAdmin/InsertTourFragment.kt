@@ -11,9 +11,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.example.oxalis.databinding.FragmentInsertTourBinding
 import com.example.oxalis.databinding.FragmentSearchBinding
+import com.example.oxalis.model.StopPointInfo
+import com.example.oxalis.service.FirebaseService
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
 import kotlin.collections.ArrayList
 
 @Suppress("DEPRECATION")
@@ -40,7 +45,8 @@ class InsertTourFragment : Fragment() {
         }
 
         binding.uploadimagebtn.setOnClickListener {
-            uploadImage()
+//            uploadImage()
+//            getUrlImage()
         }
 
         return binding.root
@@ -52,7 +58,6 @@ class InsertTourFragment : Fragment() {
         intent.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(intent, 100)
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -76,12 +81,8 @@ class InsertTourFragment : Fragment() {
                     binding.firebaseimage4.setImageURI(data?.data)
                     index++
                 }
-                4 -> {
-                    binding.firebaseimage5.setImageURI(data?.data)
-                    index++
-                }
-                else->{
-                    binding.firebaseimage5.setImageURI(data?.data)
+                else -> {
+                    binding.firebaseimage4.setImageURI(data?.data)
                 }
             }
             arrayImageUri.add(imageUri)
@@ -90,7 +91,7 @@ class InsertTourFragment : Fragment() {
 
     private fun uploadImage() {
 
-        Log.i("test",arrayImageUri.toString())
+        Log.i("test", arrayImageUri.toString())
 
         var pd = ProgressDialog(context)
         pd.setTitle("upload")
@@ -100,7 +101,8 @@ class InsertTourFragment : Fragment() {
 
 
         for (i in 0 until arrayImageUri.size) {
-            var imageRef = FirebaseStorage.getInstance().reference.child("image/${nameOfImage[i]}.jpg")
+            var imageRef =
+                FirebaseStorage.getInstance().reference.child("image/${nameOfImage[i]}.jpg")
             imageRef.putFile(arrayImageUri[i])
                 .addOnSuccessListener {
                     pd.dismiss()
@@ -118,6 +120,11 @@ class InsertTourFragment : Fragment() {
         }
 
 
+    }
 
+
+
+    private fun insertStopPoint(){
+//        val stopPointInfo = StopPointInfo()
     }
 }

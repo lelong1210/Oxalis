@@ -1,5 +1,7 @@
 package com.example.oxalis.model
 
+import java.io.Serializable
+
 data class UserInfo(
     var id: String? = null,
     var fullname: String? = null,
@@ -11,10 +13,6 @@ data class UserInfo(
     var date: String? = null,
     var address: String? = null
 )
-
-val arrayNameOfUserInfo =
-    arrayOf("id", "fullname", "mail", "phone", "gender", "permission", "avatar", "date", "address")
-
 
 data class TourInfo(
 //    var id: String? = null,
@@ -29,30 +27,41 @@ data class TourInfo(
     var avatar: Int? = null,
     var rate: Int? = null,
 //    var Describe: String? = null,
-    var Address: String? = null,
+    var adrress: String? = null,
 //    var listImage: ArrayList<String>? = null
 
 )
 
 data class StopPointInfo(
-//    var id: String? = null,
-//    var status: String? = null,
-    var name: String? = null,
-//    var minPrice: String? = null,
-//    var maxPrice: String? = null,
-//    var timeStart: String? = null,
-//    var timeEnd: String? = null,
-//    var age: Int? = null,
-    var price: String? = null,
-    var avatar: Int? = null,
-    var rate: Int? = null,
-//    var Describe: String? = null,
+    var id: String? = null,
+    var name_of_address: String? = null,
+    var typeOfService: String? = null,
     var Address: String? = null,
-//    var listImage: ArrayList<String>? = null
+    var price: String?=null,
+    var avatar: String? = null,
+    var timeStart: String? = null,
+    var timeEnd: String? = null,
+    var listImage: ArrayList<String>? = null,
+    var contract: String? = null,
 
+):Serializable
+
+data class Discount(
+    val image:Int,
+    val percentDiscount:Int
 )
 
-data class AllCategory(
+data class AllCategoryDiscount(
+    val categoryTitle: String? = null,
+    val categoryItemList: List<Discount>
+)
+
+data class AllCategoryTourInfo(
     val categoryTitle: String? = null,
     val categoryItemList: List<TourInfo>
 )
+data class AllCategoryStopPoint(
+    val categoryTitle: String? = null,
+    val categoryItemList: List<StopPointInfo>
+)
+val arrayOfImage = arrayListOf("0","1","2","3")

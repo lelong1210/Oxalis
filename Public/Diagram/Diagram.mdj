@@ -20611,6 +20611,7 @@
 											"model": {
 												"$ref": "AAAAAAGAMrdgs7GqZAU="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"left": 813,
 											"top": 722,
@@ -20628,12 +20629,30 @@
 											"model": {
 												"$ref": "AAAAAAGAMrdptrHIcoU="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"left": 813,
-											"top": 737,
+											"top": 722,
 											"width": 162.1318359375,
 											"height": 13,
 											"text": "+giá tiền cao nhất",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAGAgFKCC0HrlX4=",
+											"_parent": {
+												"$ref": "AAAAAAGAMrcU+LDcKLs="
+											},
+											"model": {
+												"$ref": "AAAAAAGAgFKB+kHlepk="
+											},
+											"font": "Arial;13;0",
+											"left": 813,
+											"top": 722,
+											"width": 162.1318359375,
+											"height": 13,
+											"text": "+giá tiền",
 											"horizontalAlignment": 0
 										},
 										{
@@ -20647,7 +20666,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 813,
-											"top": 752,
+											"top": 737,
 											"width": 162.1318359375,
 											"height": 13,
 											"text": "+thời gian bắt đầu",
@@ -20664,7 +20683,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 813,
-											"top": 767,
+											"top": 752,
 											"width": 162.1318359375,
 											"height": 13,
 											"text": "+thời gian kết thúc",
@@ -20681,7 +20700,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 813,
-											"top": 782,
+											"top": 767,
 											"width": 162.1318359375,
 											"height": 13,
 											"text": "+độ tuổi",
@@ -20698,7 +20717,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 813,
-											"top": 797,
+											"top": 782,
 											"width": 162.1318359375,
 											"height": 13,
 											"text": "+riêng tư",
@@ -20715,7 +20734,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 813,
-											"top": 812,
+											"top": 797,
 											"width": 162.1318359375,
 											"height": 13,
 											"text": "+avatar của tour",
@@ -20750,7 +20769,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 813,
-											"top": 827,
+											"top": 812,
 											"width": 162.1318359375,
 											"height": 13,
 											"text": "+uy tín",
@@ -20767,7 +20786,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 813,
-											"top": 842,
+											"top": 827,
 											"width": 162.1318359375,
 											"height": 13,
 											"text": "+mô tả",
@@ -20784,7 +20803,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 813,
-											"top": 857,
+											"top": 842,
 											"width": 162.1318359375,
 											"height": 13,
 											"text": "+mảng ảnh",
@@ -20799,6 +20818,7 @@
 											"model": {
 												"$ref": "AAAAAAGAdf7TcukjrgE="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"left": 813,
 											"top": 872,
@@ -20812,7 +20832,7 @@
 									"left": 808,
 									"top": 657,
 									"width": 172.1318359375,
-									"height": 233
+									"height": 203
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -20825,7 +20845,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 808,
-									"top": 890,
+									"top": 860,
 									"width": 172.1318359375,
 									"height": 10
 								},
@@ -20913,7 +20933,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 1840,
-											"top": -368,
+											"top": -384,
 											"height": 13
 										},
 										{
@@ -20924,7 +20944,7 @@
 											},
 											"font": "Arial;13;1",
 											"left": 1093,
-											"top": 367,
+											"top": 439,
 											"width": 123.24609375,
 											"height": 13,
 											"text": "Điểm Dừng Chân"
@@ -20938,7 +20958,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 1840,
-											"top": -368,
+											"top": -384,
 											"width": 73.67724609375,
 											"height": 13,
 											"text": "(from Model)"
@@ -20952,14 +20972,14 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 1840,
-											"top": -368,
+											"top": -384,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 1088,
-									"top": 360,
+									"top": 432,
 									"width": 133.24609375,
 									"height": 25,
 									"stereotypeLabel": {
@@ -20996,7 +21016,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1093,
-											"top": 390,
+											"top": 462,
 											"width": 123.24609375,
 											"height": 13,
 											"text": "+mã điểm dừng chân",
@@ -21011,9 +21031,10 @@
 											"model": {
 												"$ref": "AAAAAAGAMr7uT7Tl2zM="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"left": 1093,
-											"top": 405,
+											"top": 397,
 											"width": 123.24609375,
 											"height": 13,
 											"text": "+mã dịch vụ",
@@ -21030,7 +21051,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1093,
-											"top": 420,
+											"top": 477,
 											"width": 123.24609375,
 											"height": 13,
 											"text": "+tên địa điểm",
@@ -21047,7 +21068,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1093,
-											"top": 435,
+											"top": 492,
 											"width": 123.24609375,
 											"height": 13,
 											"text": "+loại dịch vụ",
@@ -21064,7 +21085,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1093,
-											"top": 450,
+											"top": 507,
 											"width": 123.24609375,
 											"height": 13,
 											"text": "+địa chỉ",
@@ -21082,7 +21103,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 2133,
-											"top": 449,
+											"top": 433,
 											"width": 123.24609375,
 											"height": 13,
 											"text": "+Attribute6",
@@ -21100,10 +21121,27 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 2133,
-											"top": 449,
+											"top": 433,
 											"width": 123.24609375,
 											"height": 13,
 											"text": "+Attribute7",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAGAgDM/f/TJ5fc=",
+											"_parent": {
+												"$ref": "AAAAAAGAMr3hZbRlCDI="
+											},
+											"model": {
+												"$ref": "AAAAAAGAgDM/VPTD67M="
+											},
+											"font": "Arial;13;0",
+											"left": 1093,
+											"top": 522,
+											"width": 123.24609375,
+											"height": 13,
+											"text": "+avatar",
 											"horizontalAlignment": 0
 										},
 										{
@@ -21115,9 +21153,10 @@
 											"model": {
 												"$ref": "AAAAAAGAMr9MD7WoJLw="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"left": 1093,
-											"top": 465,
+											"top": 464,
 											"width": 123.24609375,
 											"height": 13,
 											"text": "+kinh độ",
@@ -21132,9 +21171,10 @@
 											"model": {
 												"$ref": "AAAAAAGAMr9WkrXGMTc="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"left": 1093,
-											"top": 480,
+											"top": 464,
 											"width": 123.24609375,
 											"height": 13,
 											"text": "+vỹ độ",
@@ -21149,9 +21189,10 @@
 											"model": {
 												"$ref": "AAAAAAGAMr9s37X2Vbw="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"left": 1093,
-											"top": 495,
+											"top": 457,
 											"width": 123.24609375,
 											"height": 13,
 											"text": "+giá tiền thấp nhất",
@@ -21166,12 +21207,30 @@
 											"model": {
 												"$ref": "AAAAAAGAMr96rrYUQVo="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"left": 1093,
-											"top": 510,
+											"top": 472,
 											"width": 123.24609375,
 											"height": 13,
 											"text": "+giá tiền cao nhất",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAGAgFLdY0tNc1Y=",
+											"_parent": {
+												"$ref": "AAAAAAGAMr3hZbRlCDI="
+											},
+											"model": {
+												"$ref": "AAAAAAGAgFLdVUtH2PY="
+											},
+											"font": "Arial;13;0",
+											"left": 1093,
+											"top": 537,
+											"width": 123.24609375,
+											"height": 13,
+											"text": "+giá tiền",
 											"horizontalAlignment": 0
 										},
 										{
@@ -21185,7 +21244,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1093,
-											"top": 525,
+											"top": 552,
 											"width": 123.24609375,
 											"height": 13,
 											"text": "+thời gian tới",
@@ -21202,7 +21261,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1093,
-											"top": 540,
+											"top": 567,
 											"width": 123.24609375,
 											"height": 13,
 											"text": "+thời gian đi",
@@ -21217,9 +21276,10 @@
 											"model": {
 												"$ref": "AAAAAAGAMr+vb7ZufLI="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"left": 1093,
-											"top": 555,
+											"top": 517,
 											"width": 123.24609375,
 											"height": 13,
 											"text": "+mã tỉnh",
@@ -21236,10 +21296,10 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1093,
-											"top": 570,
+											"top": 582,
 											"width": 123.24609375,
 											"height": 13,
-											"text": "+avatar",
+											"text": "+mảng ảnh",
 											"horizontalAlignment": 0
 										},
 										{
@@ -21253,7 +21313,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1093,
-											"top": 585,
+											"top": 597,
 											"width": 123.24609375,
 											"height": 13,
 											"text": "+liên hệ",
@@ -21271,7 +21331,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 2133,
-											"top": 584,
+											"top": 568,
 											"width": 123.24609375,
 											"height": 13,
 											"text": "+Attribute1",
@@ -21280,9 +21340,9 @@
 									],
 									"font": "Arial;13;0",
 									"left": 1088,
-									"top": 385,
+									"top": 457,
 									"width": 133.24609375,
-									"height": 218
+									"height": 158
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -21295,7 +21355,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 1088,
-									"top": 603,
+									"top": 615,
 									"width": 133.24609375,
 									"height": 10
 								},
@@ -21311,7 +21371,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 920,
-									"top": -184,
+									"top": -192,
 									"width": 10,
 									"height": 10
 								},
@@ -21327,7 +21387,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 920,
-									"top": -184,
+									"top": -192,
 									"width": 10,
 									"height": 10
 								}
@@ -21335,9 +21395,9 @@
 							"font": "Arial;13;0",
 							"containerChangeable": true,
 							"left": 1088,
-							"top": 360,
+							"top": 432,
 							"width": 133.24609375,
-							"height": 283,
+							"height": 203,
 							"nameCompartment": {
 								"$ref": "AAAAAAGAMr3hZLRglXc="
 							},
@@ -26912,6 +26972,7 @@
 											"model": {
 												"$ref": "AAAAAAGAdgY3Uii+K0U="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"left": 1093,
 											"top": 742,
@@ -26931,7 +26992,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1093,
-											"top": 757,
+											"top": 744,
 											"width": 123.24609375,
 											"height": 13,
 											"text": "+mã tour",
@@ -26948,7 +27009,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1093,
-											"top": 772,
+											"top": 759,
 											"width": 123.24609375,
 											"height": 13,
 											"text": "+mã điểm dừng chân",
@@ -26965,7 +27026,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1093,
-											"top": 787,
+											"top": 774,
 											"width": 123.24609375,
 											"height": 13,
 											"text": "+số thứ tự",
@@ -26976,7 +27037,7 @@
 									"left": 1088,
 									"top": 737,
 									"width": 133.24609375,
-									"height": 68
+									"height": 55
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -26989,7 +27050,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 1088,
-									"top": 805,
+									"top": 792,
 									"width": 133.24609375,
 									"height": 10
 								},
@@ -27070,7 +27131,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 1139,
-									"top": 670,
+									"top": 666,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -27091,7 +27152,7 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"left": 1124,
-									"top": 670,
+									"top": 666,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -27112,7 +27173,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 1168,
-									"top": 671,
+									"top": 667,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -27196,7 +27257,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 1139,
-									"top": 662,
+									"top": 654,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -27216,7 +27277,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 1125,
-									"top": 665,
+									"top": 657,
 									"height": 13,
 									"alpha": -0.7853981633974483,
 									"distance": 40,
@@ -27236,7 +27297,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 1166,
-									"top": 658,
+									"top": 650,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -27281,7 +27342,7 @@
 								"$ref": "AAAAAAGAdgXgACWh10E="
 							},
 							"lineStyle": 1,
-							"points": "1154:711;1154:643",
+							"points": "1154:711;1154:635",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGAdgblLTXT8BE="
@@ -27733,7 +27794,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGAMrcU97DUcPs="
 							},
-							"name": "địa điểm"
+							"name": "địa điểm",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -27751,6 +27813,15 @@
 								"$ref": "AAAAAAGAMrcU97DUcPs="
 							},
 							"name": "giá tiền cao nhất",
+							"type": ""
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAGAgFKB+kHlepk=",
+							"_parent": {
+								"$ref": "AAAAAAGAMrcU97DUcPs="
+							},
+							"name": "giá tiền",
 							"type": ""
 						},
 						{
@@ -27840,7 +27911,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGAMrcU97DUcPs="
 							},
-							"name": "mã chi tiết tour"
+							"name": "mã chi tiết tour",
+							"type": ""
 						}
 					]
 				},
@@ -27917,6 +27989,15 @@
 						},
 						{
 							"_type": "UMLAttribute",
+							"_id": "AAAAAAGAgDM/VPTD67M=",
+							"_parent": {
+								"$ref": "AAAAAAGAMr3hZLRdv3U="
+							},
+							"name": "avatar",
+							"type": ""
+						},
+						{
+							"_type": "UMLAttribute",
 							"_id": "AAAAAAGAMr9MD7WoJLw=",
 							"_parent": {
 								"$ref": "AAAAAAGAMr3hZLRdv3U="
@@ -27953,6 +28034,15 @@
 						},
 						{
 							"_type": "UMLAttribute",
+							"_id": "AAAAAAGAgFLdVUtH2PY=",
+							"_parent": {
+								"$ref": "AAAAAAGAMr3hZLRdv3U="
+							},
+							"name": "giá tiền",
+							"type": ""
+						},
+						{
+							"_type": "UMLAttribute",
 							"_id": "AAAAAAGAMr+H/rYy6Rs=",
 							"_parent": {
 								"$ref": "AAAAAAGAMr3hZLRdv3U="
@@ -27984,7 +28074,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGAMr3hZLRdv3U="
 							},
-							"name": "avatar",
+							"name": "mảng ảnh",
 							"type": ""
 						},
 						{
@@ -28522,7 +28612,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGAMuA3+ukF0qs="
 							},
-							"name": "mã chi tiết hóa đơn"
+							"name": "mã chi tiết hóa đơn",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -28800,7 +28891,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGAdgXgACWfPnA="
 							},
-							"name": "mã chi tiết tour"
+							"name": "mã chi tiết tour",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -28808,7 +28900,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGAdgXgACWfPnA="
 							},
-							"name": "mã tour"
+							"name": "mã tour",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -28816,7 +28909,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGAdgXgACWfPnA="
 							},
-							"name": "mã điểm dừng chân"
+							"name": "mã điểm dừng chân",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -28824,7 +28918,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGAdgXgACWfPnA="
 							},
-							"name": "số thứ tự"
+							"name": "số thứ tự",
+							"type": ""
 						}
 					]
 				}

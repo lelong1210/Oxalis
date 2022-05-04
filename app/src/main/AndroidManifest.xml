@@ -10,11 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Oxalis">
         <activity
-            android:name="com.example.oxalis.view.register.RegisterActivity"
+            android:name=".view.details.DetailTourInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.register.RegisterActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.oxalis.view.login.LoginActivity"
+            android:name=".view.login.LoginActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

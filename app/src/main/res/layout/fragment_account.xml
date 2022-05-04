@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -137,19 +135,21 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:layout_height="70dp">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="20sp"
                         android:text="Full name"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
                     <TextView
+                        android:id="@+id/userInfoName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Nguyen Viet Thanh"
-                        android:textSize="16sp"
                         android:layout_alignParentBottom="true"
-                        android:id="@+id/userInfoName"/>
+                        android:text="Nguyen Viet Thanh"
+                        android:textSize="16sp" />
 
                     <ImageView
                         android:layout_width="wrap_content"

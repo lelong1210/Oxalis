@@ -39,9 +39,9 @@ class RegisterActivity : AppCompatActivity() {
 
             firebaseService.createAccountAuth(userInfo, password) { status ->
                 if (status) {
-                    Toast.makeText(this, "register succeed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this, "register error", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show()
                 }
             }
         }

@@ -21,4 +21,5 @@
     <color name="frutorial_title">#4c4c4c</color>
     <color name="whiteBodyColor">#FCFCFC</color>
     <color name="lightgray">#FCFCFC</color>
+    <color name="light_gray">#EDEDED</color>
 </resources>
