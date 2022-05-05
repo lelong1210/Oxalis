@@ -82,9 +82,11 @@ class InsertStopPointFragment : Fragment() {
             ).show()
         }
 
-        val items = listOf("Nhà hàng", "Quán nước", "Khách sạn", "Khu vui chơi")
+
+        val items = listOf("NHÀ HÀNG", "QUÁN NƯỚC", "KHÁCH SẠN", "KHU VUI CHƠI")
         val adapter = ArrayAdapter(requireContext(), R.layout.list_item_select_box, items)
         binding.slbService.setAdapter(adapter)
+
 
 
         binding.timeStartOfStopPoint.setOnClickListener {
@@ -127,9 +129,9 @@ class InsertStopPointFragment : Fragment() {
                 idStopPoint += idLast
                 val stopPoint = StopPointInfo(
                     idStopPoint,
-                    binding.inputNameOfStopPoint.text.toString(),
-                    binding.slbService.text.toString(),
-                    binding.addressOfStopPoint.text.toString(),
+                    binding.inputNameOfStopPoint.text.toString().uppercase(),
+                    binding.slbService.text.toString().uppercase(),
+                    binding.addressOfStopPoint.text.toString().uppercase(),
                     binding.priceOfStopPoint.text.toString(),
                     "${idStopPoint}0",
                     binding.timeStartOfStopPoint.text.toString(),

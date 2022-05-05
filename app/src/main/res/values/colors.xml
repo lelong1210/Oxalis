@@ -22,4 +22,8 @@
     <color name="whiteBodyColor">#FCFCFC</color>
     <color name="lightgray">#FCFCFC</color>
     <color name="light_gray">#EDEDED</color>
+
+    <color name="back_courses">#f8fafb</color>
+    <color name="darkTextColor">#020000</color>
+    <color name="dashboard_subtitle">#B7B7CC</color>
 </resources>

@@ -73,7 +73,6 @@ class HomeFragment : Fragment() {
         val allCategoryStopPointInfo: MutableList<AllCategoryStopPoint> = ArrayList()
         firebaseService.getAllStopPoint {
             stopPointInfoList ->
-            Log.i("test","$stopPointInfoList")
             allCategoryStopPointInfo.add(AllCategoryStopPoint("StopPoint",stopPointInfoList))
             setHomeCategoryStopPointRecycler(allCategoryStopPointInfo)
         }

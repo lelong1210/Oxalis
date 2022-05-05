@@ -1,91 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
     tools:context=".view.fragmentsUser.SearchFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Firebase Cloud Storage"
-        android:textColor="@color/black"
-        android:textSize="26dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/firebaseimage1"
-        android:layout_width="30dp"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/selectImagebtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:srcCompat="@drawable/facebook" />
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_centerVertical="true">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_baseline_location_on_24"
+                android:textSize="16dp"
+                android:text="Quảng Bình"
+                android:background="@drawable/shape_background"
+                android:layout_marginTop="12dp"
+                android:padding="10dp"
+                android:textColor="@color/white"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_baseline_calendar_month_24"
+                android:textSize="16dp"
+                android:text="Today. 10/07/2020"
+                android:background="@drawable/shape_background"
+                android:layout_marginTop="12dp"
+                android:padding="10dp"
+                android:textColor="@color/white"/>
+        </LinearLayout>
 
-    <ImageView
-        android:id="@+id/firebaseimage2"
-        android:layout_width="30dp"
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/selectImagebtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.27"
-        app:layout_constraintStart_toStartOf="@id/firebaseimage1"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.0"
-        tools:srcCompat="@drawable/frutorials" />
+        android:layout_weight="3"
+        android:background="@drawable/card_background"
+        android:elevation="20dp">
 
-    <ImageView
-        android:id="@+id/firebaseimage3"
-        android:layout_width="30dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/selectImagebtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.324"
-        app:layout_constraintStart_toStartOf="@id/firebaseimage2"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.0"
-        tools:srcCompat="@drawable/facebook" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="48dp"
+            android:layout_marginTop="36dp"
+            android:text="Payment"
+            android:textColor="#D8000000"
+            android:textSize="20dp" />
 
-    <ImageView
-        android:id="@+id/firebaseimage4"
-        android:layout_width="30dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/selectImagebtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="@id/firebaseimage3"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="1.0"
-        tools:srcCompat="@drawable/google" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:paddingRight="30dp"
+            android:paddingLeft="30dp">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#3C000000"
+                android:layout_marginBottom="10dp"/>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Shrine.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name">
 
-    <Button
-        android:id="@+id/selectImagebtn"
-        android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="32dp"
-        android:text="Select Image"
-        app:layout_constraintBottom_toTopOf="@+id/uploadimagebtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Require"
+                    android:layout_marginLeft="15dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/uploadimagebtn"
-        android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:layout_marginBottom="168dp"
-        android:layout_marginHorizontal="16dp"
-        android:text="Upload Image"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Shrine.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Credit Card">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Require"
+                    android:layout_marginLeft="15dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txt_input"
+                style="@style/Widget.Shrine.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Expiration date">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input_name_of_stop_point"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Require"
+                    android:layout_marginLeft="15dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@+id/txt_input"
+                app:layout_constraintTop_toBottomOf="@+id/txt_input"
+                android:orientation="vertical"
+                android:gravity="end">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/book_button_bg"
+                    android:text="Checkout"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:layout_marginEnd="20dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>

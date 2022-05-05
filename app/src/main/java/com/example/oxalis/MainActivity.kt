@@ -9,6 +9,7 @@ import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.oxalis.admin.AdminActivity
 import com.example.oxalis.databinding.ActivityMainBinding
 import com.example.oxalis.model.UserInfo
 import com.example.oxalis.view.details.DetailTourInfoActivity
@@ -38,7 +39,6 @@ class MainActivity : AppCompatActivity() {
         replaceFragment(homeFragment)
 
 
-
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.HomeFragment -> {
@@ -46,7 +46,9 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.PreferentialFragment -> {
-                    replaceFragment(preferentialFragment)
+                    val intent = Intent(this, AdminActivity::class.java)
+                    startActivity(intent)
+//                    replaceFragment(preferentialFragment)
                     true
                 }
                 R.id.PurchaseOderFragment -> {
@@ -81,6 +83,12 @@ class MainActivity : AppCompatActivity() {
         }
         homeFragment.onItemTourInfoClick = {
             Log.i("test", "$it")
+        }
+        homeFragment.onItemStopPointClick={
+            Log.i("test","$it")
+            val intent = Intent(this, DetailTourInfoActivity::class.java)
+            intent.putExtra("stopPointInfo", it)
+            startActivity(intent)
         }
         searchFragment.onItemClick = {
             replaceFragment(insertStopPointFragment)

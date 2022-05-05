@@ -191,6 +191,16 @@ class FirebaseService {
         }
     }
 
+    fun getOnlyImage(nameOfImage: String,callback: (uriOfImage: Uri) -> Unit) {
+        val storage = Firebase.storage
+        val storageRef = storage.reference
+        storageRef.child("image/${nameOfImage}0.jpg").downloadUrl.addOnCompleteListener { task ->
+            if (task.isSuccessful){
+                callback.invoke(task.result)
+            }
+        }
+    }
+
     fun getUrlImage(
         nameOfImage: String,
         arrayList: ArrayList<String>,

@@ -5,18 +5,25 @@
       <map>
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/book_button_bg.xml" value="0.138" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/btn_custom.xml" value="0.1605" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/card_background.xml" value="0.138" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/container_search.xml" value="0.138" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/dashboard_bg.xml" value="0.138" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/et_custom.xml" value="0.1605" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/former.xml" value="0.138" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_account_circle_white_24dp.xml" value="0.138" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_add_a_photo_black_24dp.xml" value="0.138" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_arrow_left.xml" value="0.137" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_arrow_right.xml" value="0.1605" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.138" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.138" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_baseline_calendar_month_24.xml" value="0.138" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.13" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.138" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_baseline_perm_identity_24.xml" value="0.137" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1605" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_baseline_photo_24.xml" value="0.138" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_baseline_room_service_24.xml" value="0.138" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_baseline_show_chart_24.xml" value="0.138" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_check_black_24dp.xml" value="0.138" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_check_white_24dp.xml" value="0.138" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_content_copy_black_24dp.xml" value="0.1285" />
@@ -50,10 +57,12 @@
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/imageborder.xml" value="0.1285" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/locationicon.xml" value="0.1285" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/login_shape_bk.xml" value="0.138" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/shape_background.xml" value="0.138" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/shr_logo.xml" value="0.13" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/splash_background.xml" value="0.138" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/style_mini_item.xml" value="0.138" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/style_title.xml" value="0.138" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/activity_admin.xml" value="0.15260416666666668" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/activity_detail_tour_info.xml" value="0.253125" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/activity_login.xml" value="0.25462962962962965" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
