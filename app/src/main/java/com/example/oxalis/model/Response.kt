@@ -15,21 +15,21 @@ data class UserInfo(
 )
 
 data class TourInfo(
-//    var id: String? = null,
-//    var status: String? = null,
+    var id: String? = null,
+    var status: String? = null,
     var name: String? = null,
-//    var minPrice: String? = null,
-//    var maxPrice: String? = null,
-//    var timeStart: String? = null,
-//    var timeEnd: String? = null,
-//    var age: Int? = null,
-    var price: String? = null,
-    var avatar: Int? = null,
-    var rate: Int? = null,
-//    var Describe: String? = null,
     var adrress: String? = null,
-//    var listImage: ArrayList<String>? = null
-
+    var price: String? = null,
+    var timeStart: String? = null,
+    var timeOfTour: String? = null,
+    var age: String? = null,
+    var permission: String?=null,
+    var avatar: String? = null,
+    var rate: String? = null,
+    var describe: String? = null,
+    var type:String?=null,
+    var discount:String?=null,
+    var listImage: ArrayList<String>? = null,
 )
 
 data class StopPointInfo(
@@ -43,6 +43,7 @@ data class StopPointInfo(
     var timeEnd: String? = null,
     var listImage: ArrayList<String>? = null,
     var contract: String? = null,
+    var describe:String?=null
 
 ):Serializable
 

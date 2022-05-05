@@ -1,148 +1,294 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/colorPrimary"
+    android:scrollbars="none"
     tools:context=".view.fragmentsUser.SearchFragment">
-    <RelativeLayout
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-        <LinearLayout
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        tools:context=".view.fragmentsUser.SearchFragment">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_centerVertical="true">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_baseline_location_on_24"
-                android:textSize="16dp"
-                android:text="Quảng Bình"
-                android:background="@drawable/shape_background"
-                android:layout_marginTop="12dp"
-                android:padding="10dp"
-                android:textColor="@color/white"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_baseline_calendar_month_24"
-                android:textSize="16dp"
-                android:text="Today. 10/07/2020"
-                android:background="@drawable/shape_background"
-                android:layout_marginTop="12dp"
-                android:padding="10dp"
-                android:textColor="@color/white"/>
-        </LinearLayout>
-
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        android:background="@drawable/card_background"
-        android:elevation="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="48dp"
-            android:layout_marginTop="36dp"
-            android:text="Payment"
-            android:textColor="#D8000000"
-            android:textSize="20dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:orientation="vertical"
-            android:paddingRight="30dp"
-            android:paddingLeft="30dp">
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#3C000000"
-                android:layout_marginBottom="10dp"/>
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.Shrine.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Name">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Require"
-                    android:layout_marginLeft="15dp"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.Shrine.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Credit Card">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Require"
-                    android:layout_marginLeft="15dp"/>
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txt_input"
-                style="@style/Widget.Shrine.TextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Expiration date">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/input_name_of_stop_point"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Require"
-                    android:layout_marginLeft="15dp"/>
-            </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="@+id/txt_input"
-                app:layout_constraintTop_toBottomOf="@+id/txt_input"
-                android:orientation="vertical"
-                android:gravity="end">
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
 
-                <Button
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/address_of_tour"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/book_button_bg"
-                    android:text="Checkout"
-                    android:textAllCaps="false"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/shape_background"
+                    android:drawableLeft="@drawable/ic_baseline_location_on_24"
+                    android:hint="Quảng Bình"
+                    android:padding="10dp"
                     android:textColor="@color/white"
-                    android:textSize="16dp"
-                    android:layout_marginEnd="20dp"/>
-            </LinearLayout>
-        </LinearLayout>
+                    android:textSize="16dp" />
 
-    </RelativeLayout>
-</LinearLayout>
+                <EditText
+                    android:id="@+id/time_start_of_tour"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/shape_background"
+                    android:drawableLeft="@drawable/ic_baseline_calendar_month_24"
+                    android:hint="Các ngày khởi hành"
+                    android:padding="10dp"
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:background="@drawable/card_background"
+            android:elevation="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:orientation="vertical"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#3C000000" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.Shrine.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Tên">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/name_of_tour"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.Shrine.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Giá">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/price_of_tour"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Trạng thái"
+                    app:startIconDrawable="@drawable/ic_baseline_room_service_24">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/slb_status"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.Shrine.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="độ tuổi">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/age_of_tour"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.Shrine.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Mô tả">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/describe_of_tour"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.Shrine.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Thời gian của Tour (n ngày)">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/time_long_of_tour"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Riêng tư"
+                    app:startIconDrawable="@drawable/ic_baseline_room_service_24">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/slb_permission"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Thể loại"
+                    app:startIconDrawable="@drawable/ic_baseline_room_service_24">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/slb_type_of_tour"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.Shrine.TextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Giảm giá %">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/percent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/image_of_tour_info_0"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="hello"
+                        app:srcCompat="@drawable/ic_add_a_photo_black_24dp" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/image_of_tour_info_1"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="hello"
+                        app:srcCompat="@drawable/ic_add_a_photo_black_24dp" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/image_of_tour_info_2"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="hello"
+                        app:srcCompat="@drawable/ic_add_a_photo_black_24dp" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/image_of_tour_info_3"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="hello"
+                        app:srcCompat="@drawable/ic_add_a_photo_black_24dp" />
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_add_tour"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/book_button_bg"
+                    android:backgroundTint="@null"
+                    android:text="Thêm Tour" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="@+id/txt_input"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_input">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/book_button_bg"
+                        android:text="Checkout"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="@+id/txt_input"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_input">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/book_button_bg"
+                        android:text="Checkout"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="16dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

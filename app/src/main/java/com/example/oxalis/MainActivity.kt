@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         searchFragment.onItemClick = {
-            replaceFragment(insertStopPointFragment)
+            replaceFragment(insertTourFragment)
         }
         preferentialFragment.onItemClick = {
 //            val intent = Intent(this, DetailTourInfoActivity::class.java)

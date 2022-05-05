@@ -99,7 +99,12 @@ class FirebaseService {
     }
 
     fun insertTourInfo(tourInfo: TourInfo, callback: (status: Boolean) -> Unit) {
-
+        tableTour.document(tourInfo.id.toString()).set(tourInfo)
+            .addOnCompleteListener {
+                callback.invoke(true)
+            }.addOnFailureListener {
+                callback.invoke(false)
+            }
     }
 
     fun getLastIdOfStopPoint(callback: (lastId: String) -> Unit) {
@@ -191,11 +196,11 @@ class FirebaseService {
         }
     }
 
-    fun getOnlyImage(nameOfImage: String,callback: (uriOfImage: Uri) -> Unit) {
+    fun getOnlyImage(nameOfImage: String, callback: (uriOfImage: Uri) -> Unit) {
         val storage = Firebase.storage
         val storageRef = storage.reference
         storageRef.child("image/${nameOfImage}0.jpg").downloadUrl.addOnCompleteListener { task ->
-            if (task.isSuccessful){
+            if (task.isSuccessful) {
                 callback.invoke(task.result)
             }
         }
@@ -220,6 +225,34 @@ class FirebaseService {
                     }
                 }
             }
+        }
+    }
+
+    fun getLastIdOfTourInfo(callback: (lastId: String) -> Unit) {
+        tableLastId.document("LastOfIdTour").get().addOnCompleteListener { task ->
+            var lastIdOfTourInfo = task.result.getString("lastId")
+            callback.invoke(lastIdOfTourInfo!!)
+        }
+    }
+
+    fun updateLastIdOfTourInfo(lastIdOfTourInfo: Int, callback: (status: Boolean) -> Unit) {
+        tableLastId.document("LastOfIdTour")
+            .update("lastId", "${lastIdOfTourInfo?.plus(1)}")
+            .addOnCompleteListener { taskChild ->
+                callback.invoke(true)
+            }.addOnFailureListener {
+                callback.invoke(false)
+            }
+    }
+
+    fun getAllTourInfo(callback: (tourInfoList: List<TourInfo>) -> Unit) {
+        tableTour.get().addOnSuccessListener { result ->
+            var arrayListTourInfo = ArrayList<TourInfo>()
+            for (document in result) {
+                var tourInfo = document.toObject(TourInfo::class.java)
+                arrayListTourInfo.add(tourInfo)
+            }
+            callback.invoke(arrayListTourInfo)
         }
     }
 /*//                    Log.i("test","path ====> ${task.result}")

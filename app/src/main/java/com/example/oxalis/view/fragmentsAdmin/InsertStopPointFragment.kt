@@ -139,7 +139,8 @@ class InsertStopPointFragment : Fragment() {
                     arrayListOf(
                         "${idStopPoint}0", "${idStopPoint}1", "${idStopPoint}2", "${idStopPoint}3"
                     ),
-                    binding.contractOfStopPoint.text.toString()
+                    binding.contractOfStopPoint.text.toString(),
+                    binding.describeOfStopPoint.text.toString()
                 )
 
                 firebaseService.insertStopPoint(stopPoint) { status ->

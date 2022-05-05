@@ -27,8 +27,6 @@ class HomeFragment : Fragment() {
     private lateinit var homeCategoryDiscountRecycler: RecyclerView
     private lateinit var homeRecyclerDiscountAdapter: HomeRecyclerDiscountAdapter
 
-    private lateinit var homeCategoryStopPointRecycler: RecyclerView
-    private lateinit var homeRecyclerStopPointAdapter: HomeRecyclerStopPointAdapter
 
     private val firebaseService = FirebaseService()
 
@@ -44,16 +42,12 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         // tour Info
-        val tourItemList1: MutableList<TourInfo> = ArrayList()
-        tourItemList1.add(TourInfo("A", "1111", R.drawable.demoimage, 5, "QUẢNG BÌNH"))
-        tourItemList1.add(TourInfo("A", "1111", R.drawable.demoimage, 5, "QUẢNG BÌNH"))
-        tourItemList1.add(TourInfo("A", "1111", R.drawable.demoimage, 5, "QUẢNG BÌNH"))
-        tourItemList1.add(TourInfo("A", "1111", R.drawable.demoimage, 5, "QUẢNG BÌNH"))
-        tourItemList1.add(TourInfo("A", "1111", R.drawable.demoimage, 5, "QUẢNG BÌNH"))
-
         val allCategoryTourInfo: MutableList<AllCategoryTourInfo> = ArrayList()
-        allCategoryTourInfo.add(AllCategoryTourInfo("DANH SACH TOUR", tourItemList1))
-        setHomeCategoryTourInfoRecycler(allCategoryTourInfo)
+        firebaseService.getAllTourInfo { arrayListStopPointInfo ->
+            allCategoryTourInfo.add(AllCategoryTourInfo("Tour", arrayListStopPointInfo))
+            Log.i("test",allCategoryTourInfo.toString())
+            setHomeCategoryTourInfoRecycler(allCategoryTourInfo)
+        }
 
         // Discount
         val tourItemList2: MutableList<Discount> = ArrayList()
@@ -67,15 +61,6 @@ class HomeFragment : Fragment() {
         val allCategoryDiscount: MutableList<AllCategoryDiscount> = ArrayList()
         allCategoryDiscount.add(AllCategoryDiscount("DANH SACH DISCOUNT", tourItemList2))
         setHomeCategoryDiscountRecycler(allCategoryDiscount)
-
-
-        // StopPoint
-        val allCategoryStopPointInfo: MutableList<AllCategoryStopPoint> = ArrayList()
-        firebaseService.getAllStopPoint {
-            stopPointInfoList ->
-            allCategoryStopPointInfo.add(AllCategoryStopPoint("StopPoint",stopPointInfoList))
-            setHomeCategoryStopPointRecycler(allCategoryStopPointInfo)
-        }
 
         return binding.root
     }
@@ -102,14 +87,11 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setHomeCategoryStopPointRecycler(allCategory: List<AllCategoryStopPoint>) {
-        homeCategoryStopPointRecycler = binding.homeRecyclerViewStopPointInfo
-        val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(requireContext())
-        homeCategoryStopPointRecycler.layoutManager = layoutManager
-        homeRecyclerStopPointAdapter = HomeRecyclerStopPointAdapter(requireContext(), allCategory)
-        homeCategoryStopPointRecycler.adapter = homeRecyclerStopPointAdapter
-        homeRecyclerStopPointAdapter.onItemClick = {
-            onItemStopPointClick?.invoke(it)
-        }
-    }
 }
+/*        // StopPoint
+        val allCategoryStopPointInfo: MutableList<AllCategoryStopPoint> = ArrayList()
+        firebaseService.getAllStopPoint {
+            stopPointInfoList ->
+            allCategoryStopPointInfo.add(AllCategoryStopPoint("StopPoint",stopPointInfoList))
+            setHomeCategoryStopPointRecycler(allCategoryStopPointInfo)
+        }*/

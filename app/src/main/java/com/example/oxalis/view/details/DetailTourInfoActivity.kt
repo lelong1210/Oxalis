@@ -29,6 +29,7 @@ class DetailTourInfoActivity : AppCompatActivity() {
         binding.nameOfTour.text = stopPointInfo.name_of_address
         binding.timeStartOfTour.text = stopPointInfo.timeStart
         binding.rateOfTour.text = stopPointInfo.contract
+        binding.textView14.text = stopPointInfo.describe
 
 
         firebaseService.getUrlImage(stopPointInfo.id!!, arrayOfImage) { arrayUri ->
