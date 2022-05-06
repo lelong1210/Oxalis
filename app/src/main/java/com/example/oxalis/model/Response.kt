@@ -30,7 +30,8 @@ data class TourInfo(
     var type:String?=null,
     var discount:String?=null,
     var listImage: ArrayList<String>? = null,
-)
+):Serializable
+
 
 data class StopPointInfo(
     var id: String? = null,

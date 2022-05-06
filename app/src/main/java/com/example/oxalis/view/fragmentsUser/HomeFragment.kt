@@ -32,7 +32,6 @@ class HomeFragment : Fragment() {
 
     var onItemTourInfoClick: ((TourInfo) -> Unit)? = null
     var onItemDiscountClick: ((Discount) -> Unit)? = null
-    var onItemStopPointClick: ((StopPointInfo) -> Unit)? = null
     private lateinit var tourInfo: TourInfo
 
     override fun onCreateView(
@@ -45,7 +44,6 @@ class HomeFragment : Fragment() {
         val allCategoryTourInfo: MutableList<AllCategoryTourInfo> = ArrayList()
         firebaseService.getAllTourInfo { arrayListStopPointInfo ->
             allCategoryTourInfo.add(AllCategoryTourInfo("Tour", arrayListStopPointInfo))
-            Log.i("test",allCategoryTourInfo.toString())
             setHomeCategoryTourInfoRecycler(allCategoryTourInfo)
         }
 

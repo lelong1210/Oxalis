@@ -13,6 +13,7 @@ import com.example.oxalis.admin.AdminActivity
 import com.example.oxalis.databinding.ActivityMainBinding
 import com.example.oxalis.model.UserInfo
 import com.example.oxalis.view.details.DetailTourInfoActivity
+import com.example.oxalis.view.fragmentsAdmin.HomeAdminFragment
 import com.example.oxalis.view.fragmentsAdmin.InsertStopPointFragment
 import com.example.oxalis.view.fragmentsAdmin.InsertTourFragment
 import com.example.oxalis.view.fragmentsUser.*
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     private val searchFragment = SearchFragment()
     private val accountFragment = AccountFragment()
     private val insertTourFragment = InsertTourFragment()
-    private val insertStopPointFragment = InsertStopPointFragment()
+    private val homeAdminFragment = HomeAdminFragment()
     private lateinit var json: String
     private lateinit var binding: ActivityMainBinding
     private var doubleBackToExitPressedOnce = false
@@ -46,9 +47,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.PreferentialFragment -> {
-                    val intent = Intent(this, AdminActivity::class.java)
-                    startActivity(intent)
-//                    replaceFragment(preferentialFragment)
+                    replaceFragment(preferentialFragment)
                     true
                 }
                 R.id.PurchaseOderFragment -> {
@@ -61,16 +60,18 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.AccountFragment -> {
 
-                    val pref =
-                        applicationContext.getSharedPreferences("PrefName", Context.MODE_PRIVATE)
-                    json = pref.getString("USERINFO", "NULL").toString()
-
-                    if (json == "NULL") {
-                        val intent = Intent(this, LoginActivity::class.java)
-                        startActivity(intent)
-                    } else {
-                        replaceFragment(accountFragment)
-                    }
+//                    val pref =
+//                        applicationContext.getSharedPreferences("PrefName", Context.MODE_PRIVATE)
+//                    json = pref.getString("USERINFO", "NULL").toString()
+//
+//                    if (json == "NULL") {
+//                        val intent = Intent(this, LoginActivity::class.java)
+//                        startActivity(intent)
+//                    } else {
+//                        replaceFragment(accountFragment)
+//                    }
+                    val intent = Intent(this, AdminActivity::class.java)
+                    startActivity(intent)
 
                     true
                 }
@@ -79,24 +80,18 @@ class MainActivity : AppCompatActivity() {
         }
 
         homeFragment.onItemDiscountClick = { it ->
-            Log.i("test", "$it")
+
         }
         homeFragment.onItemTourInfoClick = {
-            Log.i("test", "$it")
-        }
-        homeFragment.onItemStopPointClick={
-            Log.i("test","$it")
             val intent = Intent(this, DetailTourInfoActivity::class.java)
-            intent.putExtra("stopPointInfo", it)
+            intent.putExtra("tourInfo", it)
             startActivity(intent)
         }
         searchFragment.onItemClick = {
             replaceFragment(insertTourFragment)
         }
         preferentialFragment.onItemClick = {
-//            val intent = Intent(this, DetailTourInfoActivity::class.java)
-//            intent.putExtra("stopPointInfo", it)
-//            startActivity(intent)
+
         }
     }
 
