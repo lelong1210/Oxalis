@@ -6,42 +6,20 @@
     android:layout_height="match_parent"
     android:background="@color/bottomNavigationBackground"
     android:scrollbars="none"
-    tools:context=".view.fragmentsAdmin.ManagerDiscountFragment">
+    tools:context=".view.fragmentsAdmin.AddDiscountFragment">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_discount_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/addingBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="15dp"
-        android:src="@drawable/ic_add"
-        app:tint="@color/white" />
-</androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <!--<LinearLayout
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:orientation="vertical"
         android:padding="24dp"
-        android:paddingTop="16dp">
+        android:paddingTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:layout_width="164dp"
@@ -99,4 +77,7 @@
             android:backgroundTint="@null"
             android:text="Thêm Mã giảm giá" />
 
-    </LinearLayout>-->
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

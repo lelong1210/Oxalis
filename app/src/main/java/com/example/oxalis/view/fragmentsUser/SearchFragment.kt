@@ -30,11 +30,6 @@ class SearchFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
-
-        binding.intoInsert.setOnClickListener {
-            onItemClick?.invoke("A")
-        }
-
         return binding.root
     }
 }

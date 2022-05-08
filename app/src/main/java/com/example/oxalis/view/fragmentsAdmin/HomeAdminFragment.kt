@@ -1,5 +1,6 @@
 package com.example.oxalis.view.fragmentsAdmin
 
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -21,6 +22,9 @@ class HomeAdminFragment : Fragment() {
     private val binding get() = _binding!!
     var onCardViewClick: ((Fragment) -> Unit)? = null
     private val insertTourFragment = InsertTourFragment()
+    private val managerBookTourFragment = ManagerBookTourFragment()
+    private val managerDiscountFragment = ManagerDiscountFragment()
+    private val managerTourFragment = ManagerTourFragment()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,26 +34,51 @@ class HomeAdminFragment : Fragment() {
         _binding = FragmentHomeAdminBinding.inflate(inflater, container, false)
 
         binding.cardViewStatistical.setOnClickListener {
-            Log.i("test","cardViewStatistical")
+            Log.i("test", "cardViewStatistical")
         }
         binding.cardViewManagerTour.setOnClickListener {
-            onCardViewClick?.invoke(insertTourFragment)
+            onCardViewClick?.invoke(managerTourFragment)
         }
         binding.cardViewManagerBookTour.setOnClickListener {
-            Log.i("test","cardViewManagerBookTour")
+            onCardViewClick?.invoke(managerBookTourFragment)
         }
         binding.cardViewManagerCustomer.setOnClickListener {
-            Log.i("test","cardViewManagerCustomer")
+            Log.i("test", "cardViewManagerCustomer")
         }
         binding.cardViewManagerDiscount.setOnClickListener {
-            Log.i("test","cardViewManagerDiscount")
+            onCardViewClick?.invoke(managerDiscountFragment)
         }
         binding.cardViewManagerAccount.setOnClickListener {
-            Log.i("test","cardViewManagerAccount")
+            if (logOut()) {
+                Log.i("test", "cardViewManagerAccount")
+            }
+        }
+        managerBookTourFragment.onClickItemManagerBookTourFragment={
+            onCardViewClick?.invoke(it)
+        }
+        managerDiscountFragment.onItemClickManagerDiscountFragment={
+            onCardViewClick?.invoke(it)
+        }
+        managerDiscountFragment.onClickRepeat={
+            if(it){
+                onCardViewClick?.invoke(managerDiscountFragment)
+            }
+        }
+        managerBookTourFragment.onClickRepeat={
+            if(it){
+                onCardViewClick?.invoke(managerBookTourFragment)
+            }
         }
 
 
         return binding.root
+    }
+
+    private fun logOut(): Boolean {
+        val pref = activity?.getSharedPreferences("PrefName", Context.MODE_PRIVATE)
+        val editor = pref?.edit()
+        editor?.remove("USERINFO")
+        return editor?.commit()!!
     }
 
 }

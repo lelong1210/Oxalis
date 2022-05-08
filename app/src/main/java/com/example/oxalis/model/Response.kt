@@ -13,7 +13,6 @@ data class UserInfo(
     var date: String? = null,
     var address: String? = null
 )
-
 data class TourInfo(
     var id: String? = null,
     var status: String? = null,
@@ -31,8 +30,6 @@ data class TourInfo(
     var discount:String?=null,
     var listImage: ArrayList<String>? = null,
 ):Serializable
-
-
 data class StopPointInfo(
     var id: String? = null,
     var name_of_address: String? = null,
@@ -47,17 +44,15 @@ data class StopPointInfo(
     var describe:String?=null
 
 ):Serializable
-
 data class Discount(
-    val image:Int,
-    val percentDiscount:Int
+    var id: String?=null,
+    var percentDiscount:String?=null,
+    var numberAvailability:String?=null
 )
-
 data class AllCategoryDiscount(
     val categoryTitle: String? = null,
     val categoryItemList: List<Discount>
 )
-
 data class AllCategoryTourInfo(
     val categoryTitle: String? = null,
     val categoryItemList: List<TourInfo>
@@ -66,4 +61,24 @@ data class AllCategoryStopPoint(
     val categoryTitle: String? = null,
     val categoryItemList: List<StopPointInfo>
 )
+data class SheetAddInformationCart(
+    var id:String?=null,
+    var idUser:String?=null,
+    var nameOfUserBookTour:String?=null,
+    var idTour:String?=null,
+    var nameOfTour:String?=null,
+    var gender: String?=null,
+    var mail: String?=null,
+    var address: String?=null,
+    var phone: String?=null,
+    var timeStart: String?=null,
+    var numberOfPeople:String?=null,
+    var status: String?=null,
+    var discountCode: String?=null,
+    var price: String?=null
+)
+
+
+
 val arrayOfImage = arrayListOf("0","1","2","3")
+val arrayOfStatusSheet = arrayListOf("CHƯA XÁC NHẬN","ĐÃ XÁC NHẬN","ĐÃ HỦY")

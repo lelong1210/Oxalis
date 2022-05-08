@@ -15,8 +15,8 @@ class DiscountItemAdapter(context: Context, private val discountList:List<Discou
     var onItemClickChild: ((Discount) -> Unit)? = null
 
     inner class DiscountViewHolder(binding: ItemViewDiscountBinding):RecyclerView.ViewHolder(binding.root){
-        var imageDiscount: ImageView = binding.imageDiscount
-        var percentDiscount: TextView = binding.discount
+        var percent: TextView = binding.discountPercentTour
+        var numberAvailability: TextView = binding.numberAvailability
         init {
             binding.root.setOnClickListener {
                 onItemClickChild?.invoke(discountList[adapterPosition])
@@ -25,13 +25,14 @@ class DiscountItemAdapter(context: Context, private val discountList:List<Discou
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiscountViewHolder {
-        val binding = ItemViewDiscountBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemViewDiscountBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return DiscountViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: DiscountViewHolder, position: Int) {
-        holder.imageDiscount.setImageResource(discountList[position].image)
-        holder.percentDiscount.text = discountList[position].percentDiscount.toString()
+        holder.numberAvailability.text = "sô phiếu còn lại ${discountList[position].numberAvailability}"
+        holder.percent.text = "được giảm ${discountList[position].percentDiscount}%"
     }
 
     override fun getItemCount(): Int {

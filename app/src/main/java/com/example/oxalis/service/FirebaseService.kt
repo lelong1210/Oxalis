@@ -3,10 +3,7 @@ package com.example.oxalis.service
 import android.net.Uri
 import android.util.Log
 import com.bumptech.glide.Glide
-import com.example.oxalis.model.StopPointInfo
-import com.example.oxalis.model.TourInfo
-import com.example.oxalis.model.UserInfo
-import com.example.oxalis.model.arrayOfImage
+import com.example.oxalis.model.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -14,6 +11,7 @@ import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
+import org.w3c.dom.Document
 
 class FirebaseService {
     private val auth: FirebaseAuth = Firebase.auth
@@ -22,6 +20,8 @@ class FirebaseService {
     private val tableTour = db.collection("tours")
     private val tableLastId = db.collection("lastId")
     private val tableStopPoint = db.collection("stopPoint")
+    private val tableSheetAddInformationCart = db.collection("sheetAddInformationCart")
+    private val tableDiscount = db.collection("discount")
 
     // check login
     fun isLogin(): Boolean {
@@ -159,6 +159,36 @@ class FirebaseService {
         }
     }
 
+    fun getAllSheetBookTour(callback: (sheetAddInformationList: List<SheetAddInformationCart>) -> Unit) {
+        tableSheetAddInformationCart.get().addOnSuccessListener { result ->
+            var arrayListSheetAddInformationCart = ArrayList<SheetAddInformationCart>()
+            for (document in result) {
+                var sheetAddInformationCart = document.toObject(SheetAddInformationCart::class.java)
+                arrayListSheetAddInformationCart.add(sheetAddInformationCart)
+            }
+            callback.invoke(arrayListSheetAddInformationCart)
+        }
+    }
+
+    fun getAllDiscount(callback: (discountList: List<Discount>) -> Unit) {
+        tableDiscount.get().addOnSuccessListener { result ->
+            var arrayListDiscount = ArrayList<Discount>()
+            for (document in result) {
+                var discount = document.toObject(Discount::class.java)
+                arrayListDiscount.add(discount)
+            }
+            callback.invoke(arrayListDiscount)
+        }
+    }
+
+    fun deleteDiscount(idOfDiscount:String,callback: (status: Boolean) -> Unit){
+        tableDiscount.document(idOfDiscount).delete().addOnSuccessListener  {
+            callback.invoke(true)
+        }.addOnFailureListener {
+            callback.invoke(false)
+        }
+    }
+
     //        }
 //        callback.invoke(stopPointInfo)
 
@@ -232,6 +262,66 @@ class FirebaseService {
         tableLastId.document("LastOfIdTour").get().addOnCompleteListener { task ->
             var lastIdOfTourInfo = task.result.getString("lastId")
             callback.invoke(lastIdOfTourInfo!!)
+        }
+    }
+
+    fun getLastId(document: String, field: String, callback: (lastId: String) -> Unit) {
+        tableLastId.document(document).get().addOnCompleteListener { task ->
+            var lastId = task.result.getString(field)
+            callback.invoke(lastId!!)
+        }
+    }
+
+    fun updateLastId(
+        document: String,
+        field: String,
+        lastIdOfTourInfo: Int,
+        callback: (status: Boolean) -> Unit
+    ) {
+        tableLastId.document(document)
+            .update(field, "${lastIdOfTourInfo?.plus(1)}")
+            .addOnCompleteListener { taskChild ->
+                callback.invoke(true)
+            }.addOnFailureListener {
+                callback.invoke(false)
+            }
+    }
+
+    fun insertSheetAddInformationCart(
+        sheetAddInformationCart: SheetAddInformationCart,
+        callback: (status: Boolean) -> Unit
+    ) {
+        tableSheetAddInformationCart.document(sheetAddInformationCart.id.toString())
+            .set(sheetAddInformationCart).addOnCompleteListener {
+                callback.invoke(true)
+            }.addOnFailureListener {
+                callback.invoke(false)
+            }
+    }
+
+    fun insertDiscount(
+        discount: Discount,
+        callback: (status: Boolean) -> Unit
+    ) {
+        tableDiscount.document(discount.id.toString())
+            .set(discount).addOnCompleteListener {
+                callback.invoke(true)
+            }.addOnFailureListener {
+                callback.invoke(false)
+            }
+    }
+
+    fun getDiscount(discountId: String, callback: (discount:Discount) -> Unit) {
+        tableDiscount.document(discountId).get().addOnCompleteListener { task ->
+            if(task.isSuccessful){
+                if(task.result.exists()){
+                    var discount = task.result.toObject(Discount::class.java)
+                    callback.invoke(discount!!)
+                }else{
+                    val discount = Discount("","","")
+                    callback.invoke(discount!!)
+                }
+            }
         }
     }
 

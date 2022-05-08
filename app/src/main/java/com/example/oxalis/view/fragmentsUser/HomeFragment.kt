@@ -47,19 +47,6 @@ class HomeFragment : Fragment() {
             setHomeCategoryTourInfoRecycler(allCategoryTourInfo)
         }
 
-        // Discount
-        val tourItemList2: MutableList<Discount> = ArrayList()
-        tourItemList2.add(Discount(R.drawable.frutorials, 12))
-        tourItemList2.add(Discount(R.drawable.facebook, 12))
-        tourItemList2.add(Discount(R.drawable.images_discount, 12))
-        tourItemList2.add(Discount(R.drawable.facebook, 12))
-        tourItemList2.add(Discount(R.drawable.frutorials, 12))
-
-
-        val allCategoryDiscount: MutableList<AllCategoryDiscount> = ArrayList()
-        allCategoryDiscount.add(AllCategoryDiscount("DANH SACH DISCOUNT", tourItemList2))
-        setHomeCategoryDiscountRecycler(allCategoryDiscount)
-
         return binding.root
     }
 
@@ -92,4 +79,18 @@ class HomeFragment : Fragment() {
             stopPointInfoList ->
             allCategoryStopPointInfo.add(AllCategoryStopPoint("StopPoint",stopPointInfoList))
             setHomeCategoryStopPointRecycler(allCategoryStopPointInfo)
+
+              // Discount
+        val tourItemList2: MutableList<Discount> = ArrayList()
+        tourItemList2.add(Discount(R.drawable.frutorials, 12))
+        tourItemList2.add(Discount(R.drawable.facebook, 12))
+        tourItemList2.add(Discount(R.drawable.images_discount, 12))
+        tourItemList2.add(Discount(R.drawable.facebook, 12))
+        tourItemList2.add(Discount(R.drawable.frutorials, 12))
+
+
+        val allCategoryDiscount: MutableList<AllCategoryDiscount> = ArrayList()
+        allCategoryDiscount.add(AllCategoryDiscount("DANH SACH DISCOUNT", tourItemList2))
+        setHomeCategoryDiscountRecycler(allCategoryDiscount)
+
         }*/

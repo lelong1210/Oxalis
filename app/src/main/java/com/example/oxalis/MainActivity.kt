@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
     private val searchFragment = SearchFragment()
     private val accountFragment = AccountFragment()
     private val insertTourFragment = InsertTourFragment()
-    private val homeAdminFragment = HomeAdminFragment()
     private lateinit var json: String
     private lateinit var binding: ActivityMainBinding
     private var doubleBackToExitPressedOnce = false
@@ -38,7 +37,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         replaceFragment(homeFragment)
-
 
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -54,37 +52,42 @@ class MainActivity : AppCompatActivity() {
                     replaceFragment(purchaseOderFragment)
                     true
                 }
-                R.id.SearchFragment -> {
+                R.id.ChatFragment -> {
                     replaceFragment(searchFragment)
                     true
                 }
                 R.id.AccountFragment -> {
 
-//                    val pref =
-//                        applicationContext.getSharedPreferences("PrefName", Context.MODE_PRIVATE)
-//                    json = pref.getString("USERINFO", "NULL").toString()
-//
-//                    if (json == "NULL") {
-//                        val intent = Intent(this, LoginActivity::class.java)
-//                        startActivity(intent)
-//                    } else {
-//                        replaceFragment(accountFragment)
-//                    }
-                    val intent = Intent(this, AdminActivity::class.java)
-                    startActivity(intent)
+                    val pref =
+                        applicationContext.getSharedPreferences("PrefName", Context.MODE_PRIVATE)
+                    json = pref.getString("USERINFO", "NULL").toString()
+                    val gson = Gson()
 
+                    if (json == "NULL") {
+                        val intent = Intent(this, LoginActivity::class.java)
+                        startActivity(intent)
+                    } else {
+                        val userInfo = gson.fromJson(json, UserInfo::class.java)
+                        if (userInfo.permission.equals("user")) {
+                            replaceFragment(accountFragment)
+                        } else if (userInfo.permission.equals("admin")) {
+                            val intent = Intent(this, AdminActivity::class.java)
+                            startActivity(intent)
+                        }
+
+                    }
                     true
                 }
                 else -> false
             }
         }
-
         homeFragment.onItemDiscountClick = { it ->
 
         }
         homeFragment.onItemTourInfoClick = {
             val intent = Intent(this, DetailTourInfoActivity::class.java)
-            intent.putExtra("tourInfo", it)
+            val gson = Gson()
+            intent.putExtra("tourInfo", gson.toJson(it))
             startActivity(intent)
         }
         searchFragment.onItemClick = {

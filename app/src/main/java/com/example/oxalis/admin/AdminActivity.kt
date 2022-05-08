@@ -10,11 +10,11 @@ import androidx.fragment.app.Fragment
 import com.example.oxalis.R
 import com.example.oxalis.databinding.ActivityAdminBinding
 import com.example.oxalis.view.fragmentsAdmin.HomeAdminFragment
+import com.example.oxalis.view.fragmentsAdmin.ManagerBookTourFragment
 
 class AdminActivity : AppCompatActivity() {
 
     private val homeAdminFragment = HomeAdminFragment()
-    private lateinit var json: String
     private lateinit var binding: ActivityAdminBinding
     private var doubleBackToExitPressedOnce = false
     private var index = -1
