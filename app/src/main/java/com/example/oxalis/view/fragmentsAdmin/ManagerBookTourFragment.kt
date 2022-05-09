@@ -1,19 +1,17 @@
 package com.example.oxalis.view.fragmentsAdmin
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.oxalis.R
 import com.example.oxalis.adapter.BookTourAdapter
-import com.example.oxalis.databinding.FragmentInsertStopPointBinding
 import com.example.oxalis.databinding.FragmentManagerBookTourBinding
 import com.example.oxalis.model.SheetAddInformationCart
 import com.example.oxalis.service.FirebaseService
+import com.example.oxalis.view.details.DetailSheetBookTourFragment
 
 class ManagerBookTourFragment : Fragment() {
 
@@ -49,7 +47,7 @@ class ManagerBookTourFragment : Fragment() {
             val detailSheetBookTourFragment = DetailSheetBookTourFragment(sheetAddInformationCart)
             onClickItemManagerBookTourFragment?.invoke(detailSheetBookTourFragment)
 
-            detailSheetBookTourFragment.onClickBtnConfirmOfBtnCancel={
+            detailSheetBookTourFragment.onClickRepeat={
                 onClickRepeat?.invoke(it)
             }
         }

@@ -26,4 +26,6 @@
     <color name="back_courses">#f8fafb</color>
     <color name="darkTextColor">#020000</color>
     <color name="dashboard_subtitle">#B7B7CC</color>
+
+    <color name="red">#FFFF0000</color>
 </resources>

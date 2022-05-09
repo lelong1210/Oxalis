@@ -1,15 +1,12 @@
-package com.example.oxalis.view.fragmentsAdmin
+package com.example.oxalis.view.details
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.example.oxalis.R
 import com.example.oxalis.databinding.FragmentDetailSheetBookTourBinding
-import com.example.oxalis.databinding.FragmentHomeAdminBinding
 import com.example.oxalis.model.SheetAddInformationCart
 import com.example.oxalis.model.arrayOfStatusSheet
 import com.example.oxalis.service.FirebaseService
@@ -21,7 +18,7 @@ class DetailSheetBookTourFragment(private val sheetBookTour: SheetAddInformation
     private var _binding: FragmentDetailSheetBookTourBinding? = null
     private val binding get() = _binding!!
     private var firebaseService = FirebaseService()
-    var onClickBtnConfirmOfBtnCancel: ((Boolean) -> Unit)? = null
+    var onClickRepeat: ((Boolean) -> Unit)? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,6 +52,11 @@ class DetailSheetBookTourFragment(private val sheetBookTour: SheetAddInformation
             )
         }
 
+        binding.btnBack.setOnClickListener {
+            onClickRepeat?.invoke(true)
+        }
+
+
         binding.btnConfirm.setOnClickListener {
             sheetBookTour.status = arrayOfStatusSheet[1]
             firebaseService.insertSheetAddInformationCart(sheetBookTour){
@@ -64,7 +66,7 @@ class DetailSheetBookTourFragment(private val sheetBookTour: SheetAddInformation
                         "Đã xác nhận Tour",
                         Toast.LENGTH_SHORT
                     ).show()
-                    onClickBtnConfirmOfBtnCancel?.invoke(true)
+                    onClickRepeat?.invoke(true)
                 }
             }
         }
@@ -77,7 +79,7 @@ class DetailSheetBookTourFragment(private val sheetBookTour: SheetAddInformation
                         "Đã hủy Tour",
                         Toast.LENGTH_SHORT
                     ).show()
-                    onClickBtnConfirmOfBtnCancel?.invoke(true)
+                    onClickRepeat?.invoke(true)
                 }
             }
         }

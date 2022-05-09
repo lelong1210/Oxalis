@@ -265,7 +265,7 @@
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
-                            android:id="@+id/card_view_manager_customer"
+                            android:id="@+id/card_view_manager_user"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/horizontal_card"
@@ -302,7 +302,7 @@
 
 
                                     android:fontFamily="@font/bariol_bold"
-                                    android:text="Quản Lý Khách Hàng"
+                                    android:text="Quản Lý Nguời Dùng"
                                     android:textColor="@color/darkTextColor"
                                     android:textSize="12sp" />
 

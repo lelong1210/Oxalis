@@ -1,10 +1,9 @@
-package com.example.oxalis.view.fragmentsAdmin
+package com.example.oxalis.view.details
 
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +12,6 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.oxalis.R
-import com.example.oxalis.databinding.FragmentDetailSheetBookTourBinding
 import com.example.oxalis.databinding.FragmentDetailTourInfoAdminBinding
 import com.example.oxalis.model.*
 import com.example.oxalis.service.FirebaseService
@@ -138,6 +136,9 @@ class DetailTourInfoAdminFragment(private val tourInfo: TourInfo) : Fragment() {
                     }
                 }
             }
+        }
+        binding.btnBack.setOnClickListener {
+            onClickRepeat?.invoke(true)
         }
 
         // Inflate the layout for this fragment

@@ -25,6 +25,7 @@ class HomeAdminFragment : Fragment() {
     private val managerBookTourFragment = ManagerBookTourFragment()
     private val managerDiscountFragment = ManagerDiscountFragment()
     private val managerTourFragment = ManagerTourFragment()
+    private val managerUserFragment = ManagerUserFragment()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,8 +43,8 @@ class HomeAdminFragment : Fragment() {
         binding.cardViewManagerBookTour.setOnClickListener {
             onCardViewClick?.invoke(managerBookTourFragment)
         }
-        binding.cardViewManagerCustomer.setOnClickListener {
-            Log.i("test", "cardViewManagerCustomer")
+        binding.cardViewManagerUser.setOnClickListener {
+            onCardViewClick?.invoke(managerUserFragment)
         }
         binding.cardViewManagerDiscount.setOnClickListener {
             onCardViewClick?.invoke(managerDiscountFragment)
@@ -51,6 +52,15 @@ class HomeAdminFragment : Fragment() {
         binding.cardViewManagerAccount.setOnClickListener {
             if (logOut()) {
                 Log.i("test", "cardViewManagerAccount")
+            }
+        }
+        // user
+        managerUserFragment.onClickItemManagerUserFragment={
+            onCardViewClick?.invoke(it)
+        }
+        managerUserFragment.onClickRepeat={
+            if(it){
+                onCardViewClick?.invoke(managerUserFragment)
             }
         }
         // book tour
@@ -65,6 +75,9 @@ class HomeAdminFragment : Fragment() {
         // tour
         managerTourFragment.onItemClickManagerTourInfoFragment={
             onCardViewClick?.invoke(it)
+        }
+        managerTourFragment.onClickRepeat={
+            onCardViewClick?.invoke(managerTourFragment)
         }
         // discount
         managerDiscountFragment.onItemClickManagerDiscountFragment={

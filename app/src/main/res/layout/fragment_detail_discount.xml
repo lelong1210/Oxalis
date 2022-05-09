@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/bottomNavigationBackground"
     android:scrollbars="none"
-    tools:context=".view.fragmentsAdmin.DetailDiscountFragment">
+    tools:context=".view.details.DetailDiscountFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

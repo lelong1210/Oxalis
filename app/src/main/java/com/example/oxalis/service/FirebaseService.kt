@@ -35,30 +35,32 @@ class FirebaseService {
     fun createAccountAuth(
         userInfo: UserInfo,
         password: String,
-        callback: (status: Boolean) -> Unit
+        callback: (status: Boolean,userInfo:UserInfo) -> Unit
     ) {
 
         auth.createUserWithEmailAndPassword(userInfo.mail!!, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    // get UID
+                    // get UID and set id
                     userInfo.id = auth.uid
+                    // set avatar
+                    userInfo.avatar = "${userInfo.id}avatar"
                     // add user to users in firebase
                     tableUsers.document(userInfo.id.toString()).set(userInfo)
                         .addOnSuccessListener {
-                            Log.i("test", "password: $password")
-                            callback.invoke(true)
+                            callback.invoke(true,userInfo)
                         }.addOnFailureListener {
-                            callback.invoke(false)
+                            callback.invoke(false,userInfo)
                         }
                 } else {
-                    callback.invoke(false)
+                    callback.invoke(false,userInfo)
                 }
             }
             .addOnFailureListener { e ->
-                callback.invoke(false)
+                callback.invoke(false,userInfo)
             }
     }
+
 
     fun login(mail: String, password: String, callback: (userInfo: UserInfo) -> Unit) {
         var userInfo: UserInfo
@@ -129,6 +131,15 @@ class FirebaseService {
             }
     }
 
+    fun updateUser(userInfo: UserInfo, callback: (status: Boolean) -> Unit) {
+        tableUsers.document(userInfo.id.toString()).set(userInfo)
+            .addOnSuccessListener {
+                callback.invoke(true)
+            }.addOnFailureListener {
+                callback.invoke(false)
+            }
+    }
+
     fun insertStopPoint(stopPointInfo: StopPointInfo, callback: (status: Boolean) -> Unit) {
         tableStopPoint.document(stopPointInfo.id.toString()).set(stopPointInfo)
             .addOnCompleteListener {
@@ -159,6 +170,17 @@ class FirebaseService {
         }
     }
 
+    fun getAllUserInfo(callback: (userInfoList: List<UserInfo>) -> Unit) {
+        tableUsers.get().addOnSuccessListener { result ->
+            var arrayListUserInfo = ArrayList<UserInfo>()
+            for (document in result) {
+                var userInfo = document.toObject(UserInfo::class.java)
+                arrayListUserInfo.add(userInfo)
+            }
+            callback.invoke(arrayListUserInfo)
+        }
+    }
+
     fun getAllSheetBookTour(callback: (sheetAddInformationList: List<SheetAddInformationCart>) -> Unit) {
         tableSheetAddInformationCart.get().addOnSuccessListener { result ->
             var arrayListSheetAddInformationCart = ArrayList<SheetAddInformationCart>()
@@ -181,8 +203,19 @@ class FirebaseService {
         }
     }
 
-    fun deleteDiscount(idOfDiscount:String,callback: (status: Boolean) -> Unit){
-        tableDiscount.document(idOfDiscount).delete().addOnSuccessListener  {
+    fun getAllTourInfo(callback: (tourInfoList: List<TourInfo>) -> Unit) {
+        tableTour.get().addOnSuccessListener { result ->
+            var arrayListTourInfo = ArrayList<TourInfo>()
+            for (document in result) {
+                var tourInfo = document.toObject(TourInfo::class.java)
+                arrayListTourInfo.add(tourInfo)
+            }
+            callback.invoke(arrayListTourInfo)
+        }
+    }
+
+    fun deleteDiscount(idOfDiscount: String, callback: (status: Boolean) -> Unit) {
+        tableDiscount.document(idOfDiscount).delete().addOnSuccessListener {
             callback.invoke(true)
         }.addOnFailureListener {
             callback.invoke(false)
@@ -226,10 +259,32 @@ class FirebaseService {
         }
     }
 
+    fun uploadImageUser(
+        nameOfImage: String,
+        imageUri: Uri,
+        callback: (status: Boolean) -> Unit
+    ) {
+        var imageRef =
+            FirebaseStorage.getInstance().reference.child("image/${nameOfImage}.jpg")
+        imageRef.putFile(imageUri).addOnSuccessListener {
+            callback.invoke(true)
+        }
+    }
+
     fun getOnlyImage(nameOfImage: String, callback: (uriOfImage: Uri) -> Unit) {
         val storage = Firebase.storage
         val storageRef = storage.reference
         storageRef.child("image/${nameOfImage}0.jpg").downloadUrl.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                callback.invoke(task.result)
+            }
+        }
+    }
+
+    fun getOnlyImageUser(nameOfImage: String, callback: (uriOfImage: Uri) -> Unit) {
+        val storage = Firebase.storage
+        val storageRef = storage.reference
+        storageRef.child("image/${nameOfImage}.jpg").downloadUrl.addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 callback.invoke(task.result)
             }
@@ -311,14 +366,14 @@ class FirebaseService {
             }
     }
 
-    fun getDiscount(discountId: String, callback: (discount:Discount) -> Unit) {
+    fun getDiscount(discountId: String, callback: (discount: Discount) -> Unit) {
         tableDiscount.document(discountId).get().addOnCompleteListener { task ->
-            if(task.isSuccessful){
-                if(task.result.exists()){
+            if (task.isSuccessful) {
+                if (task.result.exists()) {
                     var discount = task.result.toObject(Discount::class.java)
                     callback.invoke(discount!!)
-                }else{
-                    val discount = Discount("","","")
+                } else {
+                    val discount = Discount("", "", "")
                     callback.invoke(discount!!)
                 }
             }
@@ -335,16 +390,7 @@ class FirebaseService {
             }
     }
 
-    fun getAllTourInfo(callback: (tourInfoList: List<TourInfo>) -> Unit) {
-        tableTour.get().addOnSuccessListener { result ->
-            var arrayListTourInfo = ArrayList<TourInfo>()
-            for (document in result) {
-                var tourInfo = document.toObject(TourInfo::class.java)
-                arrayListTourInfo.add(tourInfo)
-            }
-            callback.invoke(arrayListTourInfo)
-        }
-    }
+
 /*//                    Log.i("test","path ====> ${task.result}")
 //                    Glide.with(this).load(task.result).into(binding.firebaseimage1)*/
 }

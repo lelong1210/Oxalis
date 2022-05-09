@@ -1,4 +1,4 @@
-package com.example.oxalis.view.fragmentsAdmin
+package com.example.oxalis.view.details
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.example.oxalis.R
-import com.example.oxalis.databinding.FragmentAddDiscountBinding
 import com.example.oxalis.databinding.FragmentDetailDiscountBinding
 import com.example.oxalis.model.Discount
 import com.example.oxalis.service.FirebaseService

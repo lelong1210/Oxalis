@@ -6,6 +6,7 @@ import android.widget.Toast
 import com.example.oxalis.R
 import com.example.oxalis.databinding.ActivityRegisterBinding
 import com.example.oxalis.model.UserInfo
+import com.example.oxalis.model.arrayStatusUserInfo
 import com.example.oxalis.service.FirebaseService
 import java.util.*
 
@@ -30,14 +31,15 @@ class RegisterActivity : AppCompatActivity() {
                 "",
                 "",
                 "user",
-                "https://firebasestorage.googleapis.com/v0/b/projectoxalis.appspot.com/o/avatar.png?alt=media&token=a8e069b4-34b4-43d7-834b-7d0a128f5f7a",
                 "",
-                ""
+                "",
+                "",
+                arrayStatusUserInfo[1]
             )
             val firebaseService = FirebaseService()
 
 
-            firebaseService.createAccountAuth(userInfo, password) { status ->
+            firebaseService.createAccountAuth(userInfo, password) { status,userInfo ->
                 if (status) {
                     Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show()
                 } else {

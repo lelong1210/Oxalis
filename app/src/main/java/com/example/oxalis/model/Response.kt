@@ -11,7 +11,8 @@ data class UserInfo(
     var permission: String? = "user",
     var avatar: String? = "https://firebasestorage.googleapis.com/v0/b/projectoxalis.appspot.com/o/avatar.png?alt=media&token=a8e069b4-34b4-43d7-834b-7d0a128f5f7a",
     var date: String? = null,
-    var address: String? = null
+    var address: String? = null,
+    var status: String?=null
 )
 data class TourInfo(
     var id: String? = null,
@@ -85,4 +86,6 @@ val arrayOfStatusSheet = arrayListOf("CHƯA XÁC NHẬN","ĐÃ XÁC NHẬN","Đ�
 val arrayStatusTour = arrayListOf("CÓ THỂ ĐẶT", "KHÔNG THỂ ĐẶT")
 val arrayDisplay = arrayListOf("ẨN", "HIỆN")
 val arrayItemTypeTour = arrayListOf("THAM QUAN", "VĂN HÓA","MẠO HIỂM","ẨM THỰC","TEAMBUILDING")
-
+val arrayStatusUserInfo = arrayListOf("KHÓA","HOẠT ĐỘNG")
+val arrayGender = arrayListOf("NAM","NỮ")
+val arrayPermission = arrayListOf("user","admin")
