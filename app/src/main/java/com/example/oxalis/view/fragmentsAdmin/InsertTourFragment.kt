@@ -17,8 +17,7 @@ import com.bumptech.glide.Glide
 import com.example.oxalis.R
 import com.example.oxalis.databinding.FragmentInsertTourBinding
 import com.example.oxalis.databinding.FragmentSearchBinding
-import com.example.oxalis.model.StopPointInfo
-import com.example.oxalis.model.TourInfo
+import com.example.oxalis.model.*
 import com.example.oxalis.service.FirebaseService
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -43,17 +42,17 @@ class InsertTourFragment : Fragment() {
         _binding = FragmentInsertTourBinding.inflate(inflater, container, false)
 
         // select box status
-        val itemsStatus = listOf("CÓ THỂ ĐẶT", "KHÔNG KHÔNG THỂ ĐẶT")
+        val itemsStatus = arrayStatusTour
         val adapterStatus =
             ArrayAdapter(requireContext(), R.layout.list_item_select_box, itemsStatus)
         binding.slbStatus.setAdapter(adapterStatus)
         // select box permission
-        val itemsPermission = listOf("ẨN", "HIỆN")
+        val itemsPermission =  arrayDisplay
         val adapterPermission =
             ArrayAdapter(requireContext(), R.layout.list_item_select_box, itemsPermission)
         binding.slbPermission.setAdapter(adapterPermission)
         // select box type
-        val itemsType = listOf("THAM QUAN", "VĂN HÓA","MẠO HIỂM","ẨM THỰC","TEAMBUILDING")
+        val itemsType = arrayItemTypeTour
         val adapterType =
             ArrayAdapter(requireContext(), R.layout.list_item_select_box, itemsType)
         binding.slbTypeOfTour.setAdapter(adapterType)

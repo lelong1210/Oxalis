@@ -217,9 +217,9 @@ class FirebaseService {
             var imageRef =
                 FirebaseStorage.getInstance().reference.child("image/${nameOfImage + arrayOfImage[i]}.jpg")
             imageRef.putFile(arrayImageUri[i]).addOnSuccessListener {
-                Log.i("test", "${nameOfImage + arrayOfImage[i]}")
                 index++
-                if (index == arrayOfImage.size) {
+                Log.i("test", "$index")
+                if (index == arrayImageUri.size) {
                     callback.invoke(true)
                 }
             }

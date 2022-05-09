@@ -35,7 +35,7 @@ class HomeRecyclerTourInfoAdapter(val context: Context, private val allCategoryT
     }
 
     private fun setTourItemRecycler(recyclerView: RecyclerView, tourInfoList: List<TourInfo>) {
-        val itemRecyclerAdapter = TourInfoItemAdapter(context, tourInfoList)
+        val itemRecyclerAdapter = TourInfoItemAdapter(context, 0,tourInfoList)
         recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         recyclerView.adapter = itemRecyclerAdapter
         itemRecyclerAdapter.onItemClickChild = {

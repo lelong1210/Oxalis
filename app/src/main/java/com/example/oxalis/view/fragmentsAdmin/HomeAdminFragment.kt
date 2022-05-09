@@ -53,9 +53,20 @@ class HomeAdminFragment : Fragment() {
                 Log.i("test", "cardViewManagerAccount")
             }
         }
+        // book tour
         managerBookTourFragment.onClickItemManagerBookTourFragment={
             onCardViewClick?.invoke(it)
         }
+        managerBookTourFragment.onClickRepeat={
+            if(it){
+                onCardViewClick?.invoke(managerBookTourFragment)
+            }
+        }
+        // tour
+        managerTourFragment.onItemClickManagerTourInfoFragment={
+            onCardViewClick?.invoke(it)
+        }
+        // discount
         managerDiscountFragment.onItemClickManagerDiscountFragment={
             onCardViewClick?.invoke(it)
         }
@@ -64,11 +75,7 @@ class HomeAdminFragment : Fragment() {
                 onCardViewClick?.invoke(managerDiscountFragment)
             }
         }
-        managerBookTourFragment.onClickRepeat={
-            if(it){
-                onCardViewClick?.invoke(managerBookTourFragment)
-            }
-        }
+
 
 
         return binding.root

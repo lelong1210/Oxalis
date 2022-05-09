@@ -82,3 +82,7 @@ data class SheetAddInformationCart(
 
 val arrayOfImage = arrayListOf("0","1","2","3")
 val arrayOfStatusSheet = arrayListOf("CHƯA XÁC NHẬN","ĐÃ XÁC NHẬN","ĐÃ HỦY")
+val arrayStatusTour = arrayListOf("CÓ THỂ ĐẶT", "KHÔNG THỂ ĐẶT")
+val arrayDisplay = arrayListOf("ẨN", "HIỆN")
+val arrayItemTypeTour = arrayListOf("THAM QUAN", "VĂN HÓA","MẠO HIỂM","ẨM THỰC","TEAMBUILDING")
+
