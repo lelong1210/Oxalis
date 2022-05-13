@@ -1,5 +1,6 @@
 package com.example.oxalis.admin
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -11,6 +12,7 @@ import com.example.oxalis.R
 import com.example.oxalis.databinding.ActivityAdminBinding
 import com.example.oxalis.view.fragmentsAdmin.HomeAdminFragment
 import com.example.oxalis.view.fragmentsAdmin.ManagerBookTourFragment
+import com.example.oxalis.view.login.LoginActivity
 
 class AdminActivity : AppCompatActivity() {
 
@@ -28,6 +30,13 @@ class AdminActivity : AppCompatActivity() {
         homeAdminFragment.onCardViewClick = {
             replaceFragment(it)
             index = 1
+        }
+        homeAdminFragment.backLogin={
+            if (it){
+                val intent = Intent(this,LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
     }
 

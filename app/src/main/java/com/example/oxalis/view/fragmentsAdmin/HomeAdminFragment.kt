@@ -21,11 +21,13 @@ class HomeAdminFragment : Fragment() {
     private var _binding: FragmentHomeAdminBinding? = null
     private val binding get() = _binding!!
     var onCardViewClick: ((Fragment) -> Unit)? = null
+    var backLogin:((Boolean)->Unit)?=null
     private val insertTourFragment = InsertTourFragment()
     private val managerBookTourFragment = ManagerBookTourFragment()
     private val managerDiscountFragment = ManagerDiscountFragment()
     private val managerTourFragment = ManagerTourFragment()
     private val managerUserFragment = ManagerUserFragment()
+    private val managerAccountFragment = ManagerAccountFragment()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +37,7 @@ class HomeAdminFragment : Fragment() {
         _binding = FragmentHomeAdminBinding.inflate(inflater, container, false)
 
         binding.cardViewStatistical.setOnClickListener {
-            Log.i("test", "cardViewStatistical")
+           Log.i("test","Statistical")
         }
         binding.cardViewManagerTour.setOnClickListener {
             onCardViewClick?.invoke(managerTourFragment)
@@ -50,8 +52,15 @@ class HomeAdminFragment : Fragment() {
             onCardViewClick?.invoke(managerDiscountFragment)
         }
         binding.cardViewManagerAccount.setOnClickListener {
-            if (logOut()) {
-                Log.i("test", "cardViewManagerAccount")
+            onCardViewClick?.invoke(managerAccountFragment)
+        }
+        // account
+        managerAccountFragment.onClickItemManagerAccountFragment={
+            onCardViewClick?.invoke(it)
+        }
+        managerAccountFragment.backLogin={
+            if (it){
+                backLogin?.invoke(true)
             }
         }
         // user
@@ -88,9 +97,6 @@ class HomeAdminFragment : Fragment() {
                 onCardViewClick?.invoke(managerDiscountFragment)
             }
         }
-
-
-
         return binding.root
     }
 

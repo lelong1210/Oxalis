@@ -93,23 +93,33 @@ class AddUserFragment : Fragment() {
             )
             val password = binding.passwordOfUser.text.toString()
             firebaseService.createAccountAuth(userInfo, password) { status,userInfo ->
-                if (status && imageUri != null) {
-                    firebaseService.uploadImageUser(userInfo.avatar.toString(), imageUri!!){
-                        if(it){
-                            Toast.makeText(
-                                context,
-                                "Thêm User ${userInfo.fullname} thành công",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            onClickRepeat?.invoke(true)
-                        }else{
-                            Toast.makeText(
-                                context,
-                                "Thêm User ${userInfo.fullname} thất bại mail có thể đã được dùng",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                if (status) {
+                    if(imageUri != null){
+                        firebaseService.uploadImageUser(userInfo.avatar.toString(), imageUri!!){
+                            if(it){
+                                Toast.makeText(
+                                    context,
+                                    "Thêm User ${userInfo.fullname} thành công",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                onClickRepeat?.invoke(true)
+                            }else{
+                                Toast.makeText(
+                                    context,
+                                    "Thêm User ${userInfo.fullname} thất bại mail có thể đã được dùng",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         }
+                    }else{
+                        Toast.makeText(
+                            context,
+                            "Thêm User ${userInfo.fullname} thành công",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        onClickRepeat?.invoke(true)
                     }
+
                 }else{
                     Toast.makeText(
                         context,

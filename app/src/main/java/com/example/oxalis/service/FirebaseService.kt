@@ -62,13 +62,13 @@ class FirebaseService {
     }
 
 
-    fun login(mail: String, password: String, callback: (userInfo: UserInfo) -> Unit) {
+    fun login(mail: String, password: String, callback: (userInfo: UserInfo,status:Boolean) -> Unit) {
         var userInfo: UserInfo
         auth.signInWithEmailAndPassword(mail, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 tableUsers.document(auth.uid.toString()).get().addOnCompleteListener { task ->
                     userInfo = task.result.toObject(UserInfo::class.java)!!
-                    callback.invoke(userInfo)
+                    callback.invoke(userInfo,true)
                 }
             } else {
                 val userInfo = UserInfo(
@@ -82,7 +82,7 @@ class FirebaseService {
                     "",
                     ""
                 )
-                callback.invoke(userInfo)
+                callback.invoke(userInfo,false)
             }
         }
     }

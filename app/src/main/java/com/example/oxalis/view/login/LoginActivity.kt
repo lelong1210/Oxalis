@@ -27,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener {
             val mail = binding.inputEmail.text.toString()
             val password = binding.inputPassword.text.toString()
-            firebaseService.login(mail, password) { userInfo ->
+            firebaseService.login(mail, password) { userInfo,status ->
                 if (userInfo.id != null) {
                     insertSharedPreferences(userInfo)
                     Toast.makeText(this, "Login Succeed", Toast.LENGTH_SHORT).show()
