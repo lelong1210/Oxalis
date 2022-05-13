@@ -6,15 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.oxalis.admin.AdminActivity
 import com.example.oxalis.databinding.ActivityMainBinding
 import com.example.oxalis.model.UserInfo
 import com.example.oxalis.view.details.DetailTourInfoActivity
-import com.example.oxalis.view.fragmentsAdmin.HomeAdminFragment
-import com.example.oxalis.view.fragmentsAdmin.InsertStopPointFragment
 import com.example.oxalis.view.fragmentsAdmin.InsertTourFragment
 import com.example.oxalis.view.fragmentsUser.*
 import com.example.oxalis.view.login.LoginActivity
@@ -25,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     private val homeFragment = HomeFragment()
     private val preferentialFragment = PreferentialFragment()
     private val purchaseOderFragment = PurchaseOderFragment()
-    private val searchFragment = SearchFragment()
+    private val chatFragment = ChatFragment()
     private val accountFragment = AccountFragment()
     private val insertTourFragment = InsertTourFragment()
     private lateinit var json: String
@@ -53,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.ChatFragment -> {
-                    replaceFragment(searchFragment)
+                    replaceFragment(chatFragment)
                     true
                 }
                 R.id.AccountFragment -> {
@@ -90,7 +87,7 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("tourInfo", gson.toJson(it))
             startActivity(intent)
         }
-        searchFragment.onItemClick = {
+        chatFragment.onItemClick = {
             replaceFragment(insertTourFragment)
         }
         preferentialFragment.onItemClick = {

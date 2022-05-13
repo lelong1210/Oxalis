@@ -78,7 +78,19 @@ data class SheetAddInformationCart(
     var discountCode: String?=null,
     var price: String?=null
 )
-
+data class Messenger(
+    var id: String?=null,
+    var idUser: String?=null,
+    var timeLastSend:String?=null
+)
+data class MessengerDetail(
+    var id: String?=null,
+    var idUserSend:String?=null,
+    var idMessenger:String?=null,
+    var content:String?=null,
+    var timeSend:String?=null,
+    var nameUserSend:String?=null,
+)
 
 
 val arrayOfImage = arrayListOf("0","1","2","3")

@@ -19,6 +19,7 @@ class DetailAccountFragment(val mail:String) : Fragment() {
     private val binding get() = _binding!!
     private val firebaseService = FirebaseService()
     var changePassSuccess:((Boolean)->Unit)?=null
+    var onClickRepeat:((Boolean)->Unit)?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,6 +57,9 @@ class DetailAccountFragment(val mail:String) : Fragment() {
                 }
             }
 
+        }
+        binding.btnBack.setOnClickListener {
+            onClickRepeat?.invoke(true)
         }
 
 

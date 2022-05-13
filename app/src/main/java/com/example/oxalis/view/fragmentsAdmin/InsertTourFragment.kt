@@ -16,7 +16,6 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.oxalis.R
 import com.example.oxalis.databinding.FragmentInsertTourBinding
-import com.example.oxalis.databinding.FragmentSearchBinding
 import com.example.oxalis.model.*
 import com.example.oxalis.service.FirebaseService
 import com.google.firebase.ktx.Firebase

@@ -1,6 +1,7 @@
 package com.example.oxalis.view.fragmentsAdmin
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.oxalis.MainActivity
 import com.example.oxalis.R
 import com.example.oxalis.databinding.FragmentHomeAdminBinding
 import com.example.oxalis.databinding.FragmentInsertStopPointBinding
@@ -22,7 +24,7 @@ class HomeAdminFragment : Fragment() {
     private val binding get() = _binding!!
     var onCardViewClick: ((Fragment) -> Unit)? = null
     var backLogin:((Boolean)->Unit)?=null
-    private val insertTourFragment = InsertTourFragment()
+    var backLogOut:((Boolean)->Unit)?=null
     private val managerBookTourFragment = ManagerBookTourFragment()
     private val managerDiscountFragment = ManagerDiscountFragment()
     private val managerTourFragment = ManagerTourFragment()
@@ -37,7 +39,7 @@ class HomeAdminFragment : Fragment() {
         _binding = FragmentHomeAdminBinding.inflate(inflater, container, false)
 
         binding.cardViewStatistical.setOnClickListener {
-           Log.i("test","Statistical")
+            backLogOut?.invoke(true)
         }
         binding.cardViewManagerTour.setOnClickListener {
             onCardViewClick?.invoke(managerTourFragment)
@@ -62,6 +64,14 @@ class HomeAdminFragment : Fragment() {
             if (it){
                 backLogin?.invoke(true)
             }
+        }
+        managerAccountFragment.onClickRepeat={
+            if (it){
+                onCardViewClick?.invoke(managerAccountFragment)
+            }
+        }
+        managerAccountFragment.backLogOut ={
+            backLogOut?.invoke(true)
         }
         // user
         managerUserFragment.onClickItemManagerUserFragment={
@@ -98,13 +108,6 @@ class HomeAdminFragment : Fragment() {
             }
         }
         return binding.root
-    }
-
-    private fun logOut(): Boolean {
-        val pref = activity?.getSharedPreferences("PrefName", Context.MODE_PRIVATE)
-        val editor = pref?.edit()
-        editor?.remove("USERINFO")
-        return editor?.commit()!!
     }
 
 }

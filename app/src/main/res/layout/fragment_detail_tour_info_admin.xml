@@ -14,7 +14,7 @@ tools:context=".view.details.DetailTourInfoAdminFragment">
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical"
-    tools:context=".view.fragmentsUser.SearchFragment">
+    tools:context=".view.fragmentsUser.ChatFragment">
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -113,7 +113,7 @@ tools:context=".view.details.DetailTourInfoAdminFragment">
                     android:id="@+id/price_of_tour"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:inputType="numberDecimal" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -141,7 +141,7 @@ tools:context=".view.details.DetailTourInfoAdminFragment">
                     android:id="@+id/age_of_tour"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:inputType="numberDecimal" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -211,7 +211,7 @@ tools:context=".view.details.DetailTourInfoAdminFragment">
                     android:id="@+id/percent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:inputType="numberDecimal" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout

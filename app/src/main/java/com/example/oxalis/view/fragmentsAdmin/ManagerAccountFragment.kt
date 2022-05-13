@@ -38,6 +38,7 @@ class ManagerAccountFragment() : Fragment() {
     var onClickItemManagerAccountFragment: ((Fragment) -> Unit)? = null
     var onClickRepeat:((Boolean)->Unit)?=null
     var backLogin:((Boolean)->Unit)?=null
+    var backLogOut:((Boolean)->Unit)?=null
     private lateinit var userInfo: UserInfo
     private  var imageUri:Uri ?= null
 
@@ -137,8 +138,15 @@ class ManagerAccountFragment() : Fragment() {
                     backLogin?.invoke(true)
                 }
             }
+            detailAccountFragment.onClickRepeat={
+                onClickRepeat?.invoke(true)
+            }
 
         }
+        binding.btnLogout.setOnClickListener {
+            backLogOut?.invoke(true)
+        }
+
 
         return binding.root
     }

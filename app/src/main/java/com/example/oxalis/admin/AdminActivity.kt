@@ -1,5 +1,6 @@
 package com.example.oxalis.admin
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.oxalis.MainActivity
 import com.example.oxalis.R
 import com.example.oxalis.databinding.ActivityAdminBinding
 import com.example.oxalis.view.fragmentsAdmin.HomeAdminFragment
@@ -38,6 +40,13 @@ class AdminActivity : AppCompatActivity() {
                 finish()
             }
         }
+        homeAdminFragment.backLogOut={
+            if (it && logOut()) {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
     }
 
     override fun onBackPressed() {
@@ -63,4 +72,12 @@ class AdminActivity : AppCompatActivity() {
             transaction.commit()
         }
     }
+
+    private fun logOut(): Boolean {
+        val pref = getSharedPreferences("PrefName", Context.MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.remove("USERINFO")
+        return editor.commit()
+    }
+
 }
