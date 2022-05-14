@@ -1,6 +1,7 @@
 package com.example.oxalis.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
@@ -14,10 +15,18 @@ class HomeRecyclerTourInfoAdapter(val context: Context, private val allCategoryT
     RecyclerView.Adapter<HomeRecyclerTourInfoAdapter.HomeViewHolder>() {
 
     var onItemClick: ((TourInfo) -> Unit)? = null
+    var onItemClickViewAll: ((String) -> Unit)? = null
 
     inner class HomeViewHolder(binding: HomeRecyclerRowItemTourInfoBinding) : RecyclerView.ViewHolder(binding.root) {
         var catTourInfo: TextView = binding.catAllTourInfo
         var itemRecycler: RecyclerView = binding.itemRecycler
+        private var viewAll:TextView = binding.viewAll
+
+        init {
+            viewAll.setOnClickListener {
+               onItemClickViewAll?.invoke(catTourInfo.text.toString())
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {

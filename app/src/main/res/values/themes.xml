@@ -23,7 +23,20 @@
 
 
     </style>
-
+    <style name="viewParent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="AcceptButton" parent="viewParent">
+        <item name="android:background">@drawable/notification_button_accept</item>
+        <item name="android:textColor">@color/whiteTextColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="DeclineButton" parent="viewParent">
+        <item name="android:background">@drawable/notification_button_cancel</item>
+        <item name="android:textColor">@color/whiteTextColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
     <style name="BottomNavigationStyle" parent="Widget.Design.BottomNavigationView">
         <!--        <item name="android:foreground">@drawable/ripple_custom</item>-->
         <item name="android:background">@color/bottomNavigationBackground</item>

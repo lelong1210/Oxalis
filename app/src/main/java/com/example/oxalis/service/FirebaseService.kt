@@ -12,6 +12,8 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import org.w3c.dom.Document
+import java.util.*
+import kotlin.collections.ArrayList
 
 class FirebaseService {
     private val auth: FirebaseAuth = Firebase.auth
@@ -35,7 +37,7 @@ class FirebaseService {
     fun createAccountAuth(
         userInfo: UserInfo,
         password: String,
-        callback: (status: Boolean,userInfo:UserInfo) -> Unit
+        callback: (status: Boolean, userInfo: UserInfo) -> Unit
     ) {
 
         auth.createUserWithEmailAndPassword(userInfo.mail!!, password)
@@ -48,27 +50,31 @@ class FirebaseService {
                     // add user to users in firebase
                     tableUsers.document(userInfo.id.toString()).set(userInfo)
                         .addOnSuccessListener {
-                            callback.invoke(true,userInfo)
+                            callback.invoke(true, userInfo)
                         }.addOnFailureListener {
-                            callback.invoke(false,userInfo)
+                            callback.invoke(false, userInfo)
                         }
                 } else {
-                    callback.invoke(false,userInfo)
+                    callback.invoke(false, userInfo)
                 }
             }
             .addOnFailureListener { e ->
-                callback.invoke(false,userInfo)
+                callback.invoke(false, userInfo)
             }
     }
 
 
-    fun login(mail: String, password: String, callback: (userInfo: UserInfo,status:Boolean) -> Unit) {
+    fun login(
+        mail: String,
+        password: String,
+        callback: (userInfo: UserInfo, status: Boolean) -> Unit
+    ) {
         var userInfo: UserInfo
         auth.signInWithEmailAndPassword(mail, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 tableUsers.document(auth.uid.toString()).get().addOnCompleteListener { task ->
                     userInfo = task.result.toObject(UserInfo::class.java)!!
-                    callback.invoke(userInfo,true)
+                    callback.invoke(userInfo, true)
                 }
             } else {
                 val userInfo = UserInfo(
@@ -82,7 +88,7 @@ class FirebaseService {
                     "",
                     ""
                 )
-                callback.invoke(userInfo,false)
+                callback.invoke(userInfo, false)
             }
         }
     }
@@ -388,6 +394,44 @@ class FirebaseService {
             }.addOnFailureListener {
                 callback.invoke(false)
             }
+    }
+
+
+    fun getTourWhere(value: String,arrayField: List<String>,callback: (tourInfoList: List<TourInfo>) -> Unit) {
+        tableTour.whereEqualTo("adrress",value).get().addOnSuccessListener { documents ->
+            val arrayList = ArrayList<TourInfo>()
+            for (document in documents) {
+                val tourInfo = document.toObject(TourInfo::class.java)
+                arrayList.add(tourInfo)
+            }
+            callback.invoke(arrayList)
+        }.addOnFailureListener {
+            Log.i("test","Exception: $it ")
+        }
+    }
+    fun getTourWhereHomLimit(value: String, arrayField: List<String>, callback: (tourInfoList: List<TourInfo>) -> Unit) {
+        tableTour.whereEqualTo("adrress",value).limit(5).get().addOnSuccessListener { documents ->
+            val arrayList = ArrayList<TourInfo>()
+            for (document in documents) {
+                val tourInfo = document.toObject(TourInfo::class.java)
+                arrayList.add(tourInfo)
+            }
+            callback.invoke(arrayList)
+        }.addOnFailureListener {
+            Log.i("test","Exception: $it ")
+        }
+    }
+    fun getTourWhereSlider(value: String,callback: (tourInfoList: ArrayList<TourInfo>) -> Unit) {
+        tableTour.whereEqualTo("discount",value).get().addOnSuccessListener { documents ->
+            val arrayList = ArrayList<TourInfo>()
+            for (document in documents) {
+                val tourInfo = document.toObject(TourInfo::class.java)
+                arrayList.add(tourInfo)
+            }
+            callback.invoke(arrayList)
+        }.addOnFailureListener {
+            Log.i("test","Exception: $it ")
+        }
     }
 
 

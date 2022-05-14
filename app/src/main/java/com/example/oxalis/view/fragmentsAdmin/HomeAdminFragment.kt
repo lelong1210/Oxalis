@@ -25,11 +25,14 @@ class HomeAdminFragment : Fragment() {
     var onCardViewClick: ((Fragment) -> Unit)? = null
     var backLogin:((Boolean)->Unit)?=null
     var backLogOut:((Boolean)->Unit)?=null
+    var moveActivityChatAdmin:((userInfo:String,messenger:String)->Unit)?=null
+    var onClickRepeatAndRm: ((Boolean) -> Unit)? = null
     private val managerBookTourFragment = ManagerBookTourFragment()
     private val managerDiscountFragment = ManagerDiscountFragment()
     private val managerTourFragment = ManagerTourFragment()
     private val managerUserFragment = ManagerUserFragment()
     private val managerAccountFragment = ManagerAccountFragment()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,6 +59,27 @@ class HomeAdminFragment : Fragment() {
         binding.cardViewManagerAccount.setOnClickListener {
             onCardViewClick?.invoke(managerAccountFragment)
         }
+        binding.btnMess.setOnClickListener {
+            val chatAdminFragment = ChatAdminFragment()
+            onCardViewClick?.invoke(chatAdminFragment)
+            // chat
+            chatAdminFragment.onClickItemChatAdminFragment={
+                onCardViewClick?.invoke(it)
+            }
+            chatAdminFragment.moveActivityChatAdmin={user,mess->
+                moveActivityChatAdmin?.invoke(user,mess)
+            }
+            chatAdminFragment.onClickRepeat={
+                Log.i("test","--> $it")
+//            onCardViewClick?.invoke(chatAdminFragment)
+            }
+            chatAdminFragment.onClickRepeatAndRm={
+                onClickRepeatAndRm?.invoke(it)
+            }
+
+        }
+
+
         // account
         managerAccountFragment.onClickItemManagerAccountFragment={
             onCardViewClick?.invoke(it)

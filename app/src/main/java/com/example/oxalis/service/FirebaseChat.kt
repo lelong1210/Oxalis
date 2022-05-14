@@ -14,10 +14,10 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class FirebaseChat {
+class FirebaseChat(private val userId:String) {
     private val database = Firebase.database
     private val messengerDb = database.getReference("message")
-    private val messengerDetailDb = database.getReference("messageDetail")
+    private val messengerDetailDb = database.getReference(userId+"messageDetail")
 
     fun setUp(messenger: Messenger) {
         messengerDb.child(messenger.id.toString()).setValue(messenger)
@@ -35,6 +35,24 @@ class FirebaseChat {
                 for (postSnapshot in snapshot.children) {
                     val messengerDetail = postSnapshot.getValue(MessengerDetail::class.java)
                     arrayList.add(messengerDetail!!)
+                }
+                callback.invoke(arrayList)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.w("test", "Failed to read value.", error.toException())
+            }
+
+        })
+    }
+    fun getListMessAdmin(callback: (listMess: List<Messenger>) -> Unit){
+        messengerDb.addValueEventListener(object : ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val arrayList = ArrayList<Messenger>()
+                for (postSnapshot in snapshot.children) {
+                    val messenger = postSnapshot.getValue(Messenger::class.java)
+                    arrayList.add(messenger!!)
                 }
                 callback.invoke(arrayList)
             }

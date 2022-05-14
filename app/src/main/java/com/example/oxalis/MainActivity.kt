@@ -10,8 +10,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.oxalis.admin.AdminActivity
 import com.example.oxalis.databinding.ActivityMainBinding
+import com.example.oxalis.databinding.FragmentDetailDiscountUserBinding
 import com.example.oxalis.model.UserInfo
+import com.example.oxalis.view.details.DetailDiscountUserFragment
 import com.example.oxalis.view.details.DetailTourInfoActivity
+import com.example.oxalis.view.fragmentsAdmin.AddUserFragment
 import com.example.oxalis.view.fragmentsAdmin.InsertTourFragment
 import com.example.oxalis.view.fragmentsUser.*
 import com.example.oxalis.view.login.LoginActivity
@@ -25,6 +28,9 @@ class MainActivity : AppCompatActivity() {
     private val chatFragment = ChatFragment()
     private val accountFragment = AccountFragment()
     private val insertTourFragment = InsertTourFragment()
+    private lateinit var resultSearchFragment: ResultSearchFragment
+    private lateinit var detailDiscountUserFragment:DetailDiscountUserFragment
+    private lateinit var updateAccountFragment:UpdateAccountFragment
     private lateinit var json: String
     private lateinit var binding: ActivityMainBinding
     private var doubleBackToExitPressedOnce = false
@@ -50,7 +56,16 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.ChatFragment -> {
-                    replaceFragment(chatFragment)
+                    val pref =
+                        applicationContext.getSharedPreferences("PrefName", Context.MODE_PRIVATE)
+                    json = pref.getString("USERINFO", "NULL").toString()
+                    if (json == "NULL") {
+                        val intent = Intent(this, LoginActivity::class.java)
+                        startActivity(intent)
+                    } else {
+                        replaceFragment(chatFragment)
+                    }
+
                     true
                 }
                 R.id.AccountFragment -> {
@@ -78,7 +93,21 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+        // home
         homeFragment.onItemDiscountClick = { it ->
+
+        }
+        homeFragment.onItemSearchClick = {
+            resultSearchFragment = ResultSearchFragment(it)
+            replaceFragment(resultSearchFragment)
+
+
+            resultSearchFragment.onItemClick = { tourInfo ->
+                val intent = Intent(this, DetailTourInfoActivity::class.java)
+                val gson = Gson()
+                intent.putExtra("tourInfo", gson.toJson(tourInfo))
+                startActivity(intent)
+            }
 
         }
         homeFragment.onItemTourInfoClick = {
@@ -87,13 +116,31 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("tourInfo", gson.toJson(it))
             startActivity(intent)
         }
+        // chat
         chatFragment.onItemClick = {
             replaceFragment(insertTourFragment)
         }
+        // pre
         preferentialFragment.onItemClick = {
+            val pref =
+                applicationContext.getSharedPreferences("PrefName", Context.MODE_PRIVATE)
+            json = pref.getString("USERINFO", "NULL").toString()
 
+            if (json == "NULL") {
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+            } else {
+                detailDiscountUserFragment = DetailDiscountUserFragment(it)
+                replaceFragment(detailDiscountUserFragment)
+            }
+        }
+        // account
+        accountFragment.onBtnEdit={userInfo->
+            updateAccountFragment = UpdateAccountFragment(userInfo)
+            replaceFragment(updateAccountFragment)
         }
     }
+
     override fun onBackPressed() {
         if (doubleBackToExitPressedOnce) {
             super.onBackPressed()
@@ -106,6 +153,7 @@ class MainActivity : AppCompatActivity() {
             doubleBackToExitPressedOnce = false
         }, 2000)
     }
+
     private fun replaceFragment(fragment: Fragment) {
         if (fragment != null) {
             val transaction = supportFragmentManager.beginTransaction()

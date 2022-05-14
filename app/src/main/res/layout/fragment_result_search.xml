@@ -4,13 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.fragmentsUser.PreferentialFragment">
+    tools:context=".view.fragmentsUser.ResultSearchFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_discount_recycler"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/list_tour_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp" />
+        android:layout_height="wrap_content" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--tools:context=".view.fragmentsUser.ResultSearchFragment">-->

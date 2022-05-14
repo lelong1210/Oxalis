@@ -36,7 +36,7 @@ class ChatFragment : Fragment() {
     private var _binding: FragmentChatBinding? = null
     private val binding get() = _binding!!
     var onItemClick: ((String) -> Unit)? = null
-    private val firebaseChat = FirebaseChat()
+    private lateinit var firebaseChat:FirebaseChat
     private lateinit var messengerDetailRecyclerView:RecyclerView
     private lateinit var messengerDetailAdapter: ChatAdapter
 
@@ -47,6 +47,8 @@ class ChatFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentChatBinding.inflate(inflater, container, false)
 
+        val userInfo = getUserInfo()
+        firebaseChat = FirebaseChat(userInfo.id.toString())
 
         firebaseChat.getMess(){
                 listMessDetail ->
@@ -56,12 +58,12 @@ class ChatFragment : Fragment() {
 
 
         binding.btnSend.setOnClickListener {
-            val userInfo = getUserInfo()
+
             val currentTime = getCurrentTime()
             val chatContent = binding.chatContent.text.toString()
 
             if (chatContent != "") {
-                val messenger = Messenger(userInfo.id + "-messenger", userInfo.id, currentTime)
+                val messenger = Messenger(userInfo.id + "-messenger", userInfo.id, currentTime,chatContent,userInfo.fullname)
                 val messengerDetail = MessengerDetail(
                     "${userInfo.id + currentTime}",
                     userInfo.id,
@@ -90,7 +92,7 @@ class ChatFragment : Fragment() {
     }
 
     private fun getCurrentTime(): String {
-        val myFormat = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
+        val myFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
         return myFormat.format(Date())
     }
     private fun setMessDetailListRecycler(listMessengerDetail: List<MessengerDetail>,userInfo: UserInfo) {
@@ -98,6 +100,6 @@ class ChatFragment : Fragment() {
         messengerDetailRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         messengerDetailAdapter = ChatAdapter(requireContext(),listMessengerDetail,userInfo)
         messengerDetailRecyclerView.adapter = messengerDetailAdapter
-
+        messengerDetailRecyclerView.scrollToPosition(messengerDetailRecyclerView.adapter!!.itemCount - 1)
     }
 }

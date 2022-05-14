@@ -12,7 +12,7 @@
     <item
         android:id="@+id/PurchaseOderFragment"
         android:icon="@drawable/ic_purchase_oder"
-        android:title="Ưu Đãi" />
+        android:title="Đơn Hàng" />
     <item
         android:id="@+id/ChatFragment"
         android:icon="@drawable/ic_icon_chat"

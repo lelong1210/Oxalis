@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.example.oxalis.MainActivity
 import com.example.oxalis.databinding.FragmentAccountBinding
 import com.example.oxalis.model.UserInfo
@@ -21,6 +22,7 @@ class AccountFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var userInfo: UserInfo
     private val firebaseService = FirebaseService()
+    var onBtnEdit:((UserInfo)->Unit)?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,14 +33,21 @@ class AccountFragment : Fragment() {
         userInfo = getUserInfo()
 
         binding.userInfoName.text = userInfo.fullname
+        binding.userInfoAddress.text = userInfo.address
+        binding.userInfoGender.text = userInfo.gender
+        binding.userInfoPhone.text = userInfo.phone
+        binding.userInfoEmail.text = userInfo.mail
+        binding.userInfoDOB.text = userInfo.date
+
+        firebaseService.getOnlyImageUser(userInfo.avatar.toString()){
+            Glide.with(requireContext()).load(it).into(binding.userAvatar)
+        }
+
+        binding.btnEditUserInfo.setOnClickListener {
+            onBtnEdit?.invoke(userInfo)
+        }
 
         binding.btnLogoutAccount.setOnClickListener {
-//            firebaseService.updatePassword("lelong1210") { status ->
-//                if (status) {
-//                    Toast.makeText(context, "Update password succeed", Toast.LENGTH_SHORT).show()
-//                    logOut()
-//                }
-//            }
             if(logOut()){
                 Toast.makeText(context,"logout succeed",Toast.LENGTH_SHORT).show()
                 val intent = Intent(requireContext(),MainActivity::class.java)

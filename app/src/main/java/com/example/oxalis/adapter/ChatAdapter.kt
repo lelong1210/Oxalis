@@ -21,6 +21,7 @@ class ChatAdapter(val context: Context, private val listChat: List<MessengerDeta
     inner class ReceiveViewHolder(binding: ItemReceiveMessageBinding):RecyclerView.ViewHolder(binding.root){
         var contentMess = binding.textMessageBody
         var time = binding.timeSend
+        var nameOfUseSend = binding.textMessageName
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -62,6 +63,7 @@ class ChatAdapter(val context: Context, private val listChat: List<MessengerDeta
         }else if(getItemViewType(position) == 1){
             (holder as ReceiveViewHolder).contentMess.text = listChat[position].content
             holder.time.text = listChat[position].timeSend
+            holder.nameOfUseSend.text = listChat[position].nameUserSend
         }
     }
 

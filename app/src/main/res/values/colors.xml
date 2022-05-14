@@ -28,4 +28,5 @@
     <color name="dashboard_subtitle">#B7B7CC</color>
 
     <color name="red">#FFFF0000</color>
+    <color name="whiteTextColor">#fff</color>
 </resources>

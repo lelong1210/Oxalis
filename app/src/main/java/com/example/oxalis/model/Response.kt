@@ -81,7 +81,9 @@ data class SheetAddInformationCart(
 data class Messenger(
     var id: String?=null,
     var idUser: String?=null,
-    var timeLastSend:String?=null
+    var timeLastSend:String?=null,
+    var messLastSend:String?=null,
+    var nameOfUser:String?=null
 )
 data class MessengerDetail(
     var id: String?=null,

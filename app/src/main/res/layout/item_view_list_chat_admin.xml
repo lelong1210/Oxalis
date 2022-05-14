@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/profile_image"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/demoimage"
+        app:civ_border_color="#408bff"
+        app:civ_border_width="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:layout_margin="10dp"
+        android:id="@+id/name_of_user_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="20NS - VKU "
+        android:textSize="15dp"
+        app:layout_constraintStart_toEndOf="@id/profile_image"/>
+    <TextView
+        android:layout_marginLeft="10dp"
+        app:layout_constraintTop_toBottomOf="@id/name_of_user_send"
+        app:layout_constraintStart_toEndOf="@id/profile_image"
+        android:id="@+id/content_last_mess"
+        android:maxLines="1"
+        android:text="Xin chao toi ten la test1 khong biet tour cua ban co cho tre con dat duoc khong a"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/time_last_send"
+        app:layout_constraintStart_toEndOf="@id/profile_image"
+        app:layout_constraintTop_toBottomOf="@id/content_last_mess"
+        android:text="15-12-2002 12:12:12"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

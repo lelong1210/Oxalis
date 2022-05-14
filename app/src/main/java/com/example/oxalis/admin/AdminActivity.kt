@@ -2,19 +2,20 @@ package com.example.oxalis.admin
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.oxalis.MainActivity
 import com.example.oxalis.R
 import com.example.oxalis.databinding.ActivityAdminBinding
+import com.example.oxalis.view.details.DetailChatAdminActivity
 import com.example.oxalis.view.fragmentsAdmin.HomeAdminFragment
-import com.example.oxalis.view.fragmentsAdmin.ManagerBookTourFragment
 import com.example.oxalis.view.login.LoginActivity
+import kotlin.system.exitProcess
 
 class AdminActivity : AppCompatActivity() {
 
@@ -25,6 +26,7 @@ class AdminActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityAdminBinding.inflate(layoutInflater)
         setContentView(binding.root)
         replaceFragment(homeAdminFragment)
@@ -46,6 +48,13 @@ class AdminActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
+        }
+        homeAdminFragment.moveActivityChatAdmin={user,mess->
+            val intent = Intent(this, DetailChatAdminActivity::class.java)
+            intent.putExtra("messenger",mess)
+            intent.putExtra("userInfo",user)
+            startActivity(intent)
+            finish()
         }
     }
 
@@ -72,7 +81,13 @@ class AdminActivity : AppCompatActivity() {
             transaction.commit()
         }
     }
-
+    private fun closeFragment(fragment: Fragment){
+        if(fragment != null){
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.remove(fragment)
+            transaction.commit()
+        }
+    }
     private fun logOut(): Boolean {
         val pref = getSharedPreferences("PrefName", Context.MODE_PRIVATE)
         val editor = pref.edit()
