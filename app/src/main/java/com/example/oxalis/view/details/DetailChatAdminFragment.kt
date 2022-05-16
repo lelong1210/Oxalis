@@ -24,13 +24,13 @@ class DetailChatAdminFragment(private val messenger: Messenger, val userInfo: Us
 
     private var _binding: FragmentDetailChatAdminBinding? = null
     private val binding get() = _binding!!
-    var onClickRepeat:((Boolean)->Unit)?=null
-    var updateListChat:((Boolean)->Unit)?=null
+    var onClickRepeat: ((Boolean) -> Unit)? = null
+    var updateListChat: ((Boolean) -> Unit)? = null
     private lateinit var firebaseChat: FirebaseChat
     private lateinit var messengerDetailRecyclerView: RecyclerView
     private lateinit var messengerDetailAdapter: ChatAdapter
     var onClickRemove: ((Fragment) -> Unit)? = null
-    var update:Boolean = true
+    var update: Boolean = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +42,7 @@ class DetailChatAdminFragment(private val messenger: Messenger, val userInfo: Us
         firebaseChat = FirebaseChat(messenger.idUser.toString())
 
         firebaseChat.getMess() { listMessDetail ->
-            if(update){
+            if (update) {
                 setMessDetailListRecycler(listMessDetail, userInfo)
             }
 
@@ -53,13 +53,18 @@ class DetailChatAdminFragment(private val messenger: Messenger, val userInfo: Us
             val userInfoAdmin = getUserInfoAdmin()
 
             if (chatContent != "") {
-                val messenger = Messenger(userInfo.id + "-messenger", userInfo.id, currentTime,chatContent,userInfoAdmin.fullname)
+
+                messenger.idUserSend = userInfoAdmin.id
+                messenger.timeLastSend = currentTime
+                messenger.namOfUserLastSend = userInfoAdmin.fullname
+                messenger.messLastSend = chatContent
+
                 val messengerDetail = MessengerDetail(
-                    "${userInfo.id + currentTime}",
-                   "${userInfoAdmin.id}",
-                    userInfo.id + "-messenger",
-                    chatContent,
-                    currentTime,
+                    "${messenger.idUser + currentTime}",
+                    "${userInfoAdmin.id}",
+                    "${messenger.id}",
+                    "$chatContent",
+                    "$currentTime",
                     "${userInfoAdmin.fullname}"
                 )
                 firebaseChat.setUp(messenger)
@@ -86,10 +91,12 @@ class DetailChatAdminFragment(private val messenger: Messenger, val userInfo: Us
         super.onDestroy()
         update = false
     }
+
     private fun getCurrentTime(): String {
         val myFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
         return myFormat.format(Date())
     }
+
     private fun getUserInfoAdmin(): UserInfo {
         val gson = Gson()
         val pref = activity?.getSharedPreferences("PrefName", Context.MODE_PRIVATE)

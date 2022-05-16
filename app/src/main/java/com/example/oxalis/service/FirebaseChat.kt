@@ -53,8 +53,6 @@ class FirebaseChat(private val userId:String) {
                     val messenger = postSnapshot.getValue(Messenger::class.java)
                     arrayList.add(messenger!!)
                 }
-                x++
-                Log.i("test","$x")
                 callback.invoke(arrayList)
             }
 

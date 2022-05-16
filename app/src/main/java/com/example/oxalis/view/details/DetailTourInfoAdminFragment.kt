@@ -25,6 +25,7 @@ class DetailTourInfoAdminFragment(private val tourInfo: TourInfo) : Fragment() {
     private var index = -1
     private var arrayImageUri = ArrayList<Uri>()
     var onClickRepeat: ((Boolean) -> Unit)? = null
+    var onClickListRating:((TourInfo)->Unit)?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -139,6 +140,9 @@ class DetailTourInfoAdminFragment(private val tourInfo: TourInfo) : Fragment() {
         }
         binding.btnBack.setOnClickListener {
             onClickRepeat?.invoke(true)
+        }
+        binding.btnRating.setOnClickListener {
+            onClickListRating?.invoke(tourInfo)
         }
 
         // Inflate the layout for this fragment

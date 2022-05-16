@@ -74,7 +74,7 @@ class HomeFragment : Fragment() {
         firebaseService.getTourWhereSlider("10") {
             itemSliderView(it)
         }
-
+        // test
         return binding.root
     }
 

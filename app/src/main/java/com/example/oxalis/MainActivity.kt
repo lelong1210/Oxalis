@@ -161,6 +161,11 @@ class MainActivity : AppCompatActivity() {
         purchaseOderFragment.onItemRating={sheetAddInformationCart, tourInfo ->
             val ratingFragment = RatingFragment(sheetAddInformationCart,tourInfo)
             replaceFragment(ratingFragment)
+            ratingFragment.onItemRate={
+                if(it){
+                    replaceFragment(purchaseOderFragment)
+                }
+            }
         }
     }
 

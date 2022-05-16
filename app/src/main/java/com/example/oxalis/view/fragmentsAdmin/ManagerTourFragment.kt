@@ -54,6 +54,13 @@ class ManagerTourFragment : Fragment() {
             detailTourInfoAdmin.onClickRepeat={
                 onClickRepeat?.invoke(true)
             }
+            detailTourInfoAdmin.onClickListRating={tourInfo->
+                var listRatingOfTourFragment = ListRatingOfTourFragment(tourInfo)
+                onItemClickManagerTourInfoFragment?.invoke(listRatingOfTourFragment)
+                listRatingOfTourFragment.onItemFragment={fragment->
+                    onItemClickManagerTourInfoFragment?.invoke(fragment)
+                }
+            }
         }
     }
 }

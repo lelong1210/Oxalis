@@ -7,14 +7,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.oxalis.MainActivity
 import com.example.oxalis.R
+import com.example.oxalis.adapter.DiscountItemAdapter
+import com.example.oxalis.adapter.RatingAdapter
 import com.example.oxalis.databinding.FragmentDetailTourInfoBinding
 import com.example.oxalis.databinding.FragmentPreferentialBinding
+import com.example.oxalis.model.Discount
+import com.example.oxalis.model.RatingTour
 import com.example.oxalis.model.TourInfo
 import com.example.oxalis.model.arrayOfImage
 import com.example.oxalis.service.FirebaseService
+import com.example.oxalis.view.details.DetailDiscountFragment
 import java.text.DecimalFormat
 import java.text.NumberFormat
 
@@ -25,6 +32,9 @@ class DetailTourInfoFragment(val tourInfo: TourInfo) : Fragment() {
     private val binding get() = _binding!!
     private val firebaseService = FirebaseService()
     var btnBookTourClickChild: ((TourInfo) -> Unit)? = null
+    private lateinit var listCommentRecyclerView:RecyclerView
+    private lateinit var ratingAdapter: RatingAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,8 +80,18 @@ class DetailTourInfoFragment(val tourInfo: TourInfo) : Fragment() {
             activity?.finish()
         }
 
+        firebaseService.getRatingTourWhere(tourInfo.id.toString()){
+            setManagerRatingListRecycler(it)
+        }
+
         // Inflate the layout for this fragment
         return binding.root
+    }
+    private fun setManagerRatingListRecycler(listComment: List<RatingTour>) {
+        listCommentRecyclerView = binding.listCommentRecycler
+        listCommentRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        ratingAdapter = RatingAdapter(requireContext(), listComment,true)
+        listCommentRecyclerView.adapter = ratingAdapter
     }
 
 }

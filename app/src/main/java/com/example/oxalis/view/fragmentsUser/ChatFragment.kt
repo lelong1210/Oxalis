@@ -36,8 +36,8 @@ class ChatFragment : Fragment() {
     private var _binding: FragmentChatBinding? = null
     private val binding get() = _binding!!
     var onItemClick: ((String) -> Unit)? = null
-    private lateinit var firebaseChat:FirebaseChat
-    private lateinit var messengerDetailRecyclerView:RecyclerView
+    private lateinit var firebaseChat: FirebaseChat
+    private lateinit var messengerDetailRecyclerView: RecyclerView
     private lateinit var messengerDetailAdapter: ChatAdapter
 
     override fun onCreateView(
@@ -50,10 +50,9 @@ class ChatFragment : Fragment() {
         val userInfo = getUserInfo()
         firebaseChat = FirebaseChat(userInfo.id.toString())
 
-        firebaseChat.getMess(){
-                listMessDetail ->
-            Log.i("test","list size = ${listMessDetail.size},${getUserInfo().mail}")
-            setMessDetailListRecycler(listMessDetail,getUserInfo())
+        firebaseChat.getMess() { listMessDetail ->
+            Log.i("test", "list size = ${listMessDetail.size},${getUserInfo().mail}")
+            setMessDetailListRecycler(listMessDetail, getUserInfo())
         }
 
 
@@ -63,7 +62,15 @@ class ChatFragment : Fragment() {
             val chatContent = binding.chatContent.text.toString()
 
             if (chatContent != "") {
-                val messenger = Messenger(userInfo.id + "-messenger", userInfo.id, currentTime,chatContent,userInfo.fullname)
+                val messenger = Messenger(
+                    userInfo.id + "-messenger",
+                   "${userInfo.id}",
+                    "${userInfo.fullname}",
+                    "${userInfo.id}",
+                    "${userInfo.fullname}",
+                    "$currentTime",
+                    "$chatContent"
+                )
                 val messengerDetail = MessengerDetail(
                     "${userInfo.id + currentTime}",
                     userInfo.id,
@@ -95,10 +102,14 @@ class ChatFragment : Fragment() {
         val myFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
         return myFormat.format(Date())
     }
-    private fun setMessDetailListRecycler(listMessengerDetail: List<MessengerDetail>,userInfo: UserInfo) {
+
+    private fun setMessDetailListRecycler(
+        listMessengerDetail: List<MessengerDetail>,
+        userInfo: UserInfo
+    ) {
         messengerDetailRecyclerView = binding.chatRecyclerView
         messengerDetailRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        messengerDetailAdapter = ChatAdapter(requireContext(),listMessengerDetail,userInfo)
+        messengerDetailAdapter = ChatAdapter(requireContext(), listMessengerDetail, userInfo)
         messengerDetailRecyclerView.adapter = messengerDetailAdapter
         messengerDetailRecyclerView.scrollToPosition(messengerDetailRecyclerView.adapter!!.itemCount - 1)
     }

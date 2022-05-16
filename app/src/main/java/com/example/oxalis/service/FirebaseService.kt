@@ -24,6 +24,12 @@ class FirebaseService {
     private val tableStopPoint = db.collection("stopPoint")
     private val tableSheetAddInformationCart = db.collection("sheetAddInformationCart")
     private val tableDiscount = db.collection("discount")
+    private val tableRatingTour = db.collection("ratingTour")
+    private val tableReplyRatingTour = db.collection("replyRatingTour")
+
+
+
+
 
     // check login
     fun isLogin(): Boolean {
@@ -333,6 +339,16 @@ class FirebaseService {
             callback.invoke(lastId!!)
         }
     }
+    fun getRating(document: String, callback:(rating:RatingTour) -> Unit) {
+        tableRatingTour.document(document).get().addOnCompleteListener { task ->
+            if(task.isSuccessful){
+                if(task.result.exists()){
+                    var rating = task.result.toObject(RatingTour::class.java)
+                    callback.invoke(rating!!)
+                }
+            }
+        }
+    }
 
     fun updateLastId(
         document: String,
@@ -356,6 +372,38 @@ class FirebaseService {
         tableSheetAddInformationCart.document(sheetAddInformationCart.id.toString())
             .set(sheetAddInformationCart).addOnCompleteListener {
                 callback.invoke(true)
+            }.addOnFailureListener {
+                callback.invoke(false)
+            }
+    }
+
+    fun insertRatingTour(
+        ratingTour: RatingTour,
+        callback: (status: Boolean) -> Unit
+    ) {
+        tableRatingTour.document(ratingTour.id.toString())
+            .set(ratingTour).addOnCompleteListener {
+               if(it.isSuccessful){
+                   callback.invoke(true)
+               }else{
+                   callback.invoke(false)
+               }
+            }.addOnFailureListener {
+                callback.invoke(false)
+            }
+    }
+
+    fun insertRepLyRatingTour(
+        replyRatingTour: ReplyRatingTour,
+        callback: (status: Boolean) -> Unit
+    ) {
+        tableReplyRatingTour.document(replyRatingTour.id.toString())
+            .set(replyRatingTour).addOnCompleteListener {
+                if(it.isSuccessful){
+                    callback.invoke(true)
+                }else{
+                    callback.invoke(false)
+                }
             }.addOnFailureListener {
                 callback.invoke(false)
             }
@@ -414,6 +462,43 @@ class FirebaseService {
             Log.i("test", "Exception: $it ")
         }
     }
+
+    fun getRatingTourWhere(
+        value: String,
+        callback: (tourInfoList: List<RatingTour>) -> Unit
+    ) {
+        tableRatingTour.whereEqualTo("idTour", value).get().addOnSuccessListener { documents ->
+            val arrayList = ArrayList<RatingTour>()
+            for (document in documents) {
+                val ratingTour = document.toObject(RatingTour::class.java)
+                arrayList.add(ratingTour)
+            }
+            callback.invoke(arrayList)
+        }.addOnFailureListener {
+            Log.i("test", "Exception: $it ")
+        }
+    }
+
+    fun getRelyRatingTourWhere(
+        value: String,
+        callback: (tourInfoList: List<ReplyRatingTour>) -> Unit
+    ) {
+        tableReplyRatingTour.whereEqualTo("idRatingTour", value).get().addOnSuccessListener { documents ->
+            if(documents.isEmpty){
+
+            }else{
+                val arrayList = ArrayList<ReplyRatingTour>()
+                for (document in documents) {
+                    val ratingTour = document.toObject(ReplyRatingTour::class.java)
+                    arrayList.add(ratingTour)
+                }
+                callback.invoke(arrayList)
+            }
+        }.addOnFailureListener {
+            Log.i("test", "Exception: $it ")
+        }
+    }
+
 
     fun getTourWhereId(value: String, callback: (tourInfo: TourInfo) -> Unit) {
         tableTour.document(value).get().addOnSuccessListener { documents ->
