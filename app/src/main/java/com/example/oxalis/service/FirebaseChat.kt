@@ -18,7 +18,7 @@ class FirebaseChat(private val userId:String) {
     private val database = Firebase.database
     private val messengerDb = database.getReference("message")
     private val messengerDetailDb = database.getReference(userId+"messageDetail")
-
+    private var x =0
     fun setUp(messenger: Messenger) {
         messengerDb.child(messenger.id.toString()).setValue(messenger)
     }
@@ -47,13 +47,14 @@ class FirebaseChat(private val userId:String) {
     }
     fun getListMessAdmin(callback: (listMess: List<Messenger>) -> Unit){
         messengerDb.addValueEventListener(object : ValueEventListener {
-
             override fun onDataChange(snapshot: DataSnapshot) {
                 val arrayList = ArrayList<Messenger>()
                 for (postSnapshot in snapshot.children) {
                     val messenger = postSnapshot.getValue(Messenger::class.java)
                     arrayList.add(messenger!!)
                 }
+                x++
+                Log.i("test","$x")
                 callback.invoke(arrayList)
             }
 
@@ -62,6 +63,9 @@ class FirebaseChat(private val userId:String) {
             }
 
         })
+    }
+    fun disConnect(){
+        messengerDb.onDisconnect()
     }
 
 }

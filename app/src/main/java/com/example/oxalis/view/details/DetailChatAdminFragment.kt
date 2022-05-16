@@ -1,5 +1,6 @@
 package com.example.oxalis.view.details
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -14,6 +15,9 @@ import com.example.oxalis.model.Messenger
 import com.example.oxalis.model.MessengerDetail
 import com.example.oxalis.model.UserInfo
 import com.example.oxalis.service.FirebaseChat
+import com.google.gson.Gson
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DetailChatAdminFragment(private val messenger: Messenger, val userInfo: UserInfo) :
     Fragment() {
@@ -26,6 +30,7 @@ class DetailChatAdminFragment(private val messenger: Messenger, val userInfo: Us
     private lateinit var messengerDetailRecyclerView: RecyclerView
     private lateinit var messengerDetailAdapter: ChatAdapter
     var onClickRemove: ((Fragment) -> Unit)? = null
+    var update:Boolean = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +42,30 @@ class DetailChatAdminFragment(private val messenger: Messenger, val userInfo: Us
         firebaseChat = FirebaseChat(messenger.idUser.toString())
 
         firebaseChat.getMess() { listMessDetail ->
-            setMessDetailListRecycler(listMessDetail, userInfo)
+            if(update){
+                setMessDetailListRecycler(listMessDetail, userInfo)
+            }
+
+        }
+        binding.btnSend.setOnClickListener {
+            val currentTime = getCurrentTime()
+            val chatContent = binding.chatContent.text.toString()
+            val userInfoAdmin = getUserInfoAdmin()
+
+            if (chatContent != "") {
+                val messenger = Messenger(userInfo.id + "-messenger", userInfo.id, currentTime,chatContent,userInfoAdmin.fullname)
+                val messengerDetail = MessengerDetail(
+                    "${userInfo.id + currentTime}",
+                   "${userInfoAdmin.id}",
+                    userInfo.id + "-messenger",
+                    chatContent,
+                    currentTime,
+                    "${userInfoAdmin.fullname}"
+                )
+                firebaseChat.setUp(messenger)
+                firebaseChat.sendMess(messengerDetail)
+                binding.chatContent.setText("")
+            }
         }
 
         return binding.root
@@ -56,6 +84,18 @@ class DetailChatAdminFragment(private val messenger: Messenger, val userInfo: Us
 
     override fun onDestroy() {
         super.onDestroy()
+        update = false
     }
+    private fun getCurrentTime(): String {
+        val myFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        return myFormat.format(Date())
+    }
+    private fun getUserInfoAdmin(): UserInfo {
+        val gson = Gson()
+        val pref = activity?.getSharedPreferences("PrefName", Context.MODE_PRIVATE)
+        val json = pref?.getString("USERINFO", "NULL")
+        return gson.fromJson(json, UserInfo::class.java)
+    }
+
 
 }

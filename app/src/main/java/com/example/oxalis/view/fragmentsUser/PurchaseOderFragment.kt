@@ -1,20 +1,71 @@
 package com.example.oxalis.view.fragmentsUser
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TableLayout
+import androidx.viewpager2.widget.ViewPager2
 import com.example.oxalis.R
+import com.example.oxalis.adapter.TabLayOutAdapter
+import com.example.oxalis.databinding.FragmentPreferentialBinding
+import com.example.oxalis.databinding.FragmentPurchaseOderBinding
+import com.example.oxalis.model.SheetAddInformationCart
+import com.example.oxalis.model.TourInfo
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 class PurchaseOderFragment : Fragment() {
+
+    private var _binding: FragmentPurchaseOderBinding? = null
+    private val binding get() = _binding!!
+    private val waitingBookTourFragment = WaitingBookTourFragment()
+    private val confirmBookTourFragment = ConfirmBookTourFragment()
+    private val cancelBookTourFragment = CancelBookTourFragment()
+    var onItemClickFragment:((Fragment)->Unit)?=null
+    var onItemMoreClick:((TourInfo)->Unit)?=null
+    var onItemRating:((SheetAddInformationCart,TourInfo)->Unit)?=null
+    private val tabTitle = arrayListOf("Đang chờ xác nhận", "Đã trãi nghiệm", "Đã Hủy")
+    private val listTabFrameLayout = arrayListOf(waitingBookTourFragment,confirmBookTourFragment,cancelBookTourFragment)
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_purchase_oder, container, false)
+        _binding = FragmentPurchaseOderBinding.inflate(inflater, container, false)
+
+        val viewPager2: ViewPager2 = binding.viewPagerPurchase
+        val tabLayOut: TabLayout = binding.tabLayoutPurchase
+        val tabLayOutAdapter = TabLayOutAdapter(activity?.supportFragmentManager!!, activity?.lifecycle!!,listTabFrameLayout)
+        viewPager2.adapter = tabLayOutAdapter
+
+        TabLayoutMediator(tabLayOut, viewPager2) { tab, position ->
+            tab.text = tabTitle[position]
+        }.attach()
+        // waiting
+        waitingBookTourFragment.onItemClickFragment={
+            onItemClickFragment?.invoke(it)
+        }
+        waitingBookTourFragment.onItemMoreClick={
+            onItemMoreClick?.invoke(it)
+        }
+        // confirm
+        confirmBookTourFragment.onItemClickFragment={
+            onItemClickFragment?.invoke(it)
+        }
+        confirmBookTourFragment.onItemMoreClick={
+            onItemMoreClick?.invoke(it)
+        }
+        confirmBookTourFragment.onItemRating={sheetAddInformationCart, tourInfo ->
+            onItemRating?.invoke(sheetAddInformationCart,tourInfo)
+        }
+
+
+        return binding.root
     }
 
 }

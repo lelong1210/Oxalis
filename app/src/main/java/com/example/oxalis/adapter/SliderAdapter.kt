@@ -15,11 +15,18 @@ import com.example.oxalis.service.FirebaseService
 class SliderAdapter(private val context: Context,private val viewPager2: ViewPager2, private val listTour: ArrayList<TourInfo>):RecyclerView.Adapter<SliderAdapter.SliderViewHolder>() {
     private val firebaseService = FirebaseService()
 
+    var onItemClick:((TourInfo)->Unit)?=null
+
     inner class SliderViewHolder(private val binding: SliderItemBinding):RecyclerView.ViewHolder(binding.root){
-        val img: ImageView = binding.imageSlider
+        private val img: ImageView = binding.imageSlider
         val nameOfTour = binding.nameOfTour
         fun bind(uri: Uri) {
             Glide.with(context).load(uri).into(img)
+        }
+        init {
+            binding.root.setOnClickListener {
+                onItemClick?.invoke(listTour[adapterPosition])
+            }
         }
     }
 

@@ -108,8 +108,13 @@ class HomeFragment : Fragment() {
                 }
             }
         )
-    }
 
+        sliderAdapter.onItemClick={
+            onItemTourInfoClick?.invoke(it)
+        }
+
+
+    }
     private fun setHomeCategoryTourInfoRecycler(allCategory: List<AllCategoryTourInfo>) {
         homeCategoryTourInfoRecycler = binding.homeRecyclerViewTourInfo
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(requireContext())

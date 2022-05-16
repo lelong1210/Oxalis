@@ -35,6 +35,7 @@
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_baseline_perm_identity_24.xml" value="0.137" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1605" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_baseline_photo_24.xml" value="0.138" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_baseline_refresh_24.xml" value="0.174" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_baseline_room_service_24.xml" value="0.138" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_baseline_show_chart_24.xml" value="0.138" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_check_black_24dp.xml" value="0.138" />
@@ -53,6 +54,7 @@
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_local_phone_blue_30dp.xml" value="0.138" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_location_adress_blue_30dp.xml" value="0.138" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_login_bk.xml" value="0.138" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_logo_oxalis_white.xml" value="0.174" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_menu_black_32dp.xml" value="0.138" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_menu_white_24dp.xml" value="0.138" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/drawable/ic_mess.xml" value="0.1415" />
@@ -85,19 +87,24 @@
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/activity_login.xml" value="0.25462962962962965" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/activity_register.xml" value="0.2604166666666667" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/activity_splash_screen.xml" value="0.13851351351351351" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_account.xml" value="0.1875" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_add_discount.xml" value="0.11317567567567567" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_add_in_fomation.xml" value="0.16891891891891891" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_add_in_formation_book_tour.xml" value="0.17804054054054055" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_add_user.xml" value="0.14425675675675675" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_cancel_book_tour.xml" value="0.1331081081081081" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_chat.xml" value="0.1326388888888889" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_chat_admin.xml" value="0.1543918918918919" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_confirm_book_tour.xml" value="0.1331081081081081" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_deatil_sheet_book_tour.xml" value="0.11621621621621622" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_detail_account.xml" value="0.11554054054054054" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_detail_chat_admin.xml" value="0.1543918918918919" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_detail_discount.xml" value="0.12398648648648648" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_detail_discount_user.xml" value="0.13378378378378378" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_detail_sheet_book_tour.xml" value="0.152" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_detail_sheet_book_tour_user_waiting.xml" value="0.10675675675675676" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_detail_sheet_tour_user_confirm.xml" value="0.17804054054054055" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_detail_tour_info.xml" value="0.17804054054054055" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_detail_tour_info2.xml" value="0.17804054054054055" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_detail_tour_info_admin.xml" value="0.2" />
@@ -116,9 +123,11 @@
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_manager_user.xml" value="0.16722972972972974" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_preferential.xml" value="0.21112076455256298" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_purchase_oder.xml" value="0.1265625" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_rating.xml" value="0.13851351351351351" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_result_search.xml" value="0.1608108108108108" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_search.xml" value="0.11440677966101695" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_update_account.xml" value="0.16799999999999998" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/fragment_waiting_book_tour.xml" value="0.1331081081081081" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/home_recycler_row_item.xml" value="0.27447916666666666" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/home_recycler_row_item_discount.xml" value="0.27447916666666666" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/home_recycler_row_item_stop_point.xml" value="0.19583333333333333" />
@@ -130,6 +139,7 @@
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/item_view_book_tour.xml" value="0.14155405405405405" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/item_view_discount.xml" value="0.2171875" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/item_view_list_chat_admin.xml" value="0.4" />
+        <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/item_view_list_sheet_tour.xml" value="0.13006756756756757" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/item_view_stop_point.xml" value="0.19583333333333333" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/item_view_tour_info.xml" value="0.27447916666666666" />
         <entry key="..\:/Code/Code_Android/DoAnCoSo3/Oxalis/app/src/main/res/layout/item_view_tour_info_admin.xml" value="0.15878378378378377" />

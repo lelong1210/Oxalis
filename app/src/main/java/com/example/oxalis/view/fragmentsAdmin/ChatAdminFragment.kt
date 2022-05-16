@@ -32,7 +32,7 @@ class ChatAdminFragment() : Fragment() {
     private var updateListChat = true
     var onClickRepeat: ((Boolean) -> Unit)? = null
     var onClickRepeatAndRm: ((Boolean) -> Unit)? = null
-    var onClickRemove: ((Fragment,Fragment) -> Unit)? = null
+    var onClickRemove: ((Fragment, Fragment) -> Unit)? = null
     var onClickItemChatAdminFragment: ((Fragment) -> Unit)? = null
     var moveActivityChatAdmin: ((userInfo: String, messenger: String) -> Unit)? = null
     private var arrayList = ArrayList<Messenger>()

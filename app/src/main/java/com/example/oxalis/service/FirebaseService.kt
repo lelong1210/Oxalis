@@ -165,6 +165,7 @@ class FirebaseService {
         }
     }
 
+
     fun getAllStopPoint(callback: (stopPointInfoList: List<StopPointInfo>) -> Unit) {
         tableStopPoint.get().addOnSuccessListener { result ->
             var arrayListStopPointInfo = ArrayList<StopPointInfo>()
@@ -397,8 +398,12 @@ class FirebaseService {
     }
 
 
-    fun getTourWhere(value: String,arrayField: List<String>,callback: (tourInfoList: List<TourInfo>) -> Unit) {
-        tableTour.whereEqualTo("adrress",value).get().addOnSuccessListener { documents ->
+    fun getTourWhere(
+        value: String,
+        arrayField: List<String>,
+        callback: (tourInfoList: List<TourInfo>) -> Unit
+    ) {
+        tableTour.whereEqualTo("adrress", value).get().addOnSuccessListener { documents ->
             val arrayList = ArrayList<TourInfo>()
             for (document in documents) {
                 val tourInfo = document.toObject(TourInfo::class.java)
@@ -406,23 +411,26 @@ class FirebaseService {
             }
             callback.invoke(arrayList)
         }.addOnFailureListener {
-            Log.i("test","Exception: $it ")
+            Log.i("test", "Exception: $it ")
         }
     }
-    fun getTourWhereHomLimit(value: String, arrayField: List<String>, callback: (tourInfoList: List<TourInfo>) -> Unit) {
-        tableTour.whereEqualTo("adrress",value).limit(5).get().addOnSuccessListener { documents ->
-            val arrayList = ArrayList<TourInfo>()
-            for (document in documents) {
-                val tourInfo = document.toObject(TourInfo::class.java)
-                arrayList.add(tourInfo)
-            }
-            callback.invoke(arrayList)
+
+    fun getTourWhereId(value: String, callback: (tourInfo: TourInfo) -> Unit) {
+        tableTour.document(value).get().addOnSuccessListener { documents ->
+            val tourInfo = documents.toObject(TourInfo::class.java)
+            callback.invoke(tourInfo!!)
         }.addOnFailureListener {
-            Log.i("test","Exception: $it ")
+//            Log.i("test","Exception: $it ")
         }
     }
-    fun getTourWhereSlider(value: String,callback: (tourInfoList: ArrayList<TourInfo>) -> Unit) {
-        tableTour.whereEqualTo("discount",value).get().addOnSuccessListener { documents ->
+
+    fun getTourWhereHomLimit(
+        value: String,
+        arrayField: List<String>,
+        callback: (tourInfoList: List<TourInfo>) -> Unit
+    ) {
+
+        tableTour.whereEqualTo("adrress", value).limit(5).get().addOnSuccessListener { documents ->
             val arrayList = ArrayList<TourInfo>()
             for (document in documents) {
                 val tourInfo = document.toObject(TourInfo::class.java)
@@ -430,7 +438,40 @@ class FirebaseService {
             }
             callback.invoke(arrayList)
         }.addOnFailureListener {
-            Log.i("test","Exception: $it ")
+            Log.i("test", "Exception: $it ")
+        }
+    }
+
+    fun getTourWhereSlider(value: String, callback: (tourInfoList: ArrayList<TourInfo>) -> Unit) {
+        tableTour.whereEqualTo("discount", value).get().addOnSuccessListener { documents ->
+            val arrayList = ArrayList<TourInfo>()
+            for (document in documents) {
+                val tourInfo = document.toObject(TourInfo::class.java)
+                arrayList.add(tourInfo)
+            }
+            callback.invoke(arrayList)
+        }.addOnFailureListener {
+            Log.i("test", "Exception: $it ")
+        }
+    }
+
+    fun getBookTourSheet(
+        option: String,
+        value: String,
+        idUser:String,
+        callback: (tourInfoList: List<SheetAddInformationCart>) -> Unit
+    ) {
+        tableSheetAddInformationCart.whereEqualTo(option, value).whereEqualTo("idUser","$idUser").get()
+            .addOnSuccessListener { documents ->
+                val arrayList = ArrayList<SheetAddInformationCart>()
+                for (document in documents) {
+                    val sheetAddInformationCart =
+                        document.toObject(SheetAddInformationCart::class.java)
+                    arrayList.add(sheetAddInformationCart)
+                }
+                callback.invoke(arrayList)
+            }.addOnFailureListener {
+            Log.i("test", "Exception: $it ")
         }
     }
 

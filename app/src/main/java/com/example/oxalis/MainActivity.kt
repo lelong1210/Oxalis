@@ -12,6 +12,7 @@ import com.example.oxalis.admin.AdminActivity
 import com.example.oxalis.databinding.ActivityMainBinding
 import com.example.oxalis.databinding.FragmentDetailDiscountUserBinding
 import com.example.oxalis.model.UserInfo
+import com.example.oxalis.rating.RatingFragment
 import com.example.oxalis.view.details.DetailDiscountUserFragment
 import com.example.oxalis.view.details.DetailTourInfoActivity
 import com.example.oxalis.view.fragmentsAdmin.AddUserFragment
@@ -52,7 +53,15 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.PurchaseOderFragment -> {
-                    replaceFragment(purchaseOderFragment)
+                    val pref =
+                        applicationContext.getSharedPreferences("PrefName", Context.MODE_PRIVATE)
+                    json = pref.getString("USERINFO", "NULL").toString()
+                    if (json == "NULL") {
+                        val intent = Intent(this, LoginActivity::class.java)
+                        startActivity(intent)
+                    } else {
+                        replaceFragment(purchaseOderFragment)
+                    }
                     true
                 }
                 R.id.ChatFragment -> {
@@ -138,6 +147,20 @@ class MainActivity : AppCompatActivity() {
         accountFragment.onBtnEdit={userInfo->
             updateAccountFragment = UpdateAccountFragment(userInfo)
             replaceFragment(updateAccountFragment)
+        }
+        // purchase
+        purchaseOderFragment.onItemClickFragment={
+            replaceFragment(it)
+        }
+        purchaseOderFragment.onItemMoreClick={tourInfo->
+            val intent = Intent(this, DetailTourInfoActivity::class.java)
+            val gson = Gson()
+            intent.putExtra("tourInfo", gson.toJson(tourInfo))
+            startActivity(intent)
+        }
+        purchaseOderFragment.onItemRating={sheetAddInformationCart, tourInfo ->
+            val ratingFragment = RatingFragment(sheetAddInformationCart,tourInfo)
+            replaceFragment(ratingFragment)
         }
     }
 
