@@ -1,9 +1,13 @@
 package com.example.oxalis.service
 
 import android.net.Uri
+import android.provider.Settings.Global.getString
 import android.util.Log
 import com.bumptech.glide.Glide
+import com.example.oxalis.R
 import com.example.oxalis.model.*
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -17,6 +21,7 @@ import kotlin.collections.ArrayList
 
 class FirebaseService {
     private val auth: FirebaseAuth = Firebase.auth
+    private lateinit var googleSignInClient: GoogleSignInClient
     private val db = Firebase.firestore
     private val tableUsers = db.collection("users")
     private val tableTour = db.collection("tours")
@@ -28,9 +33,6 @@ class FirebaseService {
     private val tableReplyRatingTour = db.collection("replyRatingTour")
 
 
-
-
-
     // check login
     fun isLogin(): Boolean {
         val currentUser = auth.currentUser
@@ -38,6 +40,28 @@ class FirebaseService {
             return true
         }
         return false
+    }
+
+    fun insertAccountGoogle(userInfo: UserInfo, callback: (status: Boolean) -> Unit) {
+        tableUsers.document(userInfo.id.toString()).set(userInfo)
+            .addOnSuccessListener {
+                callback.invoke(true)
+            }.addOnFailureListener {
+                callback.invoke(false)
+            }
+    }
+
+    fun checkUserExit(callback: (userInfo:UserInfo,status: Boolean) -> Unit) {
+        tableUsers.document(auth.uid.toString()).get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                if (task.result.exists()) {
+                    val userInfo = task.result.toObject(UserInfo::class.java)
+                    callback?.invoke(userInfo!!,true)
+                } else {
+                    callback?.invoke(UserInfo(),false)
+                }
+            }
+        }
     }
 
     fun createAccountAuth(
@@ -198,7 +222,8 @@ class FirebaseService {
         tableSheetAddInformationCart.get().addOnSuccessListener { result ->
             var arrayListSheetAddInformationCart = ArrayList<SheetAddInformationCart>()
             for (document in result) {
-                var sheetAddInformationCart = document.toObject(SheetAddInformationCart::class.java)
+                var sheetAddInformationCart =
+                    document.toObject(SheetAddInformationCart::class.java)
                 arrayListSheetAddInformationCart.add(sheetAddInformationCart)
             }
             callback.invoke(arrayListSheetAddInformationCart)
@@ -339,10 +364,11 @@ class FirebaseService {
             callback.invoke(lastId!!)
         }
     }
-    fun getRating(document: String, callback:(rating:RatingTour) -> Unit) {
+
+    fun getRating(document: String, callback: (rating: RatingTour) -> Unit) {
         tableRatingTour.document(document).get().addOnCompleteListener { task ->
-            if(task.isSuccessful){
-                if(task.result.exists()){
+            if (task.isSuccessful) {
+                if (task.result.exists()) {
                     var rating = task.result.toObject(RatingTour::class.java)
                     callback.invoke(rating!!)
                 }
@@ -383,11 +409,11 @@ class FirebaseService {
     ) {
         tableRatingTour.document(ratingTour.id.toString())
             .set(ratingTour).addOnCompleteListener {
-               if(it.isSuccessful){
-                   callback.invoke(true)
-               }else{
-                   callback.invoke(false)
-               }
+                if (it.isSuccessful) {
+                    callback.invoke(true)
+                } else {
+                    callback.invoke(false)
+                }
             }.addOnFailureListener {
                 callback.invoke(false)
             }
@@ -399,9 +425,9 @@ class FirebaseService {
     ) {
         tableReplyRatingTour.document(replyRatingTour.id.toString())
             .set(replyRatingTour).addOnCompleteListener {
-                if(it.isSuccessful){
+                if (it.isSuccessful) {
                     callback.invoke(true)
-                }else{
+                } else {
                     callback.invoke(false)
                 }
             }.addOnFailureListener {
@@ -483,20 +509,21 @@ class FirebaseService {
         value: String,
         callback: (tourInfoList: List<ReplyRatingTour>) -> Unit
     ) {
-        tableReplyRatingTour.whereEqualTo("idRatingTour", value).get().addOnSuccessListener { documents ->
-            if(documents.isEmpty){
+        tableReplyRatingTour.whereEqualTo("idRatingTour", value).get()
+            .addOnSuccessListener { documents ->
+                if (documents.isEmpty) {
 
-            }else{
-                val arrayList = ArrayList<ReplyRatingTour>()
-                for (document in documents) {
-                    val ratingTour = document.toObject(ReplyRatingTour::class.java)
-                    arrayList.add(ratingTour)
+                } else {
+                    val arrayList = ArrayList<ReplyRatingTour>()
+                    for (document in documents) {
+                        val ratingTour = document.toObject(ReplyRatingTour::class.java)
+                        arrayList.add(ratingTour)
+                    }
+                    callback.invoke(arrayList)
                 }
-                callback.invoke(arrayList)
+            }.addOnFailureListener {
+                Log.i("test", "Exception: $it ")
             }
-        }.addOnFailureListener {
-            Log.i("test", "Exception: $it ")
-        }
     }
 
 
@@ -515,19 +542,23 @@ class FirebaseService {
         callback: (tourInfoList: List<TourInfo>) -> Unit
     ) {
 
-        tableTour.whereEqualTo("adrress", value).limit(5).get().addOnSuccessListener { documents ->
-            val arrayList = ArrayList<TourInfo>()
-            for (document in documents) {
-                val tourInfo = document.toObject(TourInfo::class.java)
-                arrayList.add(tourInfo)
+        tableTour.whereEqualTo("adrress", value).limit(5).get()
+            .addOnSuccessListener { documents ->
+                val arrayList = ArrayList<TourInfo>()
+                for (document in documents) {
+                    val tourInfo = document.toObject(TourInfo::class.java)
+                    arrayList.add(tourInfo)
+                }
+                callback.invoke(arrayList)
+            }.addOnFailureListener {
+                Log.i("test", "Exception: $it ")
             }
-            callback.invoke(arrayList)
-        }.addOnFailureListener {
-            Log.i("test", "Exception: $it ")
-        }
     }
 
-    fun getTourWhereSlider(value: String, callback: (tourInfoList: ArrayList<TourInfo>) -> Unit) {
+    fun getTourWhereSlider(
+        value: String,
+        callback: (tourInfoList: ArrayList<TourInfo>) -> Unit
+    ) {
         tableTour.whereEqualTo("discount", value).get().addOnSuccessListener { documents ->
             val arrayList = ArrayList<TourInfo>()
             for (document in documents) {
@@ -543,10 +574,12 @@ class FirebaseService {
     fun getBookTourSheet(
         option: String,
         value: String,
-        idUser:String,
+        idUser: String,
         callback: (tourInfoList: List<SheetAddInformationCart>) -> Unit
     ) {
-        tableSheetAddInformationCart.whereEqualTo(option, value).whereEqualTo("idUser","$idUser").get()
+        tableSheetAddInformationCart.whereEqualTo(option, value)
+            .whereEqualTo("idUser", "$idUser")
+            .get()
             .addOnSuccessListener { documents ->
                 val arrayList = ArrayList<SheetAddInformationCart>()
                 for (document in documents) {
@@ -556,8 +589,8 @@ class FirebaseService {
                 }
                 callback.invoke(arrayList)
             }.addOnFailureListener {
-            Log.i("test", "Exception: $it ")
-        }
+                Log.i("test", "Exception: $it ")
+            }
     }
 
 

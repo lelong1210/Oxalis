@@ -11,10 +11,6 @@
     app:cardUseCompatPadding="true"
     card_view:cardCornerRadius="12dp">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/imageSlider"
             android:layout_width="match_parent"
@@ -22,13 +18,5 @@
             android:scaleType="fitXY"
             android:src="@drawable/demoimage" />
 
-        <TextView
-            android:id="@+id/name_of_tour"
-            android:layout_gravity="center"
-            android:text="tour 1234"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
 
 </androidx.cardview.widget.CardView>

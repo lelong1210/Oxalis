@@ -78,4 +78,6 @@ dependencies {
     // ViewPager2
     implementation "androidx.viewpager2:viewpager2:1.0.0"
 
+    // Also declare the dependency for the Google Play services library and specify its version
+    implementation 'com.google.android.gms:play-services-auth:20.2.0'
 }

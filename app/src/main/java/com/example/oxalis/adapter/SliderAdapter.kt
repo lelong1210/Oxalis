@@ -19,7 +19,6 @@ class SliderAdapter(private val context: Context,private val viewPager2: ViewPag
 
     inner class SliderViewHolder(private val binding: SliderItemBinding):RecyclerView.ViewHolder(binding.root){
         private val img: ImageView = binding.imageSlider
-        val nameOfTour = binding.nameOfTour
         fun bind(uri: Uri) {
             Glide.with(context).load(uri).into(img)
         }
@@ -40,8 +39,6 @@ class SliderAdapter(private val context: Context,private val viewPager2: ViewPag
         firebaseService.getOnlyImage(listTour[position].id.toString()){
             holder.bind(it)
         }
-        holder.nameOfTour.text = listTour[position].name
-
         if(position == listTour.size -2){
             viewPager2.post(run)
         }
