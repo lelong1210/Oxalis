@@ -141,7 +141,7 @@ class LoginActivity : AppCompatActivity() {
                         firebaseService.insertAccountGoogle(userInfo){status->
                             if(status){
                                 Toast.makeText(this,"Đăng Ký Thành Công",Toast.LENGTH_SHORT).show()
-                                insertSharedPreferences(userInfoST)
+                                insertSharedPreferences(userInfo)
                             }else{
                                 Toast.makeText(this,"Đăng Ký Thất Bại",Toast.LENGTH_SHORT).show()
                             }
