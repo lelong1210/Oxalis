@@ -27,17 +27,24 @@ class LoginActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener {
             val mail = binding.inputEmail.text.toString()
             val password = binding.inputPassword.text.toString()
-            firebaseService.login(mail, password) { userInfo,status ->
-                if (userInfo.id != null) {
-                    insertSharedPreferences(userInfo)
-                    Toast.makeText(this, "Login Succeed", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this,MainActivity::class.java)
-                    startActivity(intent)
-                    this.finish()
-                } else {
-                    Toast.makeText(this, "Login Err", Toast.LENGTH_SHORT).show()
+
+            if(mail != "" && password != ""){
+                firebaseService.login(mail, password) { userInfo,status ->
+                    if (userInfo.id != null) {
+                        insertSharedPreferences(userInfo)
+                        Toast.makeText(this, "Login Succeed", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this,MainActivity::class.java)
+                        startActivity(intent)
+                        this.finish()
+                    } else {
+                        Toast.makeText(this, "Login Err", Toast.LENGTH_SHORT).show()
+                    }
                 }
+            }else{
+                Toast.makeText(this, "Các ô không được để trống", Toast.LENGTH_SHORT).show()
             }
+
+
         }
         binding.forgotPassword.setOnClickListener {
             val email = binding.inputEmail.text.toString()
@@ -61,6 +68,7 @@ class LoginActivity : AppCompatActivity() {
         binding.gotoRegister.setOnClickListener {
             val intent = Intent(this,RegisterActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 

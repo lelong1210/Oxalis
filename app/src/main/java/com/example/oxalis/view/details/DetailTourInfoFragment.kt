@@ -1,8 +1,7 @@
-package com.example.oxalis.view.fragmentsUser
+package com.example.oxalis.view.details
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,17 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.oxalis.MainActivity
-import com.example.oxalis.R
-import com.example.oxalis.adapter.DiscountItemAdapter
 import com.example.oxalis.adapter.RatingAdapter
 import com.example.oxalis.databinding.FragmentDetailTourInfoBinding
-import com.example.oxalis.databinding.FragmentPreferentialBinding
-import com.example.oxalis.model.Discount
 import com.example.oxalis.model.RatingTour
 import com.example.oxalis.model.TourInfo
 import com.example.oxalis.model.arrayOfImage
 import com.example.oxalis.service.FirebaseService
-import com.example.oxalis.view.details.DetailDiscountFragment
 import java.text.DecimalFormat
 import java.text.NumberFormat
 

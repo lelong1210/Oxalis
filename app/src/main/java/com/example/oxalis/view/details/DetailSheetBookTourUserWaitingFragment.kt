@@ -1,4 +1,4 @@
-package com.example.oxalis.view.fragmentsUser
+package com.example.oxalis.view.details
 
 import android.app.DatePickerDialog
 import android.os.Bundle
@@ -9,9 +9,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.oxalis.R
-import com.example.oxalis.databinding.FragmentDetailSheetBookTourBinding
 import com.example.oxalis.databinding.FragmentDetailSheetBookTourUserWaitingBinding
-import com.example.oxalis.databinding.FragmentWaitingBookTourBinding
 import com.example.oxalis.model.SheetAddInformationCart
 import com.example.oxalis.model.TourInfo
 import com.example.oxalis.model.arrayOfStatusSheet

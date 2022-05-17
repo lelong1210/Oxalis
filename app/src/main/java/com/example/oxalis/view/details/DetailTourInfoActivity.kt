@@ -7,14 +7,13 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import com.example.oxalis.R
+import com.example.oxalis.admin.AdminActivity
 import com.example.oxalis.databinding.ActivityDetailTourInfoBinding
 import com.example.oxalis.model.TourInfo
 import com.example.oxalis.model.UserInfo
 import com.example.oxalis.view.fragmentsUser.AddInFormationBookTourFragment
-import com.example.oxalis.view.fragmentsUser.DetailTourInfoFragment
 import com.example.oxalis.view.login.LoginActivity
 import com.google.gson.Gson
-import java.text.NumberFormat
 
 class DetailTourInfoActivity : AppCompatActivity() {
 
@@ -36,10 +35,14 @@ class DetailTourInfoActivity : AppCompatActivity() {
 
         detailTourInfoFragment.btnBookTourClickChild = {
             val userInfo = getUserInfo()
-            if (userInfo.id == null) {
+            Log.i("test","--> $userInfo")
+            if (userInfo.permission == null) {
                 val intent = Intent(this,LoginActivity::class.java)
                 startActivity(intent)
-            } else {
+            } else if(userInfo.permission == "admin"){
+                val intent = Intent(this,AdminActivity::class.java)
+                startActivity(intent)
+            }else {
                 addInFormationBookTourFragment = AddInFormationBookTourFragment(userInfo, tourInfo)
                 replaceFragment(addInFormationBookTourFragment)
             }
@@ -63,7 +66,7 @@ class DetailTourInfoActivity : AppCompatActivity() {
         val json = pref?.getString("USERINFO", "NULL")
 
         return if (json == "NULL") {
-            UserInfo()
+            UserInfo(null,null,null,null,null,null)
         } else {
             gson.fromJson(json, UserInfo::class.java)
         }

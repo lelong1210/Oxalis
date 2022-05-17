@@ -1,5 +1,6 @@
 package com.example.oxalis.view.register
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -8,6 +9,7 @@ import com.example.oxalis.databinding.ActivityRegisterBinding
 import com.example.oxalis.model.UserInfo
 import com.example.oxalis.model.arrayStatusUserInfo
 import com.example.oxalis.service.FirebaseService
+import com.example.oxalis.view.login.LoginActivity
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -22,29 +24,49 @@ class RegisterActivity : AppCompatActivity() {
         binding.btnRegister.setOnClickListener {
             val fullname: String = binding.inputUserFullName.text.toString()
             val password: String = binding.inputPassword.text.toString()
+            val repass:String = binding.inputRePassword.text.toString()
             val mail: String = binding.inputEmail.text.toString()
 
-            var userInfo = UserInfo(
-                "",
-                fullname.uppercase(Locale.getDefault()),
-                mail,
-                "",
-                "",
-                "user",
-                "",
-                "",
-                "",
-                arrayStatusUserInfo[1]
-            )
-            val firebaseService = FirebaseService()
+            if(fullname != "" && password !="" && repass != "" && mail != ""){
+                if(password == repass){
+                    var userInfo = UserInfo(
+                        "",
+                        fullname.uppercase(Locale.getDefault()),
+                        mail,
+                        "",
+                        "",
+                        "user",
+                        "",
+                        "",
+                        "",
+                        arrayStatusUserInfo[1]
+                    )
+                    val firebaseService = FirebaseService()
 
 
-            firebaseService.createAccountAuth(userInfo, password) { status,userInfo ->
-                if (status) {
-                    Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show()
+                    firebaseService.createAccountAuth(userInfo, password) { status,userInfo ->
+                        if (status) {
+                            Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this,LoginActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            Toast.makeText(this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }else{
+                    Toast.makeText(
+                        this,
+                        "Mật khẩu không khớp",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
+            }else{
+                Toast.makeText(
+                    this,
+                    "các ô không được để trống",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.oxalis.admin.AdminActivity
@@ -30,9 +31,10 @@ class MainActivity : AppCompatActivity() {
     private val accountFragment = AccountFragment()
     private val insertTourFragment = InsertTourFragment()
     private lateinit var resultSearchFragment: ResultSearchFragment
-    private lateinit var detailDiscountUserFragment:DetailDiscountUserFragment
-    private lateinit var updateAccountFragment:UpdateAccountFragment
+    private lateinit var detailDiscountUserFragment: DetailDiscountUserFragment
+    private lateinit var updateAccountFragment: UpdateAccountFragment
     private lateinit var json: String
+    private val gson = Gson()
     private lateinit var binding: ActivityMainBinding
     private var doubleBackToExitPressedOnce = false
 
@@ -60,7 +62,13 @@ class MainActivity : AppCompatActivity() {
                         val intent = Intent(this, LoginActivity::class.java)
                         startActivity(intent)
                     } else {
-                        replaceFragment(purchaseOderFragment)
+                        val userInfo = gson.fromJson(json, UserInfo::class.java)
+                        if (userInfo.permission.equals("user")) {
+                            replaceFragment(purchaseOderFragment)
+                        } else if (userInfo.permission.equals("admin")) {
+                            val intent = Intent(this, AdminActivity::class.java)
+                            startActivity(intent)
+                        }
                     }
                     true
                 }
@@ -72,7 +80,16 @@ class MainActivity : AppCompatActivity() {
                         val intent = Intent(this, LoginActivity::class.java)
                         startActivity(intent)
                     } else {
-                        replaceFragment(chatFragment)
+                        val userInfo = gson.fromJson(json, UserInfo::class.java)
+
+                        Log.i("test","$userInfo")
+
+                        if (userInfo.permission.equals("user")) {
+                            replaceFragment(chatFragment)
+                        } else if (userInfo.permission.equals("admin")) {
+                            val intent = Intent(this, AdminActivity::class.java)
+                            startActivity(intent)
+                        }
                     }
 
                     true
@@ -82,7 +99,6 @@ class MainActivity : AppCompatActivity() {
                     val pref =
                         applicationContext.getSharedPreferences("PrefName", Context.MODE_PRIVATE)
                     json = pref.getString("USERINFO", "NULL").toString()
-                    val gson = Gson()
 
                     if (json == "NULL") {
                         val intent = Intent(this, LoginActivity::class.java)
@@ -144,25 +160,35 @@ class MainActivity : AppCompatActivity() {
             }
         }
         // account
-        accountFragment.onBtnEdit={userInfo->
+        accountFragment.onBtnEdit = { userInfo ->
             updateAccountFragment = UpdateAccountFragment(userInfo)
             replaceFragment(updateAccountFragment)
+
+            updateAccountFragment.onClickItemAccountFragment={fragment->
+                replaceFragment(fragment)
+            }
+            updateAccountFragment.backLogin={
+                if(logOut()){
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                }
+            }
         }
         // purchase
-        purchaseOderFragment.onItemClickFragment={
+        purchaseOderFragment.onItemClickFragment = {
             replaceFragment(it)
         }
-        purchaseOderFragment.onItemMoreClick={tourInfo->
+        purchaseOderFragment.onItemMoreClick = { tourInfo ->
             val intent = Intent(this, DetailTourInfoActivity::class.java)
             val gson = Gson()
             intent.putExtra("tourInfo", gson.toJson(tourInfo))
             startActivity(intent)
         }
-        purchaseOderFragment.onItemRating={sheetAddInformationCart, tourInfo ->
-            val ratingFragment = RatingFragment(sheetAddInformationCart,tourInfo)
+        purchaseOderFragment.onItemRating = { sheetAddInformationCart, tourInfo ->
+            val ratingFragment = RatingFragment(sheetAddInformationCart, tourInfo)
             replaceFragment(ratingFragment)
-            ratingFragment.onItemRate={
-                if(it){
+            ratingFragment.onItemRate = {
+                if (it) {
                     replaceFragment(purchaseOderFragment)
                 }
             }
@@ -188,5 +214,11 @@ class MainActivity : AppCompatActivity() {
             transaction.replace(R.id.fragment_container, fragment)
             transaction.commit()
         }
+    }
+    fun logOut(): Boolean {
+        val pref = getSharedPreferences("PrefName", Context.MODE_PRIVATE)
+        val editor = pref?.edit()
+        editor?.remove("USERINFO")
+        return editor?.commit()!!
     }
 }

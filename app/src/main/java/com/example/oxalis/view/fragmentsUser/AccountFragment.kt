@@ -23,6 +23,7 @@ class AccountFragment : Fragment() {
     private lateinit var userInfo: UserInfo
     private val firebaseService = FirebaseService()
     var onBtnEdit:((UserInfo)->Unit)?=null
+    var onClickItemAccountFragment:((Fragment)->Unit)?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,7 +66,7 @@ class AccountFragment : Fragment() {
         return gson.fromJson(json, UserInfo::class.java)
     }
 
-    private fun logOut(): Boolean {
+     fun logOut(): Boolean {
         val pref = activity?.getSharedPreferences("PrefName", Context.MODE_PRIVATE)
         val editor = pref?.edit()
         editor?.remove("USERINFO")

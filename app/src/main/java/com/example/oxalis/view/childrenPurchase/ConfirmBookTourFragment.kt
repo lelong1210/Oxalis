@@ -1,4 +1,4 @@
-package com.example.oxalis.view.fragmentsUser
+package com.example.oxalis.view.childrenPurchase
 
 import android.content.Context
 import android.os.Bundle
@@ -15,20 +15,21 @@ import com.example.oxalis.model.TourInfo
 import com.example.oxalis.model.UserInfo
 import com.example.oxalis.model.arrayOfStatusSheet
 import com.example.oxalis.service.FirebaseService
+import com.example.oxalis.view.details.DetailSheetBookTourUserConfirmFragment
 import com.google.gson.Gson
 
 class ConfirmBookTourFragment : Fragment() {
 
     private var _binding: FragmentConfirmBookTourBinding? = null
     private val binding get() = _binding!!
-    var onItemClick:((Boolean)->Unit)?=null
+    var onItemClick: ((Boolean) -> Unit)? = null
     var onItemClickFragment: ((Fragment) -> Unit)? = null
-    var onItemMoreClick:((TourInfo)->Unit)?=null
-    var onItemRating:((SheetAddInformationCart,TourInfo)->Unit)?=null
+    var onItemMoreClick: ((TourInfo) -> Unit)? = null
+    var onItemRating: ((SheetAddInformationCart, TourInfo) -> Unit)? = null
     private val firebaseService = FirebaseService()
     private lateinit var managerBookTourRecyclerView: RecyclerView
     private lateinit var managerBookTourAdapter: BookTourAdapter
-    private lateinit var userInfo:UserInfo
+    private lateinit var userInfo: UserInfo
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,17 +38,18 @@ class ConfirmBookTourFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentConfirmBookTourBinding.inflate(inflater, container, false)
         userInfo = getUserInfo()
-        firebaseService.getBookTourSheet("status", arrayOfStatusSheet[1],"${userInfo.id}"){
+        firebaseService.getBookTourSheet("status", arrayOfStatusSheet[1], "${userInfo.id}") {
             setManagerBookTourListRecycler(it)
         }
         binding.refreshBtn.setOnClickListener {
-            firebaseService.getBookTourSheet("status",arrayOfStatusSheet[1],"${userInfo.id}"){
+            firebaseService.getBookTourSheet("status", arrayOfStatusSheet[1], "${userInfo.id}") {
                 setManagerBookTourListRecycler(it)
             }
         }
 
         return binding.root
     }
+
     private fun setManagerBookTourListRecycler(listBookTour: List<SheetAddInformationCart>) {
         managerBookTourRecyclerView = binding.listConfirmBookTourRecyclerView
         managerBookTourRecyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -57,25 +59,18 @@ class ConfirmBookTourFragment : Fragment() {
             firebaseService.getTourWhereId(sheetAddInformationCart.idTour.toString()) { tourInfo ->
                 val detailSheetBookTourUserConfirmFragment =
                     DetailSheetBookTourUserConfirmFragment(sheetAddInformationCart, tourInfo)
-                onItemClickFragment?.invoke(detailSheetBookTourUserConfirmFragment)
-                detailSheetBookTourUserConfirmFragment.onItemClick = {
-                    firebaseService.getBookTourSheet(
-                        "status",
-                        arrayOfStatusSheet[0],
-                        "${userInfo.id}"
-                    ) {
-                        setManagerBookTourListRecycler(it)
-                    }
-                }
+                    onItemClickFragment?.invoke(detailSheetBookTourUserConfirmFragment)
                 detailSheetBookTourUserConfirmFragment.onItemMoreClick = { tourInfo ->
                     onItemMoreClick?.invoke(tourInfo)
                 }
-                detailSheetBookTourUserConfirmFragment.onItemRating={sheetAddInformationCart, tourInfo ->
-                    onItemRating?.invoke(sheetAddInformationCart,tourInfo)
-                }
+                detailSheetBookTourUserConfirmFragment.onItemRating =
+                    { sheetAddInformationCart, tourInfo ->
+                        onItemRating?.invoke(sheetAddInformationCart, tourInfo)
+                    }
             }
         }
     }
+
     private fun getUserInfo(): UserInfo {
         val gson = Gson()
         val pref = activity?.getSharedPreferences("PrefName", Context.MODE_PRIVATE)

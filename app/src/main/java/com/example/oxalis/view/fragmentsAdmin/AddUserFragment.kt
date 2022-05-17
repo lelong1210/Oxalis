@@ -92,41 +92,62 @@ class AddUserFragment : Fragment() {
                 binding.slbStatus.text.toString()
             )
             val password = binding.passwordOfUser.text.toString()
-            firebaseService.createAccountAuth(userInfo, password) { status,userInfo ->
-                if (status) {
-                    if(imageUri != null){
-                        firebaseService.uploadImageUser(userInfo.avatar.toString(), imageUri!!){
-                            if(it){
+            val rePass = binding.rePasswordOfUser.text.toString()
+            val mail = binding.mailOfUser.text.toString()
+            val fullname = binding.nameOfUser.text.toString()
+            val permission = binding.slbPermission.text.toString()
+
+            if(password != "" && rePass != "" && mail != "" && fullname != "" && permission != ""){
+                if(password == rePass){
+                    firebaseService.createAccountAuth(userInfo, password) { status,userInfo ->
+                        if (status) {
+                            if(imageUri != null){
+                                firebaseService.uploadImageUser(userInfo.avatar.toString(), imageUri!!){
+                                    if(it){
+                                        Toast.makeText(
+                                            context,
+                                            "Thêm User ${userInfo.fullname} thành công",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                        onClickRepeat?.invoke(true)
+                                    }else{
+                                        Toast.makeText(
+                                            context,
+                                            "Thêm User ${userInfo.fullname} thất bại mail có thể đã được dùng",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                                }
+                            }else{
                                 Toast.makeText(
                                     context,
                                     "Thêm User ${userInfo.fullname} thành công",
                                     Toast.LENGTH_SHORT
                                 ).show()
                                 onClickRepeat?.invoke(true)
-                            }else{
-                                Toast.makeText(
-                                    context,
-                                    "Thêm User ${userInfo.fullname} thất bại mail có thể đã được dùng",
-                                    Toast.LENGTH_SHORT
-                                ).show()
                             }
-                        }
-                    }else{
-                        Toast.makeText(
-                            context,
-                            "Thêm User ${userInfo.fullname} thành công",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        onClickRepeat?.invoke(true)
-                    }
 
+                        }else{
+                            Toast.makeText(
+                                context,
+                                "Thêm User ${userInfo.fullname} thất bại mail có thể đã được dùng",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
                 }else{
                     Toast.makeText(
                         context,
-                        "Thêm User ${userInfo.fullname} thất bại mail có thể đã được dùng",
+                        "Mật khẩu không khớp",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
+            }else{
+                Toast.makeText(
+                    context,
+                    "tên khách hàng,mail,mật khâu,nhập lại mật khẩu, quyền không được để trống",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
         binding.btnBack.setOnClickListener {

@@ -6,7 +6,7 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:background="@color/colorPrimaryDark"
 android:scrollbars="none"
-tools:context=".view.fragmentsUser.DetailSheetBookTourUserWaitingFragment">
+tools:context=".view.details.DetailSheetBookTourUserWaitingFragment">
 
 <LinearLayout
     android:layout_width="match_parent"

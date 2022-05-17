@@ -1,4 +1,4 @@
-package com.example.oxalis.view.fragmentsUser
+package com.example.oxalis.view.details
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,8 +12,6 @@ import com.example.oxalis.model.TourInfo
 import com.example.oxalis.service.FirebaseService
 import java.text.DecimalFormat
 import java.text.NumberFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 
 class DetailSheetBookTourUserConfirmFragment(private val sheetBookTour: SheetAddInformationCart, private val tourInfo: TourInfo) : Fragment() {
@@ -21,7 +19,6 @@ class DetailSheetBookTourUserConfirmFragment(private val sheetBookTour: SheetAdd
     private var _binding: FragmentDetailSheetBookTourUserConfirmBinding? = null
     private val binding get() = _binding!!
     private var firebaseService = FirebaseService()
-    var onItemClick:((Boolean)->Unit)?=null
     var onItemMoreClick:((TourInfo)->Unit)?=null
     var onItemRating:((SheetAddInformationCart,TourInfo)->Unit)?=null
 

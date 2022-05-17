@@ -21,6 +21,7 @@ import com.example.oxalis.model.UserInfo
 import com.example.oxalis.model.arrayGender
 import com.example.oxalis.model.arrayStatusUserInfo
 import com.example.oxalis.service.FirebaseService
+import com.example.oxalis.view.details.DetailAccountFragment
 import com.google.gson.Gson
 import java.text.SimpleDateFormat
 import java.util.*
@@ -31,6 +32,9 @@ class UpdateAccountFragment(val userInfo: UserInfo) : Fragment() {
     private val binding get() = _binding!!
     private val firebaseService = FirebaseService()
     private  var imageUri: Uri?= null
+    var onClickItemAccountFragment:((Fragment)->Unit)?=null
+    var onClickRepeat:((Boolean)->Unit)?=null
+    var backLogin:((Boolean)->Unit)?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -109,6 +113,18 @@ class UpdateAccountFragment(val userInfo: UserInfo) : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
+            }
+        }
+        binding.btnChangePassword.setOnClickListener {
+            val detailAccountFragment = DetailAccountFragment(userInfo.mail.toString())
+            onClickItemAccountFragment?.invoke(detailAccountFragment)
+            detailAccountFragment.changePassSuccess={status->
+                if(status){
+                    backLogin?.invoke(true)
+                }
+            }
+            detailAccountFragment.onClickRepeat={
+                onClickRepeat?.invoke(true)
             }
         }
 
