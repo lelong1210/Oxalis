@@ -77,4 +77,9 @@ class DetailUserFragment(val userInfo: UserInfo) : Fragment() {
 
         return binding.root
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        onClickRepeat?.invoke(true)
+    }
 }

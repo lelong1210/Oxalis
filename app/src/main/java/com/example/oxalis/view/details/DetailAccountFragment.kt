@@ -84,4 +84,9 @@ class DetailAccountFragment(val mail: String) : Fragment() {
         // Inflate the layout for this fragment
         return binding.root
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        onClickRepeat?.invoke(true)
+    }
 }

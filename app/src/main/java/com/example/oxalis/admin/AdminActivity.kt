@@ -13,8 +13,10 @@ import com.example.oxalis.MainActivity
 import com.example.oxalis.R
 import com.example.oxalis.databinding.ActivityAdminBinding
 import com.example.oxalis.view.details.DetailChatAdminActivity
+import com.example.oxalis.view.details.DetailTourInfoActivity
 import com.example.oxalis.view.fragmentsAdmin.HomeAdminFragment
 import com.example.oxalis.view.login.LoginActivity
+import com.google.gson.Gson
 import kotlin.system.exitProcess
 
 class AdminActivity : AppCompatActivity() {
@@ -35,26 +37,32 @@ class AdminActivity : AppCompatActivity() {
             replaceFragment(it)
             index = 1
         }
-        homeAdminFragment.backLogin={
-            if (it){
-                val intent = Intent(this,LoginActivity::class.java)
+        homeAdminFragment.backLogin = {
+            if (it) {
+                val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish()
             }
         }
-        homeAdminFragment.backLogOut={
+        homeAdminFragment.backLogOut = {
             if (it && logOut()) {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
             }
         }
-        homeAdminFragment.moveActivityChatAdmin={user,mess->
+        homeAdminFragment.moveActivityChatAdmin = { user, mess ->
             val intent = Intent(this, DetailChatAdminActivity::class.java)
-            intent.putExtra("messenger",mess)
-            intent.putExtra("userInfo",user)
+            intent.putExtra("messenger", mess)
+            intent.putExtra("userInfo", user)
             startActivity(intent)
             finish()
+        }
+        homeAdminFragment.onItemMoreClick = { tourInfo ->
+            val intent = Intent(this, DetailTourInfoActivity::class.java)
+            val gson = Gson()
+            intent.putExtra("tourInfo", gson.toJson(tourInfo))
+            startActivity(intent)
         }
     }
 
@@ -74,6 +82,7 @@ class AdminActivity : AppCompatActivity() {
             }, 2000)
         }
     }
+
     private fun replaceFragment(fragment: Fragment) {
         if (fragment != null) {
             val transaction = supportFragmentManager.beginTransaction()
@@ -81,13 +90,15 @@ class AdminActivity : AppCompatActivity() {
             transaction.commit()
         }
     }
-    private fun closeFragment(fragment: Fragment){
-        if(fragment != null){
+
+    private fun closeFragment(fragment: Fragment) {
+        if (fragment != null) {
             val transaction = supportFragmentManager.beginTransaction()
             transaction.remove(fragment)
             transaction.commit()
         }
     }
+
     private fun logOut(): Boolean {
         val pref = getSharedPreferences("PrefName", Context.MODE_PRIVATE)
         val editor = pref.edit()

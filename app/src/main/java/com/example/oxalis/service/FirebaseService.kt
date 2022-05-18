@@ -543,6 +543,25 @@ class FirebaseService {
             Log.i("test", "Exception: $it ")
         }
     }
+    fun getBookTourSheetWhere(
+        option: String,
+        value: String,
+        callback: (tourInfoList: List<SheetAddInformationCart>) -> Unit
+    ) {
+        tableSheetAddInformationCart.whereEqualTo(option, value)
+            .get()
+            .addOnSuccessListener { documents ->
+                val arrayList = ArrayList<SheetAddInformationCart>()
+                for (document in documents) {
+                    val sheetAddInformationCart =
+                        document.toObject(SheetAddInformationCart::class.java)
+                    arrayList.add(sheetAddInformationCart)
+                }
+                callback.invoke(arrayList)
+            }.addOnFailureListener {
+                Log.i("test", "Exception: $it ")
+            }
+    }
 
     fun getBookTourSheet(
         option: String,

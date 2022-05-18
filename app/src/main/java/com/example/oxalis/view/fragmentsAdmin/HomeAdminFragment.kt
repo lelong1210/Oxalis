@@ -15,6 +15,8 @@ import com.example.oxalis.databinding.FragmentHomeAdminBinding
 import com.example.oxalis.databinding.FragmentInsertStopPointBinding
 import com.example.oxalis.model.TourInfo
 import com.example.oxalis.service.FirebaseService
+import com.example.oxalis.view.details.DetailTourInfoActivity
+import com.google.gson.Gson
 import java.util.ArrayList
 
 
@@ -24,6 +26,7 @@ class HomeAdminFragment : Fragment() {
     private val binding get() = _binding!!
     var onCardViewClick: ((Fragment) -> Unit)? = null
     var backLogin:((Boolean)->Unit)?=null
+    var onItemMoreClick: ((TourInfo) -> Unit)? = null
     var backLogOut:((Boolean)->Unit)?=null
     var moveActivityChatAdmin:((userInfo:String,messenger:String)->Unit)?=null
     var onClickRepeatAndRm: ((Boolean) -> Unit)? = null
@@ -42,7 +45,7 @@ class HomeAdminFragment : Fragment() {
         _binding = FragmentHomeAdminBinding.inflate(inflater, container, false)
 
         binding.cardViewStatistical.setOnClickListener {
-            backLogOut?.invoke(true)
+//            backLogOut?.invoke(true)
         }
         binding.cardViewManagerTour.setOnClickListener {
             onCardViewClick?.invoke(managerTourFragment)
@@ -114,6 +117,10 @@ class HomeAdminFragment : Fragment() {
             if(it){
                 onCardViewClick?.invoke(managerBookTourFragment)
             }
+        }
+        managerBookTourFragment.onItemMoreClick={
+            tourInfo->onItemMoreClick?.invoke(tourInfo)
+
         }
         // tour
         managerTourFragment.onItemClickManagerTourInfoFragment={
