@@ -19,12 +19,13 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class RatingFragment(val sheetAddInformationCart: SheetAddInformationCart,val tourInfo: TourInfo) : Fragment() {
+class RatingFragment(val sheetAddInformationCart: SheetAddInformationCart, val tourInfo: TourInfo) :
+    Fragment() {
 
     private var _binding: FragmentRatingBinding? = null
     private val binding get() = _binding!!
     private val firebaseService = FirebaseService()
-    var onItemRate:((Boolean)->Unit)?=null
+    var onItemRate: ((Boolean) -> Unit)? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,8 +34,7 @@ class RatingFragment(val sheetAddInformationCart: SheetAddInformationCart,val to
         // Inflate the layout for this fragment
         _binding = FragmentRatingBinding.inflate(inflater, container, false)
 
-        firebaseService.getRating("RatingTour${sheetAddInformationCart.idUser}${tourInfo.id}"){
-            rating ->
+        firebaseService.getRating("RatingTour${sheetAddInformationCart.idUser}${tourInfo.id}") { rating ->
             binding.tourRatingStarSelect.rating = rating.rate!!.toFloat()
             binding.editTourRatingContent.setText(rating.content)
         }
@@ -42,8 +42,9 @@ class RatingFragment(val sheetAddInformationCart: SheetAddInformationCart,val to
         binding.sendReviewBtn.setOnClickListener {
             val currentTime = getCurrentTime()
 
-            firebaseService.getLastId("Rating","lastId"){lastId ->
-                val id = "RatingTour${sheetAddInformationCart.idUser}${sheetAddInformationCart.idTour}"
+            firebaseService.getLastId("Rating", "lastId") { lastId ->
+                val id =
+                    "RatingTour${sheetAddInformationCart.idUser}${sheetAddInformationCart.idTour}"
                 val content = binding.editTourRatingContent.text
                 val rate = binding.tourRatingStarSelect.rating
 
@@ -57,11 +58,25 @@ class RatingFragment(val sheetAddInformationCart: SheetAddInformationCart,val to
                     "$currentTime",
                     arrayDisplay[1],
                 )
-                firebaseService.insertRatingTour(ratingTour){
-                    if(it){
-                        Toast.makeText(requireContext(),"Cảm ơn đánh giá của quý khách",Toast.LENGTH_SHORT).show()
-                        onItemRate?.invoke(true)
+                firebaseService.insertRatingTour(ratingTour) {
+                    if (it) {
+                        firebaseService.getRatingTourWhere("${sheetAddInformationCart.idTour}") { listRating ->
+                            var totalRating = 0f
+                            for (element in listRating) {
+                                totalRating += element.rate!!.toFloat()
+                            }
+                            tourInfo.rate = "${totalRating/listRating.size}"
+                            firebaseService.insertTourInfo(tourInfo){status->
+                                if(status){
+                                    Toast.makeText(requireContext(),"Cảm ơn đánh giá của quý khách",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    onItemRate?.invoke(true)
+                                }
+                            }
+                        }
                     }
+
                 }
             }
         }

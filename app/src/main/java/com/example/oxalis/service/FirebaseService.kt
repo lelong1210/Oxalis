@@ -21,7 +21,6 @@ import kotlin.collections.ArrayList
 
 class FirebaseService {
     private val auth: FirebaseAuth = Firebase.auth
-    private lateinit var googleSignInClient: GoogleSignInClient
     private val db = Firebase.firestore
     private val tableUsers = db.collection("users")
     private val tableTour = db.collection("tours")
@@ -33,14 +32,10 @@ class FirebaseService {
     private val tableReplyRatingTour = db.collection("replyRatingTour")
 
 
-    // check login
-    fun isLogin(): Boolean {
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            return true
-        }
-        return false
+    fun updateNumberRatingOfTour(){
+
     }
+
 
     fun insertAccountGoogle(userInfo: UserInfo, callback: (status: Boolean) -> Unit) {
         tableUsers.document(userInfo.id.toString()).set(userInfo)
@@ -51,14 +46,14 @@ class FirebaseService {
             }
     }
 
-    fun checkUserExit(callback: (userInfo:UserInfo,status: Boolean) -> Unit) {
+    fun checkUserExit(callback: (userInfo: UserInfo, status: Boolean) -> Unit) {
         tableUsers.document(auth.uid.toString()).get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 if (task.result.exists()) {
                     val userInfo = task.result.toObject(UserInfo::class.java)
-                    callback?.invoke(userInfo!!,true)
+                    callback?.invoke(userInfo!!, true)
                 } else {
-                    callback?.invoke(UserInfo(),false)
+                    callback?.invoke(UserInfo(), false)
                 }
             }
         }
@@ -183,28 +178,6 @@ class FirebaseService {
             }.addOnFailureListener {
                 callback.invoke(false)
             }
-    }
-
-    fun getStopPoint(
-        idStopPoint: String,
-        callback: (stopPointInfo: StopPointInfo) -> Unit
-    ) {
-        tableStopPoint.document(idStopPoint).get().addOnCompleteListener { task ->
-            val stopPointInfo = task.result.toObject(StopPointInfo::class.java)!!
-            callback.invoke(stopPointInfo)
-        }
-    }
-
-
-    fun getAllStopPoint(callback: (stopPointInfoList: List<StopPointInfo>) -> Unit) {
-        tableStopPoint.get().addOnSuccessListener { result ->
-            var arrayListStopPointInfo = ArrayList<StopPointInfo>()
-            for (document in result) {
-                var stopPointInfo = document.toObject(StopPointInfo::class.java)
-                arrayListStopPointInfo.add(stopPointInfo)
-            }
-            callback.invoke(arrayListStopPointInfo)
-        }
     }
 
     fun getAllUserInfo(callback: (userInfoList: List<UserInfo>) -> Unit) {
