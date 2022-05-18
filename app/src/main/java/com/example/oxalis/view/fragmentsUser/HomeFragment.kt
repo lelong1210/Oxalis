@@ -71,7 +71,7 @@ class HomeFragment : Fragment() {
 
         }
         // tour discount 10%
-        firebaseService.getTourWhereSlider("3.5") {
+        firebaseService.getTourWhereSlider("10") {
             itemSliderView(it)
         }
         // test
