@@ -48,6 +48,9 @@ class ChatFragment : Fragment() {
         _binding = FragmentChatBinding.inflate(inflater, container, false)
 
         val userInfo = getUserInfo()
+
+        binding.chatName.text = "Oxalis"
+
         firebaseChat = FirebaseChat(userInfo.id.toString())
 
         firebaseChat.getMess() { listMessDetail ->

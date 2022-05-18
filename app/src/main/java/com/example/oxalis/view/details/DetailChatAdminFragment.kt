@@ -41,6 +41,10 @@ class DetailChatAdminFragment(private val messenger: Messenger, val userInfo: Us
 
         firebaseChat = FirebaseChat(messenger.idUser.toString())
 
+
+        binding.chatName.text = messenger.nameOfUser
+
+
         firebaseChat.getMess() { listMessDetail ->
             if (update) {
                 setMessDetailListRecycler(listMessDetail, userInfo)
