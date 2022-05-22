@@ -1,29 +1,16 @@
 package com.example.oxalis.view.fragmentsAdmin
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
-import com.anychart.AnyChart
-import com.anychart.AnyChartView
-import com.anychart.chart.common.dataentry.DataEntry
-import com.anychart.chart.common.dataentry.ValueDataEntry
-import com.example.oxalis.R
 import com.example.oxalis.adapter.TabLayOutAdapter
 import com.example.oxalis.databinding.FragmentStatisticalBinding
-import com.example.oxalis.model.District
-import com.example.oxalis.model.Province
-import com.example.oxalis.model.Ward
-import com.example.oxalis.model.arrayGender
-import com.example.oxalis.service.FirebaseAddress
-import com.example.oxalis.service.FirebaseService
-import com.example.oxalis.view.childrenStatiscal.ProceedFragment
-import com.example.oxalis.view.childrenStatiscal.TopBookTourFragment
-import com.example.oxalis.view.childrenStatiscal.TopRatingFragment
+import com.example.oxalis.view.childrenStatistical.ProceedFragment
+import com.example.oxalis.view.childrenStatistical.TopBookTourFragment
+import com.example.oxalis.view.childrenStatistical.TopRatingFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
