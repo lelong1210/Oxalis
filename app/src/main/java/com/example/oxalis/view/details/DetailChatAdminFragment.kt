@@ -25,11 +25,9 @@ class DetailChatAdminFragment(private val messenger: Messenger, val userInfo: Us
     private var _binding: FragmentDetailChatAdminBinding? = null
     private val binding get() = _binding!!
     var onClickRepeat: ((Boolean) -> Unit)? = null
-    var updateListChat: ((Boolean) -> Unit)? = null
     private lateinit var firebaseChat: FirebaseChat
     private lateinit var messengerDetailRecyclerView: RecyclerView
     private lateinit var messengerDetailAdapter: ChatAdapter
-    var onClickRemove: ((Fragment) -> Unit)? = null
     var update: Boolean = true
 
     override fun onCreateView(
@@ -94,6 +92,7 @@ class DetailChatAdminFragment(private val messenger: Messenger, val userInfo: Us
     override fun onDestroy() {
         super.onDestroy()
         update = false
+        onClickRepeat?.invoke(true)
     }
 
     private fun getCurrentTime(): String {

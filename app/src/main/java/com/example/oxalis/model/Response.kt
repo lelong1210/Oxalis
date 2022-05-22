@@ -127,6 +127,21 @@ data class ReplyRatingTour(
     var timeReply:String?=null
 )
 
+data class Province(
+    var id: String?=null,
+    var name: String?=null,
+    var list: ArrayList<District>?=null
+)
+data class District(
+    var id: String?=null,
+    var name: String?=null,
+    var list: ArrayList<Ward>?=null
+)
+data class Ward(
+    var id: String?=null,
+    var name:String?=null,
+)
+
 val arrayOfImage = arrayListOf("0", "1", "2", "3")
 val arrayOfStatusSheet = arrayListOf("CHƯA XÁC NHẬN", "ĐÃ XÁC NHẬN", "ĐÃ HỦY")
 val arrayStatusTour = arrayListOf("CÓ THỂ ĐẶT", "KHÔNG THỂ ĐẶT")

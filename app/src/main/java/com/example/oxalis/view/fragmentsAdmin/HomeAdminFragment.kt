@@ -35,6 +35,7 @@ class HomeAdminFragment : Fragment() {
     private val managerTourFragment = ManagerTourFragment()
     private val managerUserFragment = ManagerUserFragment()
     private val managerAccountFragment = ManagerAccountFragment()
+    private val statisticalFragment = StatisticalFragment()
 
 
     override fun onCreateView(
@@ -45,7 +46,7 @@ class HomeAdminFragment : Fragment() {
         _binding = FragmentHomeAdminBinding.inflate(inflater, container, false)
 
         binding.cardViewStatistical.setOnClickListener {
-//            backLogOut?.invoke(true)
+            onCardViewClick?.invoke(statisticalFragment)
         }
         binding.cardViewManagerTour.setOnClickListener {
             onCardViewClick?.invoke(managerTourFragment)
@@ -69,17 +70,11 @@ class HomeAdminFragment : Fragment() {
             chatAdminFragment.onClickItemChatAdminFragment={
                 onCardViewClick?.invoke(it)
             }
-            chatAdminFragment.moveActivityChatAdmin={user,mess->
-                moveActivityChatAdmin?.invoke(user,mess)
+            chatAdminFragment.onClickRepeat={status->
+                if(status){
+//                    onCardViewClick?.invoke(chatAdminFragment)
+                }
             }
-            chatAdminFragment.onClickRepeat={
-                Log.i("test","--> $it")
-//            onCardViewClick?.invoke(chatAdminFragment)
-            }
-            chatAdminFragment.onClickRepeatAndRm={
-                onClickRepeatAndRm?.invoke(it)
-            }
-
         }
 
 
@@ -138,6 +133,8 @@ class HomeAdminFragment : Fragment() {
                 onCardViewClick?.invoke(managerDiscountFragment)
             }
         }
+        // statistical
+
         return binding.root
     }
 

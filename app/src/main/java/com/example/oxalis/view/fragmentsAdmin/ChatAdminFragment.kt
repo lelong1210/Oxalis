@@ -31,11 +31,7 @@ class ChatAdminFragment() : Fragment() {
     private lateinit var firebaseChat: FirebaseChat
     private var updateListChat = true
     var onClickRepeat: ((Boolean) -> Unit)? = null
-    var onClickRepeatAndRm: ((Boolean) -> Unit)? = null
-    var onClickRemove: ((Fragment, Fragment) -> Unit)? = null
     var onClickItemChatAdminFragment: ((Fragment) -> Unit)? = null
-    var moveActivityChatAdmin: ((userInfo: String, messenger: String) -> Unit)? = null
-    private var arrayList = ArrayList<Messenger>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,6 +60,12 @@ class ChatAdminFragment() : Fragment() {
             updateListChat = false
             val detailChatAdminFragment = DetailChatAdminFragment(it, userInfo)
             onClickItemChatAdminFragment?.invoke(detailChatAdminFragment)
+
+            detailChatAdminFragment.onClickRepeat={status->
+                if(status){
+                    onClickRepeat?.invoke(true)
+                }
+            }
         }
     }
 

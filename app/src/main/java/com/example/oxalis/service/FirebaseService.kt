@@ -10,6 +10,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -32,7 +33,7 @@ class FirebaseService {
     private val tableReplyRatingTour = db.collection("replyRatingTour")
 
 
-    fun updateNumberRatingOfTour(){
+    fun updateNumberRatingOfTour() {
 
     }
 
@@ -349,6 +350,7 @@ class FirebaseService {
         }
     }
 
+
     fun updateLastId(
         document: String,
         field: String,
@@ -478,6 +480,23 @@ class FirebaseService {
         }
     }
 
+    fun getTourInfoOrDerBy(
+        value: String,
+        callback: (tourInfoList: List<TourInfo>) -> Unit
+    ) {
+        tableTour.orderBy("rate", Query.Direction.DESCENDING).limit(value.toLong()).get()
+            .addOnSuccessListener { documents ->
+                val arrayList = ArrayList<TourInfo>()
+                for (document in documents){
+                    val tourInfo = document.toObject(TourInfo::class.java)
+                    arrayList.add(tourInfo)
+                }
+                callback?.invoke(arrayList)
+            }.addOnFailureListener {
+            Log.i("test", "Exception: $it ")
+        }
+    }
+
     fun getRelyRatingTourWhere(
         value: String,
         callback: (tourInfoList: List<ReplyRatingTour>) -> Unit
@@ -543,6 +562,7 @@ class FirebaseService {
             Log.i("test", "Exception: $it ")
         }
     }
+
     fun getBookTourSheetWhere(
         option: String,
         value: String,
