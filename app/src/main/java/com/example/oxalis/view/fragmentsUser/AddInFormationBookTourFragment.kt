@@ -12,10 +12,8 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.oxalis.R
 import com.example.oxalis.databinding.FragmentAddInFormationBookTourBinding
-import com.example.oxalis.model.SheetAddInformationCart
-import com.example.oxalis.model.TourInfo
-import com.example.oxalis.model.UserInfo
-import com.example.oxalis.model.arrayOfStatusSheet
+import com.example.oxalis.model.*
+import com.example.oxalis.service.FirebaseAddress
 import com.example.oxalis.service.FirebaseService
 import java.text.DecimalFormat
 import java.text.NumberFormat
@@ -29,6 +27,13 @@ class AddInFormationBookTourFragment(private val userInfo: UserInfo, val tourInf
     private var _binding: FragmentAddInFormationBookTourBinding? = null
     private val binding get() = _binding!!
     private var firebaseService = FirebaseService()
+    private val firebaseAddress = FirebaseAddress()
+    private var listProvince = ArrayList<Province>()
+    private var listDistrict = ArrayList<District>()
+    private var listWard = ArrayList<Ward>()
+    var itemsSex = ArrayList<String>()
+    var itemsSex1 = ArrayList<String>()
+    var itemsSex2 = ArrayList<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,6 +61,52 @@ class AddInFormationBookTourFragment(private val userInfo: UserInfo, val tourInf
         binding.nameOfUserBook.setText(userInfo.fullname)
         binding.inputNameOfTour.setText(tourInfo.name)
         binding.priceOfTour.setText(formatStringPrice(tourInfo.price.toString()))
+
+
+
+
+
+        firebaseAddress.getAddress { list ->
+            listProvince = list as ArrayList<Province>
+            itemsSex.clear()
+            for (i in list.indices) {
+                itemsSex.add("${list[i].name}")
+            }
+            val adapterSex =
+                ArrayAdapter(requireContext(), R.layout.list_item_select_box, itemsSex)
+            binding.slbProvince.setAdapter(adapterSex)
+        }
+
+        binding.slbDistrict.setOnClickListener {
+            val province = binding.slbProvince.text.toString()
+            if (province != "") {
+                listDistrict = listProvince[itemsSex.indexOf(province)].list!!
+                itemsSex1.clear()
+                for (i in 0 until listDistrict.size) {
+                    itemsSex1.add("${listDistrict!![i].name}")
+                }
+                val adapterSex1 =
+                    ArrayAdapter(requireContext(), R.layout.list_item_select_box, itemsSex1)
+                binding.slbDistrict.setAdapter(adapterSex1)
+            }
+        }
+        binding.slbWard.setOnClickListener {
+            val district = binding.slbDistrict.text.toString()
+            if (district != "") {
+                listWard = listDistrict[itemsSex1.indexOf(district)].list!!
+
+                itemsSex2.clear()
+                for (i in 0 until listWard.size) {
+                    itemsSex2.add("${listWard!![i].name}")
+                }
+                val adapterSex2 =
+                    ArrayAdapter(requireContext(), R.layout.list_item_select_box, itemsSex2)
+                binding.slbWard.setAdapter(adapterSex2)
+            }
+        }
+
+
+
 
         binding.totalPriceOfTour.setOnClickListener {
             if (binding.numberOfPeople.text.toString() == "") {
@@ -98,7 +149,6 @@ class AddInFormationBookTourFragment(private val userInfo: UserInfo, val tourInf
                 }
             }
         }
-
         binding.calendarOfBookTour.setOnClickListener {
             DatePickerDialog(
                 requireContext(),
@@ -108,57 +158,70 @@ class AddInFormationBookTourFragment(private val userInfo: UserInfo, val tourInf
                 myCalender.get(Calendar.DAY_OF_MONTH),
             ).show()
         }
-
         binding.bookTourSheet.setOnClickListener {
-            firebaseService.getLastId("SheetAddInformationCart", "lastId") { lastId ->
-                val sheetAddInformationCart = SheetAddInformationCart(
-                    "sheetBookTour$lastId",
-                    userInfo.id,
-                    binding.nameOfUserBook.text.toString().uppercase(),
-                    tourInfo.id,
-                    tourInfo.name,
-                    binding.slbSex.text.toString().uppercase(),
-                    binding.mailOfUserBookTour.text.toString(),
-                    binding.addressOfUserBookTour.text.toString().uppercase(),
-                    binding.phoneOfUserBookTour.text.toString().uppercase(),
-                    binding.calendarOfBookTour.text.toString().uppercase(),
-                    binding.numberOfPeople.text.toString().uppercase(),
-                    arrayOfStatusSheet[0],
-                    binding.discountCode.text.toString(),
-                    tourInfo.price
-                )
-                firebaseService.insertSheetAddInformationCart(sheetAddInformationCart) { status ->
-                    if (status) {
-                        firebaseService.updateLastId(
-                            "SheetAddInformationCart",
-                            "lastId",
-                            lastId.toInt()
-                        ) {
-                            if (status) {
-                                Toast.makeText(
-                                    context,
-                                    "Quý Đã đặt tour đang chờ admin xác nhận",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            } else {
-                                Toast.makeText(
-                                    context,
-                                    "Quý khách đã đặt tour thất bại",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+            val name = binding.nameOfUserBook.text.toString()
+            val sex = binding.slbSex.text.toString()
+            val mail = binding.mailOfUserBookTour.text.toString()
+            val address = binding.addressOfUserBookTour.text.toString()
+            val phone = binding.phoneOfUserBookTour.text.toString()
+            val timeStart = binding.calendarOfBookTour.text.toString()
+            val numberPeople = binding.numberOfPeople.text.toString()
+            val province = binding.slbProvince.text.toString()
+            val district = binding.slbDistrict.text.toString()
+            val ward = binding.slbWard.text.toString()
+
+
+            if(name != "" && sex != "" && mail != "" && address != "" && phone != "" && timeStart != "" && numberPeople != "" && province != "" && district != "" && ward != ""){
+                firebaseService.getLastId("SheetAddInformationCart", "lastId") { lastId ->
+                    val sheetAddInformationCart = SheetAddInformationCart(
+                        "sheetBookTour$lastId",
+                        userInfo.id,
+                        binding.nameOfUserBook.text.toString().uppercase(),
+                        tourInfo.id,
+                        tourInfo.name,
+                        binding.slbSex.text.toString().uppercase(),
+                        binding.mailOfUserBookTour.text.toString(),
+                        "${address.uppercase()} - ${ward.uppercase()} - ${district.uppercase()} - ${province.uppercase()}",
+                        binding.phoneOfUserBookTour.text.toString().uppercase(),
+                        binding.calendarOfBookTour.text.toString().uppercase(),
+                        binding.numberOfPeople.text.toString().uppercase(),
+                        arrayOfStatusSheet[0],
+                        binding.discountCode.text.toString(),
+                        tourInfo.price
+                    )
+                    firebaseService.insertSheetAddInformationCart(sheetAddInformationCart) { status ->
+                        if (status) {
+                            firebaseService.updateLastId(
+                                "SheetAddInformationCart",
+                                "lastId",
+                                lastId.toInt()
+                            ) {
+                                if (status) {
+                                    Toast.makeText(
+                                        context,
+                                        "Quý Đã đặt tour đang chờ admin xác nhận",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                } else {
+                                    Toast.makeText(
+                                        context,
+                                        "Quý khách đã đặt tour thất bại",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
                             }
+                        } else {
+                            Toast.makeText(
+                                context,
+                                "Quý khách đã đặt tour thất bại",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
-                    } else {
-                        Toast.makeText(
-                            context,
-                            "Quý khách đã đặt tour thất bại",
-                            Toast.LENGTH_SHORT
-                        ).show()
                     }
                 }
+            }else{
+                Toast.makeText(context, "Quý Khách Chưa Nhập Đầy Đủ Thông Tin", Toast.LENGTH_SHORT).show()
             }
-
-//
         }
 
         // Inflate the layout for this fragment
