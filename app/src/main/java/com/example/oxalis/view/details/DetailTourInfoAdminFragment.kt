@@ -100,7 +100,7 @@ class DetailTourInfoAdminFragment(private val tourInfo: TourInfo) : Fragment() {
                 binding.ageOfTour.text.toString().uppercase(),
                 binding.slbPermission.text.toString().uppercase(),
                 "${idOfTourInfo}0",
-                null,
+                "${this.tourInfo.rate}",
                 binding.describeOfTour.text.toString(),
                 binding.slbTypeOfTour.text.toString(),
                 binding.percent.text.toString(),
