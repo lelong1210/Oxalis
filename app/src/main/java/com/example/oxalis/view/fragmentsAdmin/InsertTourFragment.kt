@@ -105,6 +105,15 @@ class InsertTourFragment : Fragment() {
                         if(arrayImageUri.size != 0){
                             firebaseService.uploadImage(idOfTourInfo, arrayImageUri) { status ->
                                 if (status) {
+                                    firebaseService.updateLastIdOfTourInfo(idLast.toInt()) { status ->
+                                        if (status) {
+                                            Toast.makeText(
+                                                context,
+                                                "Đã thêm tour",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
+                                    }
                                 }
                             }
                         }else{

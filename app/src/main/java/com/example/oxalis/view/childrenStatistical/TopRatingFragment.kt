@@ -1,6 +1,7 @@
 package com.example.oxalis.view.childrenStatistical
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,8 @@ import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
 import com.example.oxalis.databinding.FragmentTopRatingBinding
 import com.example.oxalis.service.FirebaseService
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 class TopRatingFragment : Fragment() {
 
@@ -27,12 +30,16 @@ class TopRatingFragment : Fragment() {
         val data: MutableList<DataEntry> = ArrayList()
         val anyChartViewColumn = binding.anyChartView
 
-        firebaseService.getTourInfoOrDerBy("5") { tourInfoList ->
+        firebaseService.getTourInfoOrDerBy("20") { tourInfoList ->
             data.clear()
+
             for (i in tourInfoList.indices) {
-                if (tourInfoList[i].rate != null) {
+                if (tourInfoList[i].rate != "null" && tourInfoList[i].rate != null) {
                     data.add(ValueDataEntry(tourInfoList[i].id, tourInfoList[i].rate!!.toFloat()))
                     column.data(data)
+                }
+                if(data.size == 5){
+                    break
                 }
             }
             column.title("Tour được đánh giá tốt nhất")
