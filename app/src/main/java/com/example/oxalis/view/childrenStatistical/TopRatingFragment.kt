@@ -46,12 +46,16 @@ class TopRatingFragment : Fragment() {
             anyChartViewColumn.setChart(column)
         }
         binding.refreshBtn.setOnClickListener {
-            firebaseService.getTourInfoOrDerBy("5") { tourInfoList ->
+            firebaseService.getTourInfoOrDerBy("20") { tourInfoList ->
                 data.clear()
+
                 for (i in tourInfoList.indices) {
-                    if (tourInfoList[i].rate != null) {
+                    if (tourInfoList[i].rate != "null" && tourInfoList[i].rate != null) {
                         data.add(ValueDataEntry(tourInfoList[i].id, tourInfoList[i].rate!!.toFloat()))
                         column.data(data)
+                    }
+                    if(data.size == 5){
+                        break
                     }
                 }
                 column.title("Tour được đánh giá tốt nhất")
