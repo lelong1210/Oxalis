@@ -5,12 +5,45 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.fragmentsAdmin.ManagerTourFragment">
+        <ImageView
+            android:id="@+id/btn_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_search_black_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/searchTour"
+            app:layout_constraintStart_toEndOf="@id/searchTour"
+            app:layout_constraintTop_toTopOf="@+id/searchTour" />
 
+        <EditText
+
+            android:id="@+id/searchTour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/horizontal_dashboard"
+            android:layout_marginTop="@dimen/normalPadding"
+            android:layout_marginBottom="@dimen/normalPadding"
+            android:layout_marginRight="@dimen/horizontal_dashboard"
+            android:background="@drawable/container_search"
+            android:drawablePadding="@dimen/drawable_left"
+            android:fontFamily="@font/bariol_regular"
+            android:gravity="center_vertical"
+            android:hint="Tìm Kiếm"
+            android:paddingLeft="@dimen/normalPadding"
+            android:paddingTop="@dimen/vertical_search"
+            android:paddingRight="@dimen/normalPadding"
+            android:paddingBottom="@dimen/vertical_search"
+            android:textColor="@color/bottomNavigationTextColor"
+            android:textSize="14sp"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </EditText>
     <androidx.recyclerview.widget.RecyclerView
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchTour"
         android:id="@+id/list_tour_recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:paddingBottom="60dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addingBtn"
@@ -24,3 +57,103 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    tools:context=".view.fragmentsAdmin.ManagerTourFragment">-->
+
+<!--    <ImageView-->
+<!--        android:id="@+id/btn_search"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/ic_search_black_24dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/searchTour"-->
+<!--        app:layout_constraintStart_toEndOf="@id/searchTour"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/searchTour" />-->
+
+<!--    <EditText-->
+
+<!--        android:id="@+id/searchTour"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center_vertical"-->
+<!--        android:layout_marginLeft="@dimen/horizontal_dashboard"-->
+<!--        android:layout_marginTop="@dimen/normalPadding"-->
+<!--        android:layout_marginBottom="@dimen/normalPadding"-->
+<!--        android:layout_marginRight="@dimen/horizontal_dashboard"-->
+<!--        android:background="@drawable/container_search"-->
+<!--        android:drawablePadding="@dimen/drawable_left"-->
+<!--        android:fontFamily="@font/bariol_regular"-->
+<!--        android:gravity="center_vertical"-->
+<!--        android:hint="Tìm Kiếm"-->
+<!--        android:paddingLeft="@dimen/normalPadding"-->
+<!--        android:paddingTop="@dimen/vertical_search"-->
+<!--        android:paddingRight="@dimen/normalPadding"-->
+<!--        android:paddingBottom="@dimen/vertical_search"-->
+<!--        android:textColor="@color/bottomNavigationTextColor"-->
+<!--        android:textSize="14sp"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--    </EditText>-->
+
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/list_tour_recycler"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/searchTour"-->
+<!--        android:paddingBottom="150dp"-->
+<!--        tools:layout_editor_absoluteX="0dp" />-->
+
+<!--&lt;!&ndash;    <LinearLayout&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:orientation="horizontal"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintBottom_toBottomOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        app:layout_constraintEnd_toEndOf="parent">&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <Button&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/btn_prev"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_marginRight="-5dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_weight="1"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:text="trước" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <com.google.android.material.floatingactionbutton.FloatingActionButton&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/addingBtn"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_alignParentEnd="true"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_alignParentBottom="true"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_margin="15dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:src="@drawable/ic_add"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:layout_constraintBottom_toBottomOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:tint="@color/white" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <Button&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/btn_next"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_marginLeft="-5dp"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_weight="1"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:text="tiếp" />&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;    </LinearLayout>&ndash;&gt;-->
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/addingBtn"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_margin="15dp"-->
+<!--            android:src="@drawable/ic_add"-->
+<!--            app:tint="@color/white"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent" />-->
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->

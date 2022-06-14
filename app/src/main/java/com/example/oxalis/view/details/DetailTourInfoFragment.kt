@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -15,6 +16,7 @@ import com.example.oxalis.databinding.FragmentDetailTourInfoBinding
 import com.example.oxalis.model.RatingTour
 import com.example.oxalis.model.TourInfo
 import com.example.oxalis.model.arrayOfImage
+import com.example.oxalis.model.arrayStatusTour
 import com.example.oxalis.service.FirebaseService
 import java.text.DecimalFormat
 import java.text.NumberFormat
@@ -66,7 +68,11 @@ class DetailTourInfoFragment(val tourInfo: TourInfo) : Fragment() {
         }
 
         binding.btnBookTour.setOnClickListener {
-            btnBookTourClickChild?.invoke(tourInfo)
+            if(tourInfo.status == arrayStatusTour[0]){
+                btnBookTourClickChild?.invoke(tourInfo)
+            }else{
+                Toast.makeText(context,"Tour hiện không thể đặt",Toast.LENGTH_SHORT).show()
+            }
         }
         binding.btnBack.setOnClickListener {
             val intent = Intent(context,MainActivity::class.java)

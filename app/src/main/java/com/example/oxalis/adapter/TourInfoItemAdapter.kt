@@ -20,7 +20,7 @@ import java.util.*
 class TourInfoItemAdapter(
     val context: Context,
     private val TYPE_OF_DISPLAY: Int,
-    private val tourInfoList: List<TourInfo>
+    var tourInfoList: List<TourInfo>
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

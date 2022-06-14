@@ -216,11 +216,23 @@ class FirebaseService {
     }
 
     fun getAllTourInfo(callback: (tourInfoList: List<TourInfo>) -> Unit) {
-        tableTour.get().addOnSuccessListener { result ->
+        tableTour.orderBy("rate", Query.Direction.DESCENDING).get().addOnSuccessListener { result ->
             var arrayListTourInfo = ArrayList<TourInfo>()
             for (document in result) {
                 var tourInfo = document.toObject(TourInfo::class.java)
                 arrayListTourInfo.add(tourInfo)
+            }
+            callback.invoke(arrayListTourInfo)
+        }
+    }
+    fun getAllTourInfoWhere(value: String,callback: (tourInfoList: List<TourInfo>) -> Unit) {
+        tableTour.get().addOnSuccessListener { result ->
+            var arrayListTourInfo = ArrayList<TourInfo>()
+            for (document in result) {
+                var tourInfo = document.toObject(TourInfo::class.java)
+                if(tourInfo.permission == value.uppercase() || tourInfo.adrress!!.contains(value.uppercase()) || tourInfo.name!!.contains(value.uppercase())){
+                    arrayListTourInfo.add(tourInfo)
+                }
             }
             callback.invoke(arrayListTourInfo)
         }
@@ -449,14 +461,15 @@ class FirebaseService {
 
     fun getTourWhere(
         value: String,
-        arrayField: List<String>,
         callback: (tourInfoList: List<TourInfo>) -> Unit
     ) {
-        tableTour.whereEqualTo("adrress", value).get().addOnSuccessListener { documents ->
+        tableTour.whereEqualTo("permission", "HIỆN").get().addOnSuccessListener { documents ->
             val arrayList = ArrayList<TourInfo>()
             for (document in documents) {
                 val tourInfo = document.toObject(TourInfo::class.java)
-                arrayList.add(tourInfo)
+                if(tourInfo.adrress!!.contains(value.uppercase()) || tourInfo.name!!.contains(value.uppercase())){
+                    arrayList.add(tourInfo)
+                }
             }
             callback.invoke(arrayList)
         }.addOnFailureListener {
@@ -530,11 +543,10 @@ class FirebaseService {
 
     fun getTourWhereHomLimit(
         value: String,
-        arrayField: List<String>,
         callback: (tourInfoList: List<TourInfo>) -> Unit
     ) {
 
-        tableTour.whereEqualTo("adrress", value).limit(5).get()
+        tableTour.whereEqualTo("adrress", value).whereEqualTo("permission", "HIỆN").limit(5).get()
             .addOnSuccessListener { documents ->
                 val arrayList = ArrayList<TourInfo>()
                 for (document in documents) {

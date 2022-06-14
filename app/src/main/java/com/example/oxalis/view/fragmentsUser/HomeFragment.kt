@@ -50,9 +50,9 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         // tour Info
         val allCategoryTourInfo: MutableList<AllCategoryTourInfo> = ArrayList()
-        firebaseService.getTourWhereHomLimit("PHONG NHA - KẺ BÀNG", listOf("")) { arrayTourInfo1 ->
+        firebaseService.getTourWhereHomLimit("PHONG NHA - KẺ BÀNG") { arrayTourInfo1 ->
             allCategoryTourInfo.add(AllCategoryTourInfo("PHONG NHA - KẺ BÀNG", arrayTourInfo1))
-            firebaseService.getTourWhereHomLimit("QUẢNG BÌNH", listOf("")) { arrayTourInfo2 ->
+            firebaseService.getTourWhereHomLimit("QUẢNG BÌNH") { arrayTourInfo2 ->
                 allCategoryTourInfo.add(AllCategoryTourInfo("QUẢNG BÌNH", arrayTourInfo2))
                 setHomeCategoryTourInfoRecycler(allCategoryTourInfo)
             }
@@ -63,7 +63,6 @@ class HomeFragment : Fragment() {
             if (value != "") {
                 firebaseService.getTourWhere(
                     value.uppercase(),
-                    listOf("adrress", "name", "price")
                 ) {
                     onItemSearchClick?.invoke(it)
                 }
@@ -109,12 +108,13 @@ class HomeFragment : Fragment() {
             }
         )
 
-        sliderAdapter.onItemClick={
+        sliderAdapter.onItemClick = {
             onItemTourInfoClick?.invoke(it)
         }
 
 
     }
+
     private fun setHomeCategoryTourInfoRecycler(allCategory: List<AllCategoryTourInfo>) {
         homeCategoryTourInfoRecycler = binding.homeRecyclerViewTourInfo
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(requireContext())
@@ -124,10 +124,9 @@ class HomeFragment : Fragment() {
         homeRecyclerTourInfoAdapter.onItemClick = {
             onItemTourInfoClick?.invoke(it)
         }
-        homeRecyclerTourInfoAdapter.onItemClickViewAll={value->
+        homeRecyclerTourInfoAdapter.onItemClickViewAll = { value ->
             firebaseService.getTourWhere(
                 value.uppercase(),
-                listOf("adrress", "name", "price")
             ) {
                 onItemSearchClick?.invoke(it)
             }
