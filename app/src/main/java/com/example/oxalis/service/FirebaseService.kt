@@ -230,7 +230,7 @@ class FirebaseService {
             var arrayListTourInfo = ArrayList<TourInfo>()
             for (document in result) {
                 var tourInfo = document.toObject(TourInfo::class.java)
-                if(tourInfo.permission == value.uppercase() || tourInfo.adrress!!.contains(value.uppercase()) || tourInfo.name!!.contains(value.uppercase())){
+                if(tourInfo.permission!!.contains(value.uppercase()) || tourInfo.status!!.contains(value.uppercase()) || tourInfo.adrress!!.contains(value.uppercase()) || tourInfo.name!!.contains(value.uppercase())){
                     arrayListTourInfo.add(tourInfo)
                 }
             }

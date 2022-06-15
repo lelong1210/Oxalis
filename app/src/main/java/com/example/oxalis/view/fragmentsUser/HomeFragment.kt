@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
@@ -61,10 +62,13 @@ class HomeFragment : Fragment() {
         binding.btnSearch.setOnClickListener {
             val value = binding.searchTour.text.toString()
             if (value != "") {
-                firebaseService.getTourWhere(
-                    value.uppercase(),
-                ) {
+                firebaseService.getTourWhere(value.uppercase()) {
                     onItemSearchClick?.invoke(it)
+                    Toast.makeText(
+                        context,
+                        "Có ${it.size} kết quả được tìm thấy",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
