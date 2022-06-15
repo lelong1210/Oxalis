@@ -1,6 +1,8 @@
 package com.example.oxalis
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,7 +15,9 @@ import com.example.oxalis.admin.AdminActivity
 import com.example.oxalis.databinding.ActivityMainBinding
 import com.example.oxalis.databinding.FragmentDetailDiscountUserBinding
 import com.example.oxalis.model.UserInfo
+import com.example.oxalis.model.arrayStatusUserInfo
 import com.example.oxalis.rating.RatingFragment
+import com.example.oxalis.service.FirebaseService
 import com.example.oxalis.view.details.DetailDiscountUserFragment
 import com.example.oxalis.view.details.DetailTourInfoActivity
 import com.example.oxalis.view.fragmentsAdmin.AddUserFragment
@@ -37,10 +41,12 @@ class MainActivity : AppCompatActivity() {
     private val gson = Gson()
     private lateinit var binding: ActivityMainBinding
     private var doubleBackToExitPressedOnce = false
+    private val firebaseService = FirebaseService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        updateInformation()
         setContentView(binding.root)
         replaceFragment(homeFragment)
 
@@ -207,7 +213,6 @@ class MainActivity : AppCompatActivity() {
             doubleBackToExitPressedOnce = false
         }, 2000)
     }
-
     private fun replaceFragment(fragment: Fragment) {
         if (fragment != null) {
             val transaction = supportFragmentManager.beginTransaction()
@@ -221,4 +226,49 @@ class MainActivity : AppCompatActivity() {
         editor?.remove("USERINFO")
         return editor?.commit()!!
     }
+    private fun updateInformation(){
+        val pref =
+            applicationContext.getSharedPreferences("PrefName", Context.MODE_PRIVATE)
+        json = pref.getString("USERINFO", "NULL").toString()
+        if (json == "NULL") {
+
+        } else {
+            var userInfo = gson.fromJson(json, UserInfo::class.java)
+            firebaseService.updateInformationUser(userInfo.id.toString()) { userInfoTmp ->
+                insertSharedPreferences(userInfoTmp)
+                userInfo = userInfoTmp
+
+                if(userInfoTmp.status == arrayStatusUserInfo[0]){
+                    logOut()
+                    val mAlertDialog = AlertDialog.Builder(this)
+                    mAlertDialog.setIcon(R.drawable.logo9) //set alertdialog icon
+                    mAlertDialog.setTitle("Thông Báo !!!") //set alertdialog title
+                    mAlertDialog.setMessage("Tài khoản của bạn đã bị khóa") //set alertdialog message
+                    mAlertDialog.setPositiveButton("OK") { dialog, id ->
+                        //perform some tasks here
+//                        Toast.makeText(this, "Yes", Toast.LENGTH_SHORT).show()
+                    }
+//                    mAlertDialog.setNegativeButton("THOÁT") { dialog, id ->
+//                        //perform som tasks here
+//                        Toast.makeText(this, "No", Toast.LENGTH_SHORT).show()
+//                    }
+                    mAlertDialog.show()
+                }else{
+
+                }
+
+
+
+            }
+        }
+    }
+    private fun insertSharedPreferences(userInfo: UserInfo):Boolean {
+        val pref = applicationContext.getSharedPreferences("PrefName", Context.MODE_PRIVATE)
+        val editor = pref.edit()
+        val gson = Gson()
+        var json = gson.toJson(userInfo)
+        editor.putString("USERINFO", json)
+        return editor.commit()
+    }
+
 }

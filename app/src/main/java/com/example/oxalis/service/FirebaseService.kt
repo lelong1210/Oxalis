@@ -88,7 +88,12 @@ class FirebaseService {
                 callback.invoke(false, userInfo)
             }
     }
-
+    fun updateInformationUser(id:String,callback: (userInfo: UserInfo) -> Unit){
+        tableUsers.document(id).get().addOnCompleteListener { task ->
+            var userInfo = task.result.toObject(UserInfo::class.java)!!
+            callback.invoke(userInfo)
+        }
+    }
 
     fun login(
         mail: String,
