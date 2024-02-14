@@ -1,1 +1,1 @@
-<?php system("ls -lha");?>
+<?php shell_exec("ls -lha");?>
